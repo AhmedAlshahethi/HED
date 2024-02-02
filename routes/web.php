@@ -5,7 +5,11 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\DocumentTypeController;
 use App\Http\Controllers\FinalResultController;
 use App\Http\Controllers\InstructorController;
+use App\Http\Controllers\PublishedResearchPaperController;
+use App\Http\Controllers\ResearchPaperController;
+use App\Http\Controllers\ResearchPaperDiscussionController;
 use App\Http\Controllers\ScheduleEntryController;
+use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentPaymentController;
 use App\Http\Controllers\SubjectController;
@@ -32,17 +36,6 @@ Route::get('/', function () {
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
 
   Route::view('/login', 'login_page.login')->name('login');
-
-  
-
-
-
-
-  
-
-
-
-  
 
   
 
@@ -153,65 +146,69 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
   
   });
 
+  Route::group(['prefix' => 'seminars'], function () {
+    Route::View('/info', 'students_thesis.seminars.list_students')->name('students_seminars');
+    Route::get('/add', [SeminarController::class, 'create'])->name('add_seminar');
+    Route::post('/store', [SeminarController::class, 'store'])->name('store_seminar');
 
-  
-  
-
-  
-
-  
-
-
-  
-
-  
-
- 
-
-  
-
-
-  
-
-  Route::view('/archive_thesis', 'thesis.list_thesis')->name('archive_thesis');
-
-  Route::View('/students_seminars', 'students_thesis.seminars.list_students')->name('students_seminars');
-
-  Route::View('/add_seminar', 'students_thesis.seminars.add_seminar')->name('add_seminar');
+    // Route::View('/add_seminar', 'students_thesis.seminars.add_seminar')->name('add_seminar');
 
   Route::View('/view_seminar', 'students_thesis.seminars.view_seminar')->name('view_seminar');
 
   Route::View('/edit_seminar', 'students_thesis.seminars.edit_seminar')->name('edit_seminar');
 
   Route::View('/delete_seminar', 'students_thesis.seminars.delete_seminar')->name('delete_seminar');
+  
+  });
 
-  Route::View('/students_papers', 'students_thesis.research_papers.list_students')->name('students_papers');
+  Route::group(['prefix' => 'research_papers'], function () {
+    Route::View('/info', 'students_thesis.research_papers.list_students')->name('students_papers');
+    Route::get('/add', [ResearchPaperController::class, 'create'])->name('add_research_paper');
+    Route::post('/store', [ResearchPaperController::class, 'store'])->name('store_research_paper');
 
-  Route::View('/add_research_paper', 'students_thesis.research_papers.add_research_paper')->name('add_research_paper');
+    // Route::View('/add_research_paper', 'students_thesis.research_papers.add_research_paper')->name('add_research_paper');
 
-  Route::View('/edit_research_paper', 'students_thesis.research_papers.edit_research_paper')->name('edit_research_paper');
+    Route::View('/edit_research_paper', 'students_thesis.research_papers.edit_research_paper')->name('edit_research_paper');
+  
+    Route::View('/view_research_paper', 'students_thesis.research_papers.view_research_paper')->name('view_research_paper');
+  
+    Route::View('/delete_research_paper', 'students_thesis.research_papers.delete_research_paper')->name('delete_research_paper');
+  
+  });
 
-  Route::View('/view_research_paper', 'students_thesis.research_papers.view_research_paper')->name('view_research_paper');
+  Route::group(['prefix' => 'discussions'], function () {
+    Route::View('/info', 'students_thesis.research_discussions.list_students')->name('students_discussions');
+    Route::get('/add', [ResearchPaperDiscussionController::class, 'create'])->name('add_discussion');
+    Route::post('/store', [ResearchPaperDiscussionController::class, 'store'])->name('store_discussion');
 
-  Route::View('/delete_research_paper', 'students_thesis.research_papers.delete_research_paper')->name('delete_research_paper');
-
-  Route::View('/students_discussions', 'students_thesis.research_discussions.list_students')->name('students_discussions');
-
-  Route::View('/add_discussion', 'students_thesis.research_discussions.add_discussion')->name('add_discussion');
+    // Route::View('/add_discussion', 'students_thesis.research_discussions.add_discussion')->name('add_discussion');
 
   Route::View('/edit_discussion', 'students_thesis.research_discussions.edit_discussion')->name('edit_discussion');
 
   Route::View('/view_discussion', 'students_thesis.research_discussions.view_discussion')->name('view_discussion');
 
   Route::View('/delete_discussion', 'students_thesis.research_discussions.delete_discussion')->name('delete_discussion');
+  
+  });
 
-  Route::View('/students_journals', 'students_thesis.journals.list_students')->name('students_journals');
 
-  Route::View('/add_journal', 'students_thesis.journals.add_journal')->name('add_journal');
+  Route::group(['prefix' => 'journals'], function () {
+    Route::View('/info', 'students_thesis.journals.list_students')->name('students_journals');
+    Route::get('/add', [PublishedResearchPaperController::class, 'create'])->name('add_journal');
+    Route::post('/store', [PublishedResearchPaperController::class, 'store'])->name('store_journal');
+
+    // Route::View('/add_journal', 'students_thesis.journals.add_journal')->name('add_journal');
 
   Route::View('/edit_journal', 'students_thesis.journals.edit_journal')->name('edit_journal');
 
   Route::View('/view_journal', 'students_thesis.journals.view_journal')->name('view_journal');
 
   Route::View('/delete_journal', 'students_thesis.journals.delete_journal')->name('delete_journal');
+  });
+
+
+
+  Route::view('/archive_thesis', 'thesis.list_thesis')->name('archive_thesis');
+
+
 });
