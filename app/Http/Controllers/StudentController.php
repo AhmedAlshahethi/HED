@@ -17,12 +17,12 @@ class StudentController extends Controller
   public function create()
   {
     return view('students.manage_students_info.add_student', [
-      'academicLevels' => AcademicLevel::values(),
-      'identityTypes' => IdentityType::values(),
-      'genders' => Gender::values(),
-      'bloodTypes' => BloodType::values(),
-      'highSchoolTypes' => HighSchoolType::values(),
-      'generalGrades' => GeneralGrade::values(),
+      'academicLevels' => AcademicLevel::array(),
+      'identityTypes' => IdentityType::array(),
+      'genders' => Gender::array(),
+      'bloodTypes' => BloodType::array(),
+      'highSchoolTypes' => HighSchoolType::array(),
+      'generalGrades' => GeneralGrade::array(),
       'departments' => Department::all(['id', 'name'])
     ]);
   }
