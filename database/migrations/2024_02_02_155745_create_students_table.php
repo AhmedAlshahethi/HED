@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\AcademicLevel;
+use App\Enums\BloodType;
 use App\Enums\GeneralGrade;
 use App\Enums\IdentityType;
 use Illuminate\Database\Migrations\Migration;
