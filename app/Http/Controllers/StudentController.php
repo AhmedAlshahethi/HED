@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\AcademicLevel;
 use App\Enums\BloodType;
 use App\Enums\Gender;
 use App\Enums\IdentityType;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -55,5 +57,7 @@ class StudentController extends Controller
       'fees' => 'required|number',
     ]);
     dd($data);
+    Student::create($data);
+    return redirect('/students_info')->with('success', 'تمت الاضافة بنجاح');
   }
 }
