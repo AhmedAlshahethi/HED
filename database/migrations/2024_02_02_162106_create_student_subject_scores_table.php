@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\GeneralGrade;
 use App\Enums\ScoreStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,7 +16,7 @@ return new class extends Migration
         Schema::create('student_subject_scores', function (Blueprint $table) {
             $table->id();
             $table->float('score');
-            $table->enum('general_grade', []);
+            $table->enum('general_grade', GeneralGrade::values());
             $table->enum('status', ScoreStatus::values());
             $table->foreignId('subject_id')->references('id')->on('subjects')->restrictOnDelete()->cascadeOnUpdate();
             $table->foreignId('student_id')->references('id')->on('students')->restrictOnDelete()->cascadeOnUpdate();

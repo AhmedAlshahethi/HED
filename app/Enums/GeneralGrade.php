@@ -4,6 +4,7 @@ namespace App\Enums;
 
 enum GeneralGrade: string
 {
+  use EnumToArray;
   case EXCELLENT = 'ممتاز';
   case VERY_GOOD = 'جيد جدا';
   case GOOD = 'جيد';

@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\AcademicLevel;
+use App\Enums\GeneralGrade;
 use App\Enums\IdentityType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -44,10 +46,10 @@ return new class extends Migration
       $table->string('college');
       $table->string('college_department');
       $table->string('major_name');
-      $table->enum('general_grade', []);
+      $table->enum('general_grade', GeneralGrade::values());
       $table->string('total_percentage');
       $table->string('graduation_year');
-      $table->enum('registration_type', []);
+      $table->enum('registration_type', AcademicLevel::values());
       $table->foreignId('department_id')->references('id')->on('departments')->restrictOnDelete()->cascadeOnUpdate();
       $table->float('fees');
       $table->softDeletes();

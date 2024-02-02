@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\GeneralGrade;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,7 +22,7 @@ return new class extends Migration
             $table->string('college_approvement_number')->nullable();
             $table->date('discussion_date')->nullable();
             $table->float('score')->nullable();
-            $table->enum('general_rating', [])->nullable();
+            $table->enum('general_rating', GeneralGrade::values())->nullable();
             $table->string('file_path')->nullable();
             $table->text('notes')->nullable();
             $table->foreignId('research_paper_id')->references('id')->on('research_papers')->restrictOnDelete()->cascadeOnUpdate();
