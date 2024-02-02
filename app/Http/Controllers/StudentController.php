@@ -39,6 +39,7 @@ class StudentController extends Controller
       'Identity_type' => 'required|in:' . join(",", IdentityType::values()),
       'identity_number' => 'required|number',
       'nationality' => 'required',
+      'nationality_country' => 'required',
       'blood_type' => 'required|in:' . join(",", BloodType::values()),
       'address' => 'required',
       'phone_number' => 'required',

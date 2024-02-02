@@ -27,6 +27,7 @@ return new class extends Migration
       $table->enum('Identity_type', IdentityType::values());
       $table->string('identity_number');
       $table->string('nationality');
+      $table->string('nationality_country');
       $table->enum('blood_type', BloodType::values());
       $table->string('address');
       $table->string('phone_number');
