@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
-            $table->enum('event_type',[]);
+            $table->enum('event_type', []);
             $table->text('event_descrption');
-            $table->integer('user_id');
+            $table->foreignId('user_id')->references('id')->on('users')->noActionOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
