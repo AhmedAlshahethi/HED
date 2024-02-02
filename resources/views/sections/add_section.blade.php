@@ -15,7 +15,8 @@
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
 </div>
-    <form>
+    <form method="POST">
+      @csrf
       <section class="content">
         <div class="container-fluid">
           <!-- SELECT2 EXAMPLE -->
@@ -30,7 +31,10 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label>{{__('sections/add_section.Section_Name')}}</label>
-                            <input type="text" class="form-control" placeholder="{{__('sections/add_section.Section_Name')}}">
+                            <input type="text" name="name" class="form-control" placeholder="{{__('sections/add_section.Section_Name')}}">
+                            @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                           </div>
                     </div>
                 </div>
