@@ -20,7 +20,7 @@ return new class extends Migration
       $table->string('district');
       $table->date('birthdate');
       $table->string('birth_place');
-      $table->enum('Identity_type', IdentityType::cases());
+      $table->enum('Identity_type', IdentityType::values());
       $table->string('identity_number');
       $table->string('nationality');
       $table->string('blood_type');
