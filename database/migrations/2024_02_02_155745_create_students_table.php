@@ -3,6 +3,7 @@
 use App\Enums\AcademicLevel;
 use App\Enums\BloodType;
 use App\Enums\GeneralGrade;
+use App\Enums\HighSchoolType;
 use App\Enums\IdentityType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -32,7 +33,7 @@ return new class extends Migration
       $table->string('high_school_name');
       $table->string('high_school_city');
       $table->string('high_school_district');
-      $table->string('high_school_type');
+      $table->enum('high_school_type', HighSchoolType::values());
       $table->year('high_school_graduation_year');
       $table->float('high_school_total_score');
       $table->float('high_school_max_score');

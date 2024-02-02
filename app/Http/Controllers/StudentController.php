@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Enums\AcademicLevel;
 use App\Enums\BloodType;
 use App\Enums\Gender;
+use App\Enums\GeneralGrade;
+use App\Enums\HighSchoolType;
 use App\Enums\IdentityType;
+use App\Models\Department;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -13,7 +16,15 @@ class StudentController extends Controller
 {
   public function create()
   {
-    return view('students.manage_students_info.add_student');
+    return view('students.manage_students_info.add_student', [
+      'academicLevels' => AcademicLevel::values(),
+      'identityTypes' => IdentityType::values(),
+      'genders' => Gender::values(),
+      'bloodTypes' => BloodType::values(),
+      'highSchoolTypes' => HighSchoolType::values(),
+      'generalGrades' => GeneralGrade::values(),
+      'departments' => Department::all(['id', 'name'])
+    ]);
   }
 
   public function store(Request $request)
@@ -34,7 +45,7 @@ class StudentController extends Controller
       'high_school_name' => 'required',
       'high_school_city' => 'required',
       'high_school_district' => 'required',
-      'high_school_type' => 'required',
+      'high_school_type' => 'required|in:' . join(",", HighSchoolType::values()),
       'high_school_graduation_year' => 'required|number',
       'high_school_total_score' => 'required|number',
       'high_school_max_score' => 'required|number',
