@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('final_results', function (Blueprint $table) {
+        Schema::create('seminars', function (Blueprint $table) {
             $table->id();
-            $table->float('total_score');
-            $table->float('total_precentage');
-            $table->enum('status', []);
-            $table->foreignId('student_id')->references('id')->on('students')->restrictOnDelete()->cascadeOnUpdate();
+            $table->string('title');
+            $table->string('supervisor');
+            $table->string('sub_supervisor')->nullable();
+            $table->date('date');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('final_results');
+        Schema::dropIfExists('seminars');
     }
 };

@@ -11,17 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('research_papers', function (Blueprint $table) {
+        Schema::create('research_paper_discussions', function (Blueprint $table) {
             $table->id();
+            $table->string('internal_discussant');
+            $table->string('external_discussant');
             $table->date('section_approvement_date')->nullable();
             $table->string('section_approvement_number')->nullable();
             $table->date('college_approvement_date')->nullable();
             $table->string('college_approvement_number')->nullable();
+            $table->date('discussion_date')->nullable();
             $table->float('score')->nullable();
+            $table->enum('general_rating', [])->nullable();
             $table->string('file_path')->nullable();
             $table->text('notes')->nullable();
-            $table->foreignId('seminar_id')->references('id')->on('seminars')->restrictOnDelete()->cascadeOnUpdate();
-            $table->softDeletes();
+            $table->foreignId('research_paper_id')->references('id')->on('research_papers')->restrictOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('research_papers');
+        Schema::dropIfExists('research_paper_discussions');
     }
 };

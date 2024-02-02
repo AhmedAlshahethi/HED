@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('student_subject_scores', function (Blueprint $table) {
+        Schema::create('schedule_entries', function (Blueprint $table) {
             $table->id();
-            $table->float('score');
-            $table->enum('general_grade', []);
-            $table->enum('status', []);
+            $table->string('day');
+            $table->string('start_time');
+            $table->string('class_room')->nullable();
             $table->foreignId('subject_id')->references('id')->on('subjects')->restrictOnDelete()->cascadeOnUpdate();
-            $table->foreignId('student_id')->references('id')->on('students')->restrictOnDelete()->cascadeOnUpdate();
+            $table->foreignId('instructor_id')->references('id')->on('instructors')->restrictOnDelete()->cascadeOnUpdate();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('student_subject_scores');
+        Schema::dropIfExists('schedule_entries');
     }
 };

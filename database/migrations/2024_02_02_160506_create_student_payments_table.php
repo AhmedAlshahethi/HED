@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('student_payments', function (Blueprint $table) {
             $table->id();
-            $table->integer('student_id');
             $table->string('payment');
             $table->string('reciet');
             $table->date('date');
-            $table->string('notes');
+            $table->text('notes')->nullable();
+            $table->foreignId('student_id')->references('id')->on('students')->restrictOnDelete()->cascadeOnUpdate();
             $table->softDeletes();
             $table->timestamps();
         });

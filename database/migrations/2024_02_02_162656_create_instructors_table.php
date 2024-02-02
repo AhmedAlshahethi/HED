@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('instructors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('academic_level',[]);
-            $table->string('email');
-            $table->enum('gender',[]);
-            $table->string('phone_number');
-            $table->integer('department_id');
+            $table->enum('academic_level', []);
+            $table->string('email')->nullable();
+            $table->enum('gender', []);
+            $table->string('phone_number')->nullable();
+            $table->foreignId('department_id')->references('id')->on('departments')->restrictOnDelete()->cascadeOnUpdate();
             $table->softDeletes();
             $table->timestamps();
         });

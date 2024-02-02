@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('final_results', function (Blueprint $table) {
+        Schema::create('published_research_papers', function (Blueprint $table) {
             $table->id();
-            $table->float('total_score');
-            $table->float('total_precentage');
-            $table->enum('status', []);
-            $table->foreignId('student_id')->references('id')->on('students')->restrictOnDelete()->cascadeOnUpdate();
+            $table->string('journal_name');
+            $table->string('link');
+            $table->text('notes')->nullable();
+            $table->foreignId('reasearch_paper_id')->references('id')->on('research_papers')->restrictOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('final_results');
+        Schema::dropIfExists('published_research_papers');
     }
 };

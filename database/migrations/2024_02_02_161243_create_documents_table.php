@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
-            $table->integer('student_id');
-            $table->integer('document_type_id');
             $table->integer('number');
             $table->date('date');
-            $table->string('file_path');
+            $table->string('file_path')->nullable();
+            $table->foreignId('document_type_id')->references('id')->on('document_types')->restrictOnDelete()->cascadeOnUpdate();
+            $table->foreignId('student_id')->references('id')->on('students')->restrictOnDelete()->cascadeOnUpdate();
             $table->softDeletes();
             $table->timestamps();
         });
