@@ -15,7 +15,8 @@
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
 </div>
-    <form>
+    <form method="POST">
+      @csrf
       <section class="content">
         <div class="container-fluid">
           <!-- SELECT2 EXAMPLE -->
@@ -36,9 +37,13 @@
                       <div class="form-group">
                           <label>{{__('students/add_student.Academic_Level')}}</label>
                           <select class="form-control">
-                              <option>{{__('shared/shared.Master')}}</option>
-                              <option>{{__('shared/shared.phD')}}</option>
+                            @foreach ($academicLevels as $key => $level)
+                            <option value="{{$key}}">{{$level}}</option>
+                            @endforeach 
                             </select>
+                            @error('registration_type')
+                              <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                   </div>
               </div>
@@ -47,10 +52,13 @@
                     <div class="form-group">
                         <label>{{__('students/add_student.Section_Type')}}</label>
                         <select class="form-control">
-                            <option>{{__('shared/shared.IT')}}</option>
-                            <option>{{__('shared/shared.IS')}}</option>
-                            <option>{{__('shared/shared.Cs')}}</option>
+                          @foreach ($departments as $department)
+                            <option value="{{$department->id}}">{{$department->name}}</option>
+                          @endforeach
                           </select>
+                          @error('department_id')
+                              <span class="text-danger">{{ $message }}</span>
+                            @enderror
                       </div>
                 </div>
               </div>               
@@ -81,6 +89,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.Student_Name')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.Student_Name')}}">
+                                @error('name')
+                                  <span class="text-danger">{{ $message }}</span>
+                                @enderror
                               </div>
                         </div>
                     </div>
@@ -94,6 +105,9 @@
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
                             </div>
+                            @error('birthdate')
+                                  <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div> 
                     <div class="col-md-6">
@@ -104,6 +118,9 @@
                                     <option>{{__('students/add_student.Identity_type.option 1')}}</option>
                                     <option>{{__('students/add_student.Identity_type.option 2')}}</option>
                                   </select>
+                                  @error('Identity_type')
+                                     <span class="text-danger">{{ $message }}</span>
+                                   @enderror
                               </div>
                         </div>
                     </div>
@@ -112,6 +129,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.Identity_Number')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.Identity_Number')}}">
+                                @error('identity_number')
+                                     <span class="text-danger">{{ $message }}</span>
+                                   @enderror
                               </div>
                         </div>
                     </div>
@@ -120,6 +140,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.Nationality')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.Nationality')}}">
+                                @error('nationality')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
@@ -128,6 +151,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.Country_of_Nationality')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.Country_of_Nationality')}}">
+                                @error('nationality_country')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
@@ -139,6 +165,9 @@
                                     <option>{{__('students/add_student.Sex.option 1')}}</option>
                                     <option>{{__('students/add_student.Sex.option 2')}}</option>
                                   </select>
+                                  @error('gender')
+                                  <span class="text-danger">{{ $message }}</span>
+                                @enderror
                               </div>
                         </div>
                     </div>
@@ -150,6 +179,9 @@
                                     <option>{{__('students/add_student.blood_type.option 1')}}</option>
                                     <option>{{__('students/add_student.blood_type.option 2')}}</option>
                                   </select>
+                                  @error('blood_type')
+                                  <span class="text-danger">{{ $message }}</span>
+                                @enderror
                               </div>
                         </div>
                     </div>
@@ -158,6 +190,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.Governorate')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.Governorate')}}">
+                                @error('city')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
@@ -166,6 +201,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.Directorate')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.Directorate')}}">
+                                @error('district')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
@@ -174,6 +212,9 @@
                           <div class="form-group">
                               <label>{{__('students/add_student.BirthPlace')}}</label>
                               <input type="text" class="form-control" placeholder="{{__('students/add_student.BirthPlace')}}">
+                              @error('birth_place')
+                              <span class="text-danger">{{ $message }}</span>
+                            @enderror
                             </div>
                       </div>
                    </div>              
@@ -204,6 +245,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.Email')}}</label>
                                 <input type="email" class="form-control" placeholder="{{__('students/add_student.Email')}}">
+                                @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
@@ -214,6 +258,9 @@
                           <input type="text" class="form-control" data-inputmask='"mask": "999999999"' data-mask
                           placeholder="{{__('students/add_student.Phone_Number')}}">
                         </div>
+                        @error('phone_number')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                         <!-- /.input group -->
                       </div>
                   </div>
@@ -222,6 +269,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.Address')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.Address')}}">
+                                @error('address')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>                
@@ -252,6 +302,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.School_Name')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.School_Name')}}">
+                                @error('high_school_name')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
@@ -260,6 +313,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.Student_School_ID')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.Student_School_ID')}}">
+                                @error('high_school_exam_id')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
@@ -268,6 +324,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.High_school_governorate')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.High_school_governorate')}}">
+                                @error('high_school_city')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
@@ -276,6 +335,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.High_school_directorate')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.High_school_directorate')}}">
+                                @error('high_school_district')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
@@ -284,6 +346,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.Graduation_year')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.Graduation_year')}}">
+                                @error('high_school_graduation_year')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
@@ -295,6 +360,9 @@
                                     <option>{{__('students/add_student.High_school_type.option 1')}}</option>
                                     <option>{{__('students/add_student.High_school_type.option 2')}}</option>
                                   </select>
+                                  @error('high_school_type')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
@@ -303,6 +371,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.Total_scores')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.Total_scores')}}">
+                                @error('high_school_total_score')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
@@ -311,6 +382,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.High_school_percentage')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.High_school_percentage')}}">
+                                @error('high_school_total_percentage')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
@@ -319,6 +393,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.The_maxmim_degree')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.The_maxmim_degree')}}">
+                                @error('high_school_max_score')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>                 
@@ -349,6 +426,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.student_Name')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.student_Name')}}">
+                                @error('english_name')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
@@ -357,14 +437,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.Place_of_Birth')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.Place_of_Birth')}}">
-                              </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="form-group">
-                                <label>{{__('students/add_student.identity_type')}}</label>
-                                <input type="text" class="form-control" placeholder="{{__('students/add_student.identity_type')}}">
+                                @error('english_birth_place')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>                
@@ -395,6 +470,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.University_Name')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.University_Name')}}">
+                                @error('university')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
@@ -403,36 +481,42 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.College_Name')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.College_Name')}}">
+                                @error('college')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
                     <div class="col-md-6">
+                      <div class="form-group">
+                          <div class="form-group">
+                              <label>{{__('students/add_student.Section.Section')}}</label>
+                              <input type="text" class="form-control" placeholder="{{__('students/add_student.Section.Section')}}">
+                              @error('college_department')
+                              <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                            </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
                         <div class="form-group">
-                            <div class="form-group">
-                                <label>{{__('students/add_student.Section.Section')}}</label>
-                                <select class="form-control">
-                                    <option>{{__('students/add_student.Section.option 1')}}</option>
-                                    <option>{{__('students/add_student.Section.option 2')}}</option>
-                                  </select>
-                              </div>
-                        </div>
+                            <label>{{__('students/add_student.Major.Major')}}</label>
+                            <input type="text" class="form-control" placeholder="{{__('students/add_student.Major.Major')}}">
+                            @error('major_name')
+                            <span class="text-danger">{{ $message }}</span>
+                          @enderror
+                          </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="form-group">
-                                <label>{{__('students/add_student.Major.Major')}}</label>
-                                <select class="form-control">
-                                    <option>{{__('students/add_student.Major.option 1')}}</option>
-                                    <option>{{__('students/add_student.Major.option 2')}}</option>
-                                  </select>
-                              </div>
-                        </div>
-                    </div>
+                </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>{{__('students/add_student.percentage')}}</label>
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.percentage')}}">
+                                @error('total_percentage')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
@@ -444,6 +528,9 @@
                                     <option>{{__('students/add_student.General_appreciation.option 1')}}</option>
                                     <option>{{__('students/add_student.General_appreciation.option 2')}}</option>
                                   </select>
+                                  @error('general_grade')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
@@ -455,6 +542,9 @@
                                     <option>{{__('students/add_student.Name_of_qualification.option 1')}}</option>
                                     <option>{{__('students/add_student.Name_of_qualification.option 2')}}</option>
                                   </select>
+                                  @error('registration_type')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
@@ -463,6 +553,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.Graduation_Year')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.Graduation_Year')}}">
+                                @error('graduation_year')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
@@ -471,6 +564,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.Graduation_country')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.Graduation_country')}}">
+                                @error('graduation_country')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>
@@ -479,6 +575,9 @@
                             <div class="form-group">
                                 <label>{{__('students/add_student.Country_of_birth')}}</label>
                                 <input type="text" class="form-control" placeholder="{{__('students/add_student.Country_of_birth')}}">
+                                @error('total_percentage')
+                                <span class="text-danger">{{ $message }}</span>
+                              @enderror
                               </div>
                         </div>
                     </div>                 
