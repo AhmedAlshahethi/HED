@@ -5,9 +5,11 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\DocumentTypeController;
 use App\Http\Controllers\FinalResultController;
 use App\Http\Controllers\InstructorController;
+use App\Http\Controllers\ScheduleEntryController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentPaymentController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 /*
@@ -123,9 +125,36 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
   // Route::view('/add_document_type', 'documents.add_document')->name('add_document_type');
   Route::view('/edit_document_type', 'documents.edit_document')->name('edit_document_type');
+
+  });
+
+  Route::group(['prefix' => 'schedules'], function () {
+    Route::view('/info', 'schedules.list_schedules')->name('schedules');
+    Route::get('/add', [ScheduleEntryController::class, 'create'])->name('add_schedule');
+    Route::post('/store', [ScheduleEntryController::class, 'store'])->name('store_schedule');
+
+    // Route::view('/add_schedule', 'schedules.add_schedule')->name('add_schedule');
+
+    Route::view('/edit_schedule', 'schedules.edit_schedule')->name('edit_schedule');
+  
+    Route::view('/view_schedule', 'schedules.view_schedule')->name('view_schedule');
   
   });
 
+
+  Route::group(['prefix' => 'users'], function () {
+    Route::view('/info', 'users.list_users')->name('users');
+    Route::get('/add', [UserController::class, 'create'])->name('add_user');
+    Route::post('/store', [UserController::class, 'store'])->name('store_user');
+
+    // Route::view('/add_user', 'users.add_user')->name('add_user');
+
+    Route::view('/edit_user', 'users.edit_user')->name('edit_user');
+  
+  });
+
+
+  
   
 
   
@@ -137,19 +166,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
   
 
-  Route::view('/schedules', 'schedules.list_schedules')->name('schedules');
+ 
 
-  Route::view('/add_schedule', 'schedules.add_schedule')->name('add_schedule');
+  
 
-  Route::view('/edit_schedule', 'schedules.edit_schedule')->name('edit_schedule');
 
-  Route::view('/view_schedule', 'schedules.view_schedule')->name('view_schedule');
-
-  Route::view('/users', 'users.list_users')->name('users');
-
-  Route::view('/add_user', 'users.add_user')->name('add_user');
-
-  Route::view('/edit_user', 'users.edit_user')->name('edit_user');
+  
 
   Route::view('/archive_thesis', 'thesis.list_thesis')->name('archive_thesis');
 
