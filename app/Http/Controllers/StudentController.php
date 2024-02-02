@@ -50,7 +50,7 @@ class StudentController extends Controller
       'general_grade' => 'required',
       'total_percentage' => 'required|number',
       'graduation_year' => 'required|number',
-      'registration_type' => 'required',
+      'registration_type' => 'required|in:' . join(",", AcademicLevel::values()),
       'department_id' => 'required|exists:departments,id',
       'fees' => 'required|number',
     ]);
