@@ -18,15 +18,15 @@ class StudentController extends Controller
   {
     $data = $request->validate([
       'name' => 'required',
-      'gender' => 'required|in:' + Gender::values(),
+      'gender' => 'required|in:' + join(",", Gender::values()),
       'city' => 'required',
       'district' => 'required',
       'birthdate' => 'required|date',
       'birth_place' => 'required',
-      'Identity_type' => 'required|in:' + IdentityType::values(),
+      'Identity_type' => 'required|in:' + join(",", IdentityType::values()),
       'identity_number' => 'required|number',
       'nationality' => 'required',
-      'blood_type' => 'required|in:' + BloodType::values(),
+      'blood_type' => 'required|in:' + join(",", BloodType::values()),
       'address' => 'required',
       'phone_number' => 'required',
       'high_school_name' => 'required',
