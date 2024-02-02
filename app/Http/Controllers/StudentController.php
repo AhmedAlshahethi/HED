@@ -42,6 +42,7 @@ class StudentController extends Controller
       'blood_type' => 'required|in:' . join(",", BloodType::values()),
       'address' => 'required',
       'phone_number' => 'required',
+      'email' => 'nullable|email',
       'high_school_name' => 'required',
       'high_school_city' => 'required',
       'high_school_district' => 'required',

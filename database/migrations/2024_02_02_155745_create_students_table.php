@@ -30,6 +30,7 @@ return new class extends Migration
       $table->enum('blood_type', BloodType::values());
       $table->string('address');
       $table->string('phone_number');
+      $table->string('email')->nullable();
       $table->string('high_school_name');
       $table->string('high_school_city');
       $table->string('high_school_district');
