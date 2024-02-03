@@ -15,7 +15,7 @@
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
 </div>
-    <form method="POST">
+    <form method="POST" action="{{route('store_student')}}">
       @csrf
       <section class="content">
         <div class="container-fluid">
