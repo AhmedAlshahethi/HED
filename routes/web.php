@@ -51,7 +51,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
   Route::group(['prefix' => 'departments'], function () {
     Route::view('/info', 'sections.list_sections')->name('sections');
     Route::get('/add', [DepartmentController::class, 'create'])->name('add_section');
-    Route::post('/store', [DepartmentController::class, 'store'])->name('store_student');
+    Route::post('/store', [DepartmentController::class, 'store'])->name('store_section');
     Route::view('/edit_section', 'sections.edit_section')->name('edit_section');
   });
 
