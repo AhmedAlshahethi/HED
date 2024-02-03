@@ -15,7 +15,8 @@
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
 </div>
-<form>
+<form method="POST" action="{{route('store_instructor')}}">
+  @csrf
   <section class="content">
     <div class="container-fluid">
       <!-- SELECT2 EXAMPLE -->
@@ -30,7 +31,10 @@
               <div class="form-group">
                   <div class="form-group">
                       <label>{{__('instructors/add_instructor.Instructor_Name')}}</label>
-                      <input type="text" class="form-control" placeholder="{{__('instructors/add_instructor.Instructor_Name')}}">
+                      <input type="text" name="name" class="form-control" placeholder="{{__('instructors/add_instructor.Instructor_Name')}}">
+                      @error('name')
+                              <span class="text-danger">{{ $message }}</span>
+                            @enderror
                     </div>
               </div>
           </div>
@@ -38,10 +42,14 @@
             <div class="form-group">
                 <div class="form-group">
                     <label>{{__('instructors/add_instructor.Gender.Gender')}}</label>
-                    <select class="form-control">
-                      <option>{{__('instructors/add_instructor.Gender.option 1')}}</option>
-                      <option>{{__('instructors/add_instructor.Gender.option 2')}}</option>
+                    <select name="gender" class="form-control">
+                      @foreach ($genders as $key => $gender)
+                                  <option value="{{$key}}">{{$gender}}</option>
+                      @endforeach
                     </select>
+                    @error('gender')
+                              <span class="text-danger">{{ $message }}</span>
+                    @enderror
                   </div>
             </div>
         </div>
@@ -49,10 +57,14 @@
           <div class="form-group">
               <div class="form-group">
                   <label>{{__('instructors/add_instructor.Section.Section')}}</label>
-                  <select class="form-control">
-                    <option>{{__('instructors/add_instructor.Section.option 1')}}</option>
-                    <option>{{__('instructors/add_instructor.Section.option 2')}}</option>
+                  <select name="department_id" class="form-control">
+                    @foreach ($departments as $department)
+                            <option value="{{$department->id}}">{{$department->name}}</option>
+                    @endforeach
                   </select>
+                  @error('department_id')
+                              <span class="text-danger">{{ $message }}</span>
+                  @enderror
                 </div>
           </div>
       </div>
@@ -60,10 +72,14 @@
         <div class="form-group">
             <div class="form-group">
                 <label>{{__('instructors/add_instructor.Level.Level')}}</label>
-                <select class="form-control">
-                  <option>{{__('instructors/add_instructor.Level.option 1')}}</option>
-                  <option>{{__('instructors/add_instructor.Level.option 2')}}</option>
+                <select name="academic_level" class="form-control">
+                  @foreach ($academicLevels as $key => $level)
+                            <option value="{{$key}}">{{$level}}</option>
+                  @endforeach 
                 </select>
+                @error('academic_level')
+                              <span class="text-danger">{{ $message }}</span>
+                @enderror
               </div>
         </div>
     </div>
@@ -71,7 +87,10 @@
       <div class="form-group">
           <div class="form-group">
             <label for="exampleInputEmail1">{{__('instructors/add_instructor.Email_address')}}</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="{{__('instructors/add_instructor.Email_address')}}">
+            <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="{{__('instructors/add_instructor.Email_address')}}">
+            @error('email')
+                   <span class="text-danger">{{ $message }}</span>
+             @enderror
             </div>
       </div>
   </div>
@@ -79,7 +98,10 @@
     <div class="form-group">
         <div class="form-group">
             <label>{{__('instructors/add_instructor.Phone_Number')}}</label>
-            <input type="text" class="form-control" placeholder="{{__('instructors/add_instructor.Phone_Number')}}">
+            <input type="text" name="phone_number" class="form-control" placeholder="{{__('instructors/add_instructor.Phone_Number')}}">
+            @error('phone_number')
+                       <span class="text-danger">{{ $message }}</span>
+            @enderror
           </div>
     </div>
 </div>

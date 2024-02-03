@@ -20,7 +20,7 @@ class SubjectController extends Controller
             'name' => 'required',
             'hours' => 'required|numeric',
             'semester' => 'required|numeric',
-            'department_id' => 'required',
+            'department_id' => 'required|exists:departments,id',
         ]);
 
         Subject::create($data);
