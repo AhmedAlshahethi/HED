@@ -16,7 +16,8 @@
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
 </div>
-<form>
+<form method="POST" action="{{route('store_document_type')}}">
+  @csrf
   <section class="content">
     <div class="container-fluid">
       <!-- SELECT2 EXAMPLE -->
@@ -31,7 +32,10 @@
               <div class="form-group">
                   <div class="form-group">
                       <label>{{__('documents/add_document.Document_Type')}}</label>
-                      <input type="text" class="form-control" placeholder="{{__('documents/add_document.Document_Type')}}">
+                      <input type="text" name="name" class="form-control" placeholder="{{__('documents/add_document.Document_Type')}}">
+                      @error('name')
+                              <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     </div>
               </div>
           </div>

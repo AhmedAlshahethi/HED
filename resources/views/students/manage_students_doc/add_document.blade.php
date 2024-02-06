@@ -63,7 +63,7 @@
                                         </td>
                                         <td>
                                           <div>
-                                            <input type="text" name="Doc_num[0][number]" class="form-control" placeholder="{{__('students/add_student.Document_Number')}}">
+                                            <input type="text" name="number[0][number]" class="form-control" placeholder="{{__('students/add_student.Document_Number')}}">
                                           </div>
                                         </td>
                                         <td>
@@ -71,11 +71,11 @@
                                             <div class="input-group-prepend">
                                               <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                             </div>
-                                            <input type="text" name="Doc_date[0][date]" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                                            <input type="text" name="date[0][date]" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
                                           </div>
                                         </td>
                                         <td>
-                                          <select class="custom-select" name="Doc_type[0][type]">
+                                          <select class="custom-select" name="document_type_id[0][document_type_id]">
                                             <option>option 1</option>
                                             <option>option 2</option>
                                             <option>option 3</option>

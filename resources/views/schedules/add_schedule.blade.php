@@ -17,7 +17,8 @@
   </div><!-- /.container-fluid -->
 </div>
 
-<form>
+<form method="POST" action="{{route('store_schedule')}}">
+  @csrf
   <section class="content">
     <div class="container-fluid">
       <!-- SELECT2 EXAMPLE -->
@@ -65,13 +66,16 @@
                       <tbody>
                         <tr>
                           <td>
-                            <select class="custom-select" name="instructor[0][instructor]">
+                            <select class="custom-select" name="instructor_id[0][instructor_id]">
                               <option>option 1</option>
                               <option>option 2</option>
                               <option>option 3</option>
                               <option>option 4</option>
                               <option>option 5</option>
                             </select>
+                            @error('instructor_id')
+                              <span class="text-danger">{{ $message }}</span>
+                            @enderror
                           </td>
                           <td>
                             <select class="custom-select" name="day[0][day]">
@@ -81,29 +85,41 @@
                               <option>option 4</option>
                               <option>option 5</option>
                             </select>
+                            @error('day')
+                              <span class="text-danger">{{ $message }}</span>
+                            @enderror
                           </td>
                           <td>
-                            <select class="custom-select" name="time[0][time]">
+                            <select class="custom-select" name="start_time[0][start_time]">
                               <option>option 1</option>
                               <option>option 2</option>
                               <option>option 3</option>
                               <option>option 4</option>
                               <option>option 5</option>
                             </select>
+                            @error('start_time')
+                              <span class="text-danger">{{ $message }}</span>
+                            @enderror
                           </td>
                           <td>
-                            <select class="custom-select" name="subject[0][subject]">
+                            <select class="custom-select" name="subject_id[0][subject_id]">
                               <option>option 1</option>
                               <option>option 2</option>
                               <option>option 3</option>
                               <option>option 4</option>
                               <option>option 5</option>
                             </select>
+                            @error('subject_id')
+                              <span class="text-danger">{{ $message }}</span>
+                            @enderror
                           </td>
                           <td>
                             <div>
-                              <input type="text" name="Lecture[0][Lecture]" class="form-control" style="width: 55%"
+                              <input type="text" name="class_room[0][class_room]" class="form-control" style="width: 55%"
                               placeholder="{{__('schedules/add_schedule.Lectures_Table.Lecture')}}">
+                              @error('class_room')
+                              <span class="text-danger">{{ $message }}</span>
+                            @enderror
                             </div>
                           </td>
                           <td class="project-actions text-right">

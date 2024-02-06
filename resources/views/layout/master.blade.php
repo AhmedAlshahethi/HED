@@ -399,7 +399,7 @@
       ++i;
       $("#dynamicAddRemove").append(`<tr>
                           <td>
-                            <select class="custom-select" name="instructor[`+ i +`][instructor]">
+                            <select class="custom-select" name="instructor_id[`+ i +`][instructor_id]">
                               <option>option 1</option>
                               <option>option 2</option>
                               <option>option 3</option>
@@ -417,7 +417,7 @@
                             </select>
                           </td>
                           <td>
-                            <select class="custom-select" name="time[[`+ i +`]][time]">
+                            <select class="custom-select" name="start_time[[`+ i +`]][start_time]">
                               <option>option 1</option>
                               <option>option 2</option>
                               <option>option 3</option>
@@ -426,7 +426,7 @@
                             </select>
                           </td>
                           <td>
-                            <select class="custom-select" name="subject[[`+ i +`]][subject]">
+                            <select class="custom-select" name="subject_id[[`+ i +`]][subject_id]">
                               <option>option 1</option>
                               <option>option 2</option>
                               <option>option 3</option>
@@ -436,7 +436,7 @@
                           </td>
                           <td>
                             <div>
-                              <input type="text" name="Lecture[`+ i +`][Lecture]" class="form-control" style="width: 55%"
+                              <input type="text" name="class_room[`+ i +`][class_room]" class="form-control" style="width: 55%"
                               placeholder="{{__('schedules/add_schedule.Lectures_Table.Lecture')}}">
                             </div>
                           </td>
@@ -513,7 +513,7 @@
                                   </td>
                                   <td>
                                     <div>
-                                      <input type="text" name="Doc_num[`+ i +`][number]" class="form-control" placeholder="{{__('students/add_student.Document_Number')}}">
+                                      <input type="text" name="number[`+ i +`][number]" class="form-control" placeholder="{{__('students/add_student.Document_Number')}}">
                                     </div>
                                   </td>
                                   <td>
@@ -521,11 +521,11 @@
                                       <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                       </div>
-                                      <input type="text" name="Doc_date[`+ i +`][date]" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                                      <input type="text" name="date[`+ i +`][date]" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
                                     </div>
                                   </td>
                                   <td>
-                                    <select class="custom-select" name="Doc_type[`+ i +`][type]">
+                                    <select class="custom-select" name="document_type_id[`+ i +`][document_type_id]">
                                       <option>option 1</option>
                                       <option>option 2</option>
                                       <option>option 3</option>
