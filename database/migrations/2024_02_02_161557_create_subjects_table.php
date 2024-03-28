@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Semester;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->float('hours');
-            $table->integer('semester');
+            $table->enum('semester', Semester::values());
             $table->foreignId('department_id')->references('id')->on('departments')->restrictOnDelete()->cascadeOnUpdate();
             $table->softDeletes();
             $table->timestamps();

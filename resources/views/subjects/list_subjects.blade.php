@@ -14,7 +14,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item">{{__('subjects/list_subjects.Home')}}</li>
-          <li class="breadcrumb-item active"><a href="subjects">{{__('subjects/list_subjects.Screen')}}</a></li>
+          <li class="breadcrumb-item active"><a href="{{route('subjects')}}">{{__('subjects/list_subjects.Screen')}}</a></li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -79,77 +79,45 @@
                 <thead>
                   <tr>
                     <th>{{__('subjects/list_subjects.Subjects_table.Subject_Name')}}</th>
-                    <th>{{__('shared/shared.Level')}}</th>
+                    <th>{{__('shared/shared.semester')}}</th>
                   <th>{{__('shared/shared.Section')}}</th>
+                  <th>{{__('shared/shared.hours')}}</th>
+
                   </tr>
                 </thead>
                 <tbody id="table_body">
-                  <tr>
-                    <td>طرق منهجية البحث</td>
-                    <td>ماجستير</td>
-                    <td>تقنية المعلومات</td>
+
+
+                @foreach ($Allsubjects as $subject) 
+                        <tr>
+                        <td> {{$subject->name}}</td>
+
+                    <td>{{$subject->semester}}</td>
+                    <td>{{$subject->departments->name}}</td>
+                    <td>{{$subject->hours}}</td>
+
                     <td class="project-actions text-right">
                         {{-- <a class="btn btn-primary btn-sm" href="#">
                             <i class="fas fa-folder">
                             </i>
                             {{__('subjects/list_subjects.Subjects_table.view')}}
                         </a> --}}
-                        <a class="btn btn-info btn-sm" href="{{route('edit_subject')}}">
+                        <a class="btn btn-info btn-sm" href="{{route('edit_subject',$subject->id)}}">
                             <i class="fas fa-pencil-alt">
                             </i>
                             {{__('shared/shared.Edit')}}
                         </a>
-                        <a class="btn btn-danger btn-sm text-white" href="#">
+                        <a class="btn btn-danger btn-sm text-white" href="{{route('delete_subject',$subject->id)}}">
                             <i class="fas fa-trash">
                             </i>
                             {{__('shared/shared.Delete')}}
                         </a>
                     </td>
                   </tr>
-                  <tr>
-                    <td>ادارة امنية المعلومات</td>
-                    <td>دكتوراه</td>
-                    <td>نظم المعلومات</td>
-                    <td class="project-actions text-right">
-                        {{-- <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            {{__('subjects/list_subjects.Subjects_table.view')}}
-                        </a> --}}
-                        <a class="btn btn-info btn-sm" href="{{route('edit_subject')}}">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            {{__('shared/shared.Edit')}}
-                        </a>
-                        <a class="btn btn-danger btn-sm text-white" href="#">
-                            <i class="fas fa-trash">
-                            </i>
-                            {{__('shared/shared.Delete')}}
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>ادارة قواعد البيانات</td>
-                    <td>ماجستير</td>
-                    <td>علوم الحاسوب</td>
-                    <td class="project-actions text-right">
-                        {{-- <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            {{__('subjects/list_subjects.Subjects_table.view')}}
-                        </a> --}}
-                        <a class="btn btn-info btn-sm" href="{{route('edit_subject')}}">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            {{__('shared/shared.Edit')}}
-                        </a>
-                        <a class="btn btn-danger btn-sm text-white" href="#">
-                            <i class="fas fa-trash">
-                            </i>
-                            {{__('shared/shared.Delete')}}
-                        </a>
-                    </td>
-                  </tr>
+                             @endforeach
+
+                 
+                  
                 </tbody>
               </table>
             </div>

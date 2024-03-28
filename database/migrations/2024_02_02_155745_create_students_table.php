@@ -8,6 +8,8 @@ use App\Enums\IdentityType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Enums\Gender;
+
 
 return new class extends Migration
 {
@@ -19,7 +21,7 @@ return new class extends Migration
     Schema::create('students', function (Blueprint $table) {
       $table->id();
       $table->string('name');
-      $table->string('gender');
+      $table->enum('gender', Gender::values());
       $table->string('city');
       $table->string('district');
       $table->date('birthdate');
@@ -49,7 +51,7 @@ return new class extends Migration
       $table->string('university');
       $table->string('college');
       $table->string('college_department');
-      $table->string('major_name');
+      $table->string('major_name'); 
       $table->enum('general_grade', GeneralGrade::values());
       $table->string('total_percentage');
       $table->string('graduation_year');

@@ -38,7 +38,7 @@
                           <label>{{__('students/add_student.Academic_Level')}}</label>
                           <select class="form-control">
                             @foreach ($academicLevels as $key => $level)
-                            <option value="{{$key}}">{{$level}}</option>
+                            <option value="{{$level}}">{{$level}}</option>
                             @endforeach 
                             </select>
                             @error('registration_type')
@@ -116,7 +116,7 @@
                                 <label>{{__('students/add_student.Identity_type.Identity_type')}}</label>
                                 <select class="form-control">
                                   @foreach ($identityTypes as $key => $identity)
-                                  <option value="{{$key}}">{{$identity}}</option>
+                                  <option value="{{$identity}}">{{$identity}}</option>
                                 @endforeach
                                   </select>
                                   @error('Identity_type')
@@ -164,7 +164,7 @@
                                 <label>{{__('students/add_student.Sex.Sex')}}</label>
                                 <select class="form-control">
                                   @foreach ($genders as $key => $gender)
-                                  <option value="{{$key}}">{{$gender}}</option>
+                                  <option value="{{$gender}}">{{$gender}}</option>
                                 @endforeach
                                   </select>
                                   @error('gender')
@@ -179,7 +179,7 @@
                                 <label>{{__('students/add_student.blood_type.blood_type')}}</label>
                                 <select class="form-control">
                                   @foreach ($bloodTypes as $key => $type)
-                                  <option value="{{$key}}">{{$type}}</option>
+                                  <option value="{{$type}}">{{$type}}</option>
                                 @endforeach
                                   </select>
                                   @error('blood_type')
@@ -361,7 +361,7 @@
                                 <label>{{__('students/add_student.High_school_type.High_school_type')}}</label>
                                 <select class="form-control">
                                   @foreach ($highSchoolTypes as $key => $type)
-                                  <option value="{{$key}}">{{$type}}</option>
+                                  <option value="{{$type}}">{{$type}}</option>
                                 @endforeach
                                   </select>
                                   @error('high_school_type')
@@ -530,7 +530,7 @@
                                 <label>{{__('students/add_student.General_appreciation.General_appreciation')}}</label>
                                 <select class="form-control">
                                   @foreach ($generalGrades as $key => $grade)
-                                  <option value="{{$key}}">{{$grade}}</option>
+                                  <option value="{{$grade}}">{{$grade}}</option>
                                 @endforeach
                                   </select>
                                   @error('general_grade')
@@ -545,7 +545,7 @@
                                 <label>{{__('students/add_student.Name_of_qualification.Name_of_qualification')}}</label>
                                 <select class="form-control">
                                   @foreach ($academicLevels as $key => $level)
-                                  <option value="{{$key}}">{{$level}}</option>
+                                  <option value="{{$level}}">{{$level}}</option>
                                 @endforeach
                                   </select>
                                   @error('registration_type')

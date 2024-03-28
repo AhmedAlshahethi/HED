@@ -58,11 +58,11 @@
                   </tr>
                 </thead>
                 <tbody id="table_body">
-                  <tr>
-                    <td>1</td>
-                    <td>تقنية المعلومات</td>
-                    <td>تقنية المعلومات هي مجموعة من الأدوات والأنظمة التكنولوجية التي تستخدم ......
-                    </td>
+                  @foreach($AllDeps as $department)
+                <tr>
+                    <td>{{$department->id}}</td>
+                    <td>{{$department->name}}</td>
+                    <td>{{$department->description}}</td>
                     <td class="project-actions text-right">
                       <a class="btn btn-primary btn-sm" href="#">
                         <i class="fas fa-eye">
@@ -81,52 +81,9 @@
                         </a>
                     </td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>علوم الحاسوب</td>
-                    <td>نظم المعلومات هي مجموعة من الأدوات والأنظمة التكنولوجية التي تستخدم ......
-                    </td>
-                    <td class="project-actions text-right">
-                      <a class="btn btn-primary btn-sm" href="#">
-                        <i class="fas fa-eye">
-                        </i>
-                        {{__('shared/shared.View')}}
-                      </a>
-                        <a class="btn btn-info btn-sm" href="{{route('edit_section')}}">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            {{__('shared/shared.Edit')}}
-                        </a>
-                        <a class="btn btn-danger btn-sm text-white" href="#">
-                            <i class="fas fa-trash">
-                            </i>
-                            {{__('shared/shared.Delete')}}
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>نظم المعلومات</td>
-                    <td>علوم الحاسوب هي مجموعة من الأدوات والأنظمة التكنولوجية التي تستخدم ......
-                    </td>
-                    <td class="project-actions text-right">
-                      <a class="btn btn-primary btn-sm" href="#">
-                        <i class="fas fa-eye">
-                        </i>
-                        {{__('shared/shared.View')}}
-                      </a>
-                        <a class="btn btn-info btn-sm" href="{{route('edit_section')}}">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            {{__('shared/shared.Edit')}}
-                        </a>
-                        <a class="btn btn-danger btn-sm text-white" href="#">
-                            <i class="fas fa-trash">
-                            </i>
-                            {{__('shared/shared.Delete')}}
-                        </a>
-                    </td>
-                  </tr>
+                  @endforeach
+
+                  
                 </tbody>
               </table>
             </div>

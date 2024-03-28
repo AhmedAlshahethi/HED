@@ -39,16 +39,19 @@
                 </div>
             </div>
             <div class="col-md-6">
-              <div class="form-group">
-                  <div class="form-group">
-                      <label>الترم</label>
-                      <input type="text" name="semester" class="form-control" placeholder="الترم">
-                      @error('semester')
-                            <span class="text-danger">{{ $message }}</span>
-                      @enderror
-                    </div>
+        <div class="form-group">
+            <div class="form-group">  
+                <label>الترم</label>
+                <select name="semester" class="form-control">
+                  @foreach ($semesters as $key => $semester)
+                            <option value="{{$semester}}">{{$semester}}</option>
+                  @endforeach 
+                </select>
+              
               </div>
-          </div>
+               </div>
+        </div>
+    </div>
           <div class="col-md-6">
             <div class="form-group">
                 <div class="form-group">

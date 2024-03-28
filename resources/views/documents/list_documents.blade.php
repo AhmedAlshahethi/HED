@@ -55,85 +55,25 @@
                 </thead>
                 <tbody id="table_body">
                   <tr>
-                    <td>شهادة تخرج ثانوية</td>
+                    @foreach($documents_type as $documentType)
+                    <td>{{$documentType->name}}</td>
                     <td class="project-actions text-right">
-                        {{-- <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            View
-                        </a> --}}
-                        <a class="btn btn-info btn-sm" href="{{route('edit_document_type')}}">
+                        
+                        <a class="btn btn-info btn-sm" href="{{route('edit_document_type',$documentType->id)}}">
                             <i class="fas fa-pencil-alt">
                             </i>
                             {{__('shared/shared.Edit')}}
                         </a>
-                        <a class="btn btn-danger btn-sm text-white" href="#">
+                        <a class="btn btn-danger btn-sm text-white" href="{{route('delete_document_type',$documentType->id)}}">
                             <i class="fas fa-trash">
                             </i>
                             {{__('shared/shared.Delete')}}
                         </a>
                     </td>
                   </tr>
-                  <tr>
-                    <td>شهادة تخرج جامعية</td>
-                    <td class="project-actions text-right">
-                        {{-- <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            View
-                        </a> --}}
-                        <a class="btn btn-info btn-sm" href="{{route('edit_document_type')}}">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            {{__('shared/shared.Edit')}}
-                        </a>
-                        <a class="btn btn-danger btn-sm text-white" href="#">
-                            <i class="fas fa-trash">
-                            </i>
-                            {{__('shared/shared.Delete')}}
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>صور شخصية</td>
-                    <td class="project-actions text-right">
-                        {{-- <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            View
-                        </a> --}}
-                        <a class="btn btn-info btn-sm" href="{{route('edit_document_type')}}">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            {{__('shared/shared.Edit')}}
-                        </a>
-                        <a class="btn btn-danger btn-sm text-white" href="#">
-                            <i class="fas fa-trash">
-                            </i>
-                            {{__('shared/shared.Delete')}}
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>هوية شخصية</td>
-                    <td class="project-actions text-right">
-                        {{-- <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            View
-                        </a> --}}
-                        <a class="btn btn-info btn-sm" href="{{route('edit_document_type')}}">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            {{__('shared/shared.Edit')}}
-                        </a>
-                        <a class="btn btn-danger btn-sm text-white" href="#">
-                            <i class="fas fa-trash">
-                            </i>
-                            {{__('shared/shared.Delete')}}
-                        </a>
-                    </td>
-                  </tr>
+                  @endforeach
+                  
+                 
                 </tbody>
               </table>
             </div>

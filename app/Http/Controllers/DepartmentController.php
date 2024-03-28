@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use Illuminate\Database\Query\IndexHint;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
+    public function Index(){
+        $departments = Department::get();
+        //return redirect()->route('sections')->with('AllDeps', $departments);
+        return view('sections.list_sections')->with('AllDeps', $departments);
+
+    }
 
     public function create(){
        return view('sections.add_section');
@@ -16,8 +23,15 @@ class DepartmentController extends Controller
             'name' => 'required',
 
         ]);
-        Department::create($data);
-        return redirect()->route('sections')->with('success', 'تمت الاضافة بنجاح');
-    }
+        $department =new Department();
+        $department->name = $request->name;
+        $department->description =$request->description;
+        if($department->save())
+            return redirect()->route('sections');
+        else 
+        return "no";
+               // Department::create($data);
+
+            }
     
 }

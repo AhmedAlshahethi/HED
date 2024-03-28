@@ -14,6 +14,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentPaymentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserController;
+use App\Models\DocumentType;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 /*
@@ -49,24 +50,37 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
   });
 
   Route::group(['prefix' => 'departments'], function () {
-    Route::view('/info', 'sections.list_sections')->name('sections');
+    //Route::view('/info', 'sections.list_sections')->name('sections');
+
+      Route::get('/info', [DepartmentController::class, 'Index'])->name('sections');
     Route::get('/add', [DepartmentController::class, 'create'])->name('add_section');
     Route::post('/store', [DepartmentController::class, 'store'])->name('store_section');
     Route::view('/edit_section', 'sections.edit_section')->name('edit_section');
   });
 
   Route::group(['prefix' => 'subjects'], function () {
-    Route::view('/info', 'subjects.list_subjects')->name('subjects');
+    //Route::view('/info','subjects.list_subjects')->name('subjects');
+     Route::get('/info',[SubjectController::class,'index'])->name('subjects');
+    
     Route::get('/add', [SubjectController::class, 'create'])->name('add_subject');
     Route::post('/store', [SubjectController::class, 'store'])->name('store_subject');
-    Route::view('/edit_subject', 'subjects.edit_subject')->name('edit_subject');
-  });
+    Route::get('/edit_subject/{subject}', [SubjectController::class, 'edit'])->name('edit_subject');
+    Route::post('/update_subject/{subject}', [SubjectController::class, 'update'])->name('update_subject');
+    Route::get('/delete_subject/{id}', [SubjectController::class, 'delete'])->name('delete_subject');
 
+
+
+  });
   Route::group(['prefix' => 'instructors'], function () {
-    Route::view('/info', 'instructors.list_instructors')->name('instructors');
+    Route::get('/info', [InstructorController::class,'index'])->name('instructors');
+    Route::get('/edit_instructor/{instructor}', [InstructorController::class, 'edit'])->name('edit_instructor');
+    Route::get('/delete_instructor/{id}', [InstructorController::class, 'delete'])->name('delete_instructor');
+
+    Route::post('/update_instructor/{instructor}', [InstructorController::class, 'update'])->name('update_instructor');
+
     Route::get('/add', [InstructorController::class, 'create'])->name('add_instructor');
     Route::post('/store', [InstructorController::class, 'store'])->name('store_instructor');
-    Route::view('/edit_instructor', 'instructors.edit_instructor')->name('edit_instructor');
+   // Route::view('/edit_instructor', 'instructors.edit_instructor')->name('edit_instructor');
     Route::view('/profile', 'instructors.profile_instructor')->name('profile_instructor');
   });
 
@@ -111,13 +125,17 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
 
   Route::group(['prefix' => 'documents_types'], function () {
-    Route::view('/info', 'documents.list_documents')->name('documents_type');
+    Route::get('/info', [DocumentTypeController::class,'index'])->name('documents_type');
     Route::get('/add', [DocumentTypeController::class, 'create'])->name('add_document_type');
     Route::post('/store', [DocumentTypeController::class, 'store'])->name('store_document_type');
 
 
   // Route::view('/add_document_type', 'documents.add_document')->name('add_document_type');
-  Route::view('/edit_document_type', 'documents.edit_document')->name('edit_document_type');
+  Route::get('/edit_document_type/{docs_type}', [DocumentTypeController::class,'edit'])->name('edit_document_type');
+  Route::post('/update_document_type/{docs_type}', [DocumentTypeController::class, 'update'])->name('update_document_type');
+
+  Route::get('/delete_document_type/{id}', [DocumentTypeController::class, 'delete'])->name('delete_document_type');
+
 
   });
 
@@ -212,3 +230,4 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
 
 });
+ //Route::get('/courses',[SubjectController::class,'Index']);

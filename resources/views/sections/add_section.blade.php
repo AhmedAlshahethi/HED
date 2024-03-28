@@ -15,7 +15,7 @@
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
 </div>
-    <form method="POST">
+    <form method="POST" action="{{route('store_section')}}">
       @csrf
       <section class="content">
         <div class="container-fluid">
@@ -42,7 +42,7 @@
                   <div class="form-group">
                       <div class="form-group">
                           <label>{{__('sections/add_section.Description')}}</label>
-                          <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                          <textarea name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                         </div>
                   </div>
               </div>                

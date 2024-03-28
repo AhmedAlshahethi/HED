@@ -277,7 +277,7 @@
               <a href="{{route('users')}}" class="nav-link">
                 <i class="nav-icon fas fa-sign-in-alt"></i>
                 <p>
-                  {{__('layout/master.Logout')}}
+                  {{__('layout/master.Logout')}} 
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>

@@ -44,7 +44,7 @@
                     <label>{{__('instructors/add_instructor.Gender.Gender')}}</label>
                     <select name="gender" class="form-control">
                       @foreach ($genders as $key => $gender)
-                                  <option value="{{$key}}">{{$gender}}</option>
+                                  <option value="{{$gender}}">{{$gender}}</option>
                       @endforeach
                     </select>
                     @error('gender')
@@ -70,11 +70,11 @@
       </div>
       <div class="col-md-6">
         <div class="form-group">
-            <div class="form-group">
+            <div class="form-group">  
                 <label>{{__('instructors/add_instructor.Level.Level')}}</label>
                 <select name="academic_level" class="form-control">
                   @foreach ($academicLevels as $key => $level)
-                            <option value="{{$key}}">{{$level}}</option>
+                            <option value="{{$level}}">{{$level}}</option>
                   @endforeach 
                 </select>
                 @error('academic_level')

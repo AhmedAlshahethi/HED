@@ -77,72 +77,38 @@
                   </tr>
                 </thead>
                 <tbody id="table_body">
-                  <tr>
-                    <td>ناجي الشيباني</td>
-                    <td>دكتوراه</td>
-                    <td>تقنية المعلومات</td>
+
+                @foreach($all_instructors as $instructor)
+
+                <tr>
+                    <td> {{$instructor->name}}</td>
+                    <td>{{$instructor->academic_level}}</td>
+                    <td>{{$instructor->departments->name}}</td>
                     <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="{{route('profile_instructor')}}">
+                         
+                    <a class="btn btn-primary btn-sm" href="{{route('profile_instructor')}}">
                             <i class="fas fa-eye">
                             </i>
-                            {{__('shared/shared.View')}}
+                            {{__('shared/shared.View')}}  
                         </a>
-                        <a class="btn btn-info btn-sm" href="{{route('edit_instructor')}}">
+                        
+                        <a  class="btn btn-info btn-sm" href="{{route('edit_instructor',$instructor->id)}}" >
                             <i class="fas fa-pencil-alt">
                             </i>
                             {{__('shared/shared.Edit')}}
                         </a>
-                        <a class="btn btn-danger btn-sm text-white" href="#">
+                        <a class="btn btn-danger btn-sm text-white" href="{{route('delete_instructor', $instructor->id)}}">
                             <i class="fas fa-trash">
                             </i>
                             {{__('shared/shared.Delete')}}
                         </a>
                     </td>
                   </tr>
-                  <tr>
-                    <td>مالك الجبري</td>
-                    <td>دكتوراه</td>
-                    <td>نظم المعلومات</td>
-                    <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="{{route('profile_instructor')}}">
-                            <i class="fas fa-eye">
-                            </i>
-                            {{__('shared/shared.View')}}
-                        </a>
-                        <a class="btn btn-info btn-sm" href="{{route('edit_instructor')}}">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            {{__('shared/shared.Edit')}}
-                        </a>
-                        <a class="btn btn-danger btn-sm text-white" href="#">
-                            <i class="fas fa-trash">
-                            </i>
-                            {{__('shared/shared.Delete')}}
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>مختار غيلان</td>
-                    <td>دكتوراه</td>
-                    <td>نظم المعلومات</td>
-                    <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="{{route('profile_instructor')}}">
-                            <i class="fas fa-eye">
-                            </i>
-                            {{__('shared/shared.View')}}
-                        </a>
-                        <a class="btn btn-info btn-sm" href="{{route('edit_instructor')}}">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            {{__('shared/shared.Edit')}}
-                        </a>
-                        <a class="btn btn-danger btn-sm text-white" href="#">
-                            <i class="fas fa-trash">
-                            </i>
-                            {{__('shared/shared.Delete')}}
-                        </a>
-                    </td>
-                  </tr>         
+
+                @endforeach
+                  
+                  
+                         
                 </tbody>
               </table>
             </div>

@@ -15,7 +15,8 @@
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
 </div>
-<form>
+<form method="post" action="{{route('update_document_type',$documentType)}}">
+  @csrf
   <section class="content">
     <div class="container-fluid">
       <!-- SELECT2 EXAMPLE -->
@@ -30,7 +31,7 @@
               <div class="form-group">
                   <div class="form-group">
                       <label>{{__('documents/edit_document.Document_Type')}}</label>
-                      <input type="text" class="form-control" placeholder="{{__('documents/edit_document.Document_Type')}}">
+                      <input type="text" name="name" class="form-control" placeholder="{{__('documents/edit_document.Document_Type')}}" value="{{$documentType->name}}">
                     </div>
               </div>
           </div>

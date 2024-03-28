@@ -14,6 +14,14 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+
+
+   public function idenx( Request $request){
+     
+
+
+    
+   }
   public function create()
   {
     return view('students.manage_students_info.add_student', [
@@ -29,7 +37,7 @@ class StudentController extends Controller
 
   public function store(Request $request)
   {
-    $data = $request->validate([
+      $data = $request->validate([
       'name' => 'required',
       'gender' => 'required|in:' . join(",", Gender::values()),
       'city' => 'required',
@@ -69,7 +77,10 @@ class StudentController extends Controller
       'fees' => 'required|number',
     ]);
     dd($data);
+ 
     Student::create($data);
+    
     return redirect('/students_info')->with('success', 'تمت الاضافة بنجاح');
+    
   }
 }
