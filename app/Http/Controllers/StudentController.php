@@ -80,4 +80,3 @@ class StudentController extends Controller
     return redirect('/students_info')->with('success', 'تمت الاضافة بنجاح');
   }
 }
-gi
