@@ -16,12 +16,9 @@ class StudentController extends Controller
 {
 
 
-   public function idenx( Request $request){
-     
-
-
-    
-   }
+  public function idenx(Request $request)
+  {
+  }
   public function create()
   {
     return view('students.manage_students_info.add_student', [
@@ -37,15 +34,15 @@ class StudentController extends Controller
 
   public function store(Request $request)
   {
-      $data = $request->validate([
+    $data = $request->validate([
       'name' => 'required',
       'gender' => 'required|in:' . join(",", Gender::values()),
       'city' => 'required',
       'district' => 'required',
-      'birthdate' => 'required|date',
+      'birthdate' => 'required|date_format:m/d/Y',
       'birth_place' => 'required',
       'Identity_type' => 'required|in:' . join(",", IdentityType::values()),
-      'identity_number' => 'required|number',
+      'identity_number' => 'required|numeric',
       'nationality' => 'required',
       'nationality_country' => 'required',
       'blood_type' => 'required|in:' . join(",", BloodType::values()),
@@ -56,10 +53,10 @@ class StudentController extends Controller
       'high_school_city' => 'required',
       'high_school_district' => 'required',
       'high_school_type' => 'required|in:' . join(",", HighSchoolType::values()),
-      'high_school_graduation_year' => 'required|number',
-      'high_school_total_score' => 'required|number',
-      'high_school_max_score' => 'required|number',
-      'high_school_total_percentage' => 'required|number',
+      'high_school_graduation_year' => 'required|numeric',
+      'high_school_total_score' => 'required|numeric',
+      'high_school_max_score' => 'required|numeric',
+      'high_school_total_percentage' => 'required|numeric',
       'high_school_exam_id' => 'required',
       'english_name' => 'required',
       'english_birth_place' => 'required',
@@ -69,18 +66,18 @@ class StudentController extends Controller
       'college_department' => 'required',
       'major_name' => 'required',
       'general_grade' => 'required',
-      'total_percentage' => 'required|number',
-      'graduation_year' => 'required|number',
-      'graduation_country' => 'required',
+      'total_percentage' => 'required|numeric',
+      'graduation_year' => 'required|numeric',
+      // 'graduation_country' => 'required',
       'registration_type' => 'required|in:' . join(",", AcademicLevel::values()),
       'department_id' => 'required|exists:departments,id',
-      'fees' => 'required|number',
+      'fees' => 'required|numeric',
     ]);
-    dd($data);
- 
+    // dd($data);
+
     Student::create($data);
-    
+
     return redirect('/students_info')->with('success', 'تمت الاضافة بنجاح');
-    
   }
 }
+gi
