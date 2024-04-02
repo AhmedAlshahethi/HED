@@ -18,5 +18,8 @@ class Department extends Model
     public function instructors(){
         return $this->hasMany(Instructor::class,'department_id');
     }
+    public function students(){
+        return $this->hasMany(Student::class,'department_id');
+    }
  
 }

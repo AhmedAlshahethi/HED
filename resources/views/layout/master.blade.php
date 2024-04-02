@@ -47,6 +47,8 @@
   <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -393,66 +395,7 @@
 
 <!-- Add Lectures -->
 
-<script>
-  var i = 0;
-  $("#dynamic-ar").click(function () {
-      ++i;
-      $("#dynamicAddRemove").append(`<tr>
-                          <td>
-                            <select class="custom-select" name="instructor_id[`+ i +`][instructor_id]">
-                              <option>option 1</option>
-                              <option>option 2</option>
-                              <option>option 3</option>
-                              <option>option 4</option>
-                              <option>option 5</option>
-                            </select>
-                          </td>
-                          <td>
-                            <select class="custom-select" name="day[[`+ i +`]][day]">
-                              <option>option 1</option>
-                              <option>option 2</option>
-                              <option>option 3</option>
-                              <option>option 4</option>
-                              <option>option 5</option>
-                            </select>
-                          </td>
-                          <td>
-                            <select class="custom-select" name="start_time[[`+ i +`]][start_time]">
-                              <option>option 1</option>
-                              <option>option 2</option>
-                              <option>option 3</option>
-                              <option>option 4</option>
-                              <option>option 5</option>
-                            </select>
-                          </td>
-                          <td>
-                            <select class="custom-select" name="subject_id[[`+ i +`]][subject_id]">
-                              <option>option 1</option>
-                              <option>option 2</option>
-                              <option>option 3</option>
-                              <option>option 4</option>
-                              <option>option 5</option>
-                            </select>
-                          </td>
-                          <td>
-                            <div>
-                              <input type="text" name="class_room[`+ i +`][class_room]" class="form-control" style="width: 55%"
-                              placeholder="{{__('schedules/add_schedule.Lectures_Table.Lecture')}}">
-                            </div>
-                          </td>
-                          <td class="project-actions text-right">
-                              <a class="btn btn-danger btn-sm text-white remove-input-field">
-                                  <i class="fas fa-trash"></i>
-                                  {{__('schedules/add_schedule.Lectures_Table.Delete')}}
-                              </a>
-                          </td>
-                        </tr>`
-          );
-  });
-  $(document).on('click', '.remove-input-field', function () {
-      $(this).parents('tr').remove();
-  });
-</script>
+
 
 <!-- Add Student Fees -->
 
@@ -682,6 +625,8 @@
     });
   });
 </script>
+@stack('scripts')
+
 
 </body>
 </html>

@@ -14,6 +14,9 @@ use PhpParser\Node\Stmt\Return_;
 
 class SubjectController extends Controller
 {
+
+
+    
     public function index(){
 
          $subjects = Subject::with('departments')->get();

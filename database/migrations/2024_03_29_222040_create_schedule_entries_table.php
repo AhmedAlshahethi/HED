@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('day');
             $table->string('start_time');
             $table->string('class_room')->nullable();
+            $table->foreignId('schedule_id')->references('id')->on('schedules')->restrictOnDelete()->cascadeOnUpdate();
             $table->foreignId('subject_id')->references('id')->on('subjects')->restrictOnDelete()->cascadeOnUpdate();
             $table->foreignId('instructor_id')->references('id')->on('instructors')->restrictOnDelete()->cascadeOnUpdate();
             $table->softDeletes();

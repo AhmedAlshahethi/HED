@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
     use HasFactory;
+public function departments(){
+    return $this->belongsTo(Department::class,'department_id');
+
+}
 
     protected $fillable = [
         'name',
@@ -48,4 +52,5 @@ class Student extends Model
         'department_id',
         'fees'
     ];
+
 }

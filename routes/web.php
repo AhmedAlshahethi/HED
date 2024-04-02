@@ -41,11 +41,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
   
 
   Route::group(['prefix' => 'students'], function () {
-    Route::view('/info', 'students.manage_students_info.list_students')->name('students_info');
+    Route::get('/info', [StudentController::class, 'index'])->name('students_info');
     Route::get('/add', [StudentController::class, 'create'])->name('add_student');
     Route::post('/store', [StudentController::class, 'store'])->name('store_student');
     Route::view('/view', 'students.manage_students_info.view_student')->name('view_student');
-    Route::view('/edit', 'students.manage_students_info.edit_student')->name('edit_student');
+    Route::get('/edit/{student}', [StudentController::class, 'edit'])->name('edit_student');
+    Route::get('/delete/{id}', [StudentController::class, 'delete'])->name('delete_student');
+    Route::post('/update/{student}', [StudentController::class, 'update'])->name('update_student');
     Route::view('/documents', 'students.manage_students_doc.list_students')->name('students_documents');
   });
 
@@ -74,6 +76,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
   Route::group(['prefix' => 'instructors'], function () {
     Route::get('/info', [InstructorController::class,'index'])->name('instructors');
     Route::get('/edit_instructor/{instructor}', [InstructorController::class, 'edit'])->name('edit_instructor');
+    Route::get('/profile/{instructor}', [InstructorController::class, 'profile'])->name('profile_instructor');
     Route::get('/delete_instructor/{id}', [InstructorController::class, 'delete'])->name('delete_instructor');
 
     Route::post('/update_instructor/{instructor}', [InstructorController::class, 'update'])->name('update_instructor');
@@ -81,7 +84,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     Route::get('/add', [InstructorController::class, 'create'])->name('add_instructor');
     Route::post('/store', [InstructorController::class, 'store'])->name('store_instructor');
    // Route::view('/edit_instructor', 'instructors.edit_instructor')->name('edit_instructor');
-    Route::view('/profile', 'instructors.profile_instructor')->name('profile_instructor');
+   // Route::view('/profile', 'instructors.profile_instructor')->name('profile_instructor');
   });
 
   Route::group(['prefix' => 'documents'], function () {
@@ -140,13 +143,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
   });
 
   Route::group(['prefix' => 'schedules'], function () {
-    Route::view('/info', 'schedules.list_schedules')->name('schedules');
+    Route::get('/info', [ScheduleEntryController::class,'index'])->name('schedules');
     Route::get('/add', [ScheduleEntryController::class, 'create'])->name('add_schedule');
     Route::post('/store', [ScheduleEntryController::class, 'store'])->name('store_schedule');
 
     // Route::view('/add_schedule', 'schedules.add_schedule')->name('add_schedule');
 
-    Route::view('/edit_schedule', 'schedules.edit_schedule')->name('edit_schedule');
+    Route::get('/edit_schedule', [ScheduleEntryController::class,'edit'])->name('edit_schedule');
   
     Route::view('/view_schedule', 'schedules.view_schedule')->name('view_schedule');
   

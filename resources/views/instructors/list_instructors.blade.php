@@ -86,7 +86,7 @@
                     <td>{{$instructor->departments->name}}</td>
                     <td class="project-actions text-right">
                          
-                    <a class="btn btn-primary btn-sm" href="{{route('profile_instructor')}}">
+                    <a class="btn btn-primary btn-sm" href="{{route('profile_instructor',$instructor->id)}}">
                             <i class="fas fa-eye">
                             </i>
                             {{__('shared/shared.View')}}  

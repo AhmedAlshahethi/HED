@@ -38,13 +38,13 @@
                     <div class="card-body box-profile">
                       <div class="text-center">
                         <img class="profile-user-img img-fluid img-circle"
-                             src="../../dist/img/N.jpg"
+                             src="{{$instructor->image}}"
                              alt="User profile picture">
                       </div>
         
-                      <h3 class="profile-username text-center">ناجي الشيباني</h3>
+                      <h3 class="profile-username text-center">{{$instructor->name}}</h3>
         
-                      <p class="text-muted text-center">تقنية المعلومات</p>
+                      <p class="text-muted text-center"> {{$instructor->departments->name}}  </p>
    
                     </div>
                     <!-- /.card-body -->
@@ -62,14 +62,14 @@
                       <strong><i class="fas fa-book mr-1"></i>{{__('instructors/profile_instructor.Phone_Number')}}</strong>
         
                       <p class="text-muted">
-                        777182910
+                       {{$instructor->phone_number}}
                       </p>
         
                       <hr>
         
                       <strong><i class="fas fa-map-marker-alt mr-1"></i>{{__('instructors/profile_instructor.Email_address')}}</strong>
         
-                      <p class="text-muted">shaibany@su.edu.ye</p>
+                      <p class="text-muted">{{$instructor->email}}</p>
         
                     </div>
                     <!-- /.card-body -->
@@ -92,9 +92,9 @@
                           <!-- Post -->
                           <div class="post">
                             <!-- /.user-block -->
-                            <p>
-                              أستاذ جامعي في مجال المعلوماتية تتوزع اهتماماتي بين الشبكات والأمنية وإدارة تكنولوجيا المعلومات ومابينها. خبرة تدريسية وإدارية تتعدي العشرون عاما في المجال الاكاديمي. اجيد اللغتين العربية والانجليزية وقليل من الكورية.
-                            </p>
+                            <p> {{$instructor->description}}
+                               
+                          </p>
                           </div>
                         </div>
                       </div>

@@ -15,7 +15,7 @@
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
 </div>
-<form method="POST" action="{{route('store_instructor')}}">
+<form method="POST" action="{{route('store_instructor')}}" enctype="multipart/form-data">
   @csrf
   <section class="content">
     <div class="container-fluid">
@@ -110,10 +110,15 @@
         <div class="form-group">
           <label for="exampleInputFile">{{__('instructors/add_instructor.Upload_Picture')}}</label>
               <div class="input-group">
-                <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="exampleInputFile">
+              <div class="custom-file">
+                  <input type="file" name="image" class="custom-file-input" id="exampleInputFile">
                   <label class="custom-file-label" for="exampleInputFile"></label>
                 </div>
+                <!--  <div class="custom-file">
+                  <input type="file" name="image" class="custom-file-input" id="exampleInputFile"> 
+
+
+                </div>-->
                 <div class="input-group-append">
                   <span class="input-group-text">{{__('instructors/add_instructor.Upload')}}</span>
                 </div>
@@ -125,7 +130,7 @@
     <div class="form-group">
         <div class="form-group">
           <label>{{__('instructors/add_instructor.Description')}}</label>
-          <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+          <textarea  name="description"class="form-control" rows="3" placeholder="Enter ..."></textarea>
           </div>
     </div>
   </div>
