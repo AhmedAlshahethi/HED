@@ -67,17 +67,17 @@
                 <tr>
                     <td>  {{$schedule->name}}  </td>
                     <td class="project-actions text-right"> 
-                        <a class="btn btn-primary btn-sm" href="{{route('view_schedule')}}">
+                        <a class="btn btn-primary btn-sm" href="{{route('view_schedule',$schedule)}}">
                             <i class="fas fa-eye">
                             </i>
                             {{__('shared/shared.View')}}
                         </a>
-                        <a class="btn btn-info btn-sm" href="{{route('edit_schedule')}}">
+                        <a class="btn btn-info btn-sm" href="{{route('edit_schedule',$schedule)}}">
                             <i class="fas fa-pencil-alt">
                             </i>
                             {{__('shared/shared.Edit')}}
                         </a>
-                        <a class="btn btn-danger btn-sm text-white" href="#">
+                        <a class="btn btn-danger btn-sm text-white" href="{{route('delete_schedule',$schedule->id)}}">
                             <i class="fas fa-trash">
                             </i>
                             {{__('shared/shared.Delete')}}

@@ -68,6 +68,7 @@ class InstructorController extends Controller
             'department_id' => 'required|exists:departments,id',
         ]);
         
+
         // Assign validated fields to the instructor object:
         $instructor->name = $request->name;
         $instructor->academic_level = $request->academic_level;
@@ -110,7 +111,7 @@ public function update(Request $request,Instructor $instructor){
         'gender' => 'required|in:' . join(",", Gender::values()),
         'phone_number' => 'required',
         'department_id' => 'required|exists:departments,id',
-   ]);
+   ]);      
  
    $instructor->name = $request->name;
         $instructor->academic_level = $request->academic_level;

@@ -17,7 +17,8 @@
   </div><!-- /.container-fluid -->
 </div>
 
-<form>
+<form method="post" action="{{route('update_schedule',$schedule)}}">
+  @csrf
   <section class="content">
     <div class="container-fluid">
       <!-- SELECT2 EXAMPLE -->
@@ -32,7 +33,7 @@
               <div class="form-group">
                 <div class="form-group">
                   <label>{{__('schedules/edit_schedule.Schedule_Name')}}</label>
-                  <input type="text" class="form-control" placeholder="{{__('schedules/edit_schedule.Schedule_Name')}}">
+                  <input type="text" name="name" value="{{$schedule->name}}" class="form-control" placeholder="{{__('schedules/edit_schedule.Schedule_Name')}}">
                 </div>
               </div>
             </div>
@@ -42,8 +43,16 @@
           <div class="container-fluid">
             <!-- SELECT2 EXAMPLE -->
             <div class="card card-default">
-              <div class="card-header">
-                <h3 class="card-title float-right">{{__('schedules/edit_schedule.Lectures')}}</h3>
+            <div class="card-header">
+                <h3 class="card-title" style="float: {{ LaravelLocalization::getCurrentLocale() == 'ar' ? 'right' :  'left'}}">{{__('schedules/edit_schedule.Lectures')}}</h3>
+                <div style="float: {{LaravelLocalization::getCurrentLocale() == 'ar' ? 'left' : 'right'}}">
+                
+
+
+                  <button type="button"   id="dynamic-ar" class="btn btn-block btn-primary">{{__('schedules/edit_schedule.Add_Lecture')}} </button>
+              </div> 
+
+             
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -60,50 +69,77 @@
                         </tr>
                       </thead>
                       <tbody>
+                      @foreach($scheduleEntries as $entry)
+
                         <tr>
+                            
                           <td>
-                            <select class="custom-select" name="instructor[0][instructor]">
-                              <option>option 1</option>
-                              <option>option 2</option>
-                              <option>option 3</option>
-                              <option>option 4</option>
-                              <option>option 5</option>
+                           
+                            <select class="custom-select" name="instructor[{{$i}}][instructor]">
+                            <option value="{{$entry->instructor_id}}">{{$entry->instructor->name}}</option>
+
+                              @foreach($instructors as $instructor)
+                              @if($entry->instructor_id == $instructor->id)
+                              @continue
+                              @else
+                              <option value="{{$instructor->id}}">{{$instructor->name}}</option>
+                              @endif
+                             @endforeach
                             </select>
                           </td>
                           <td>
-                            <select class="custom-select" name="day[0][day]">
-                              <option>option 1</option>
-                              <option>option 2</option>
-                              <option>option 3</option>
-                              <option>option 4</option>
-                              <option>option 5</option>
+                            <select class="custom-select" name="day[{{$i}}][day]">
+                            <option value="1">Monday</option>
+                           <option value="2">Tuesday</option>
+                          <option value="3">Wednesday</option>
+                          <option value="4">Thursday</option>
+                          <option value="5">Friday</option>
                             </select>
                           </td>
                           <td>
-                            <select class="custom-select" name="time[0][time]">
-                              <option>option 1</option>
-                              <option>option 2</option>
-                              <option>option 3</option>
-                              <option>option 4</option>
-                              <option>option 5</option>
-                            </select>
-                          </td>
-                          <td>
-                            <select class="custom-select" name="subject[0][subject]">
-                              <option>option 1</option>
-                              <option>option 2</option>
-                              <option>option 3</option>
-                              <option>option 4</option>
-                              <option>option 5</option>
-                            </select>
-                          </td>
-                          <td>
-                            <div>
-                              <input type="text" name="Lecture[0][Lecture]" class="form-control" style="width: 55%"
-                              placeholder="{{__('schedules/add_schedule.Lectures_Table.Lecture')}}">
-                            </div>
+                <select class="custom-select" name="start_time[{{$i}}][start_time]">
+                    <option value="8:00">8:00 AM</option>
+                    <option value="9:00">9:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    </select>
+                @error('start_time.' . $i)
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </td>
+            <td>
+                <select class="custom-select" name="subject_id[{{$i}}][subject_id]">
+                <option value="{{$entry->subject_id}}">{{$entry->subject->name}}</option>
+                @foreach($subjects as $subject)
+                @if($entry->subject_id == $subject->id)
+                @continue
+                @else
+                        <option value="{{$subject->id}}">{{$subject->name}}</option>
+                @endif
+                    @endforeach
+                </select>
+                @error('subject_id.' . $i)
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </td>
+            <td>
+                <div>
+                    <input type="text" name="class_room[{{$i}}][class_room]" class="form-control" placeholder="{{__('schedules/add_schedule.Lectures_Table.Lecture')}}" value="{{$entry->class_room}}">
+                    @error('class_room.' . $i)
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </td>
+            <td class="project-actions text-right">
+                              <a class="btn btn-danger btn-sm text-white" href="{{route('delete_schedule_entry', $entry->id)}}">
+                                  <i class="fas fa-trash" ></i>
+                                  {{__('shared/shared.Delete')}}
+                              </a>
                           </td>
                         </tr>
+                      
+                        {{$i++}}
+                        @endforeach
+
                       </tbody>
                     </table>
                   </div>
@@ -123,6 +159,78 @@
     <!-- /.container-fluid -->
   </section>
 </form>
+@push('scripts')
+<script>
+  var i = 0;
+  $("#dynamic-ar").click(function () {
+    ++i;
+    $("#dynamicAddRemove").append(`
+        <tr>
+            <td>
+                <select class="custom-select" name="new_instructor_id[${i}][instructor_id]">
+                    @foreach($instructors as $instructor)
+                        <option value="{{$instructor->id}}">{{$instructor->name}}</option>
+                    @endforeach
+                </select>
+                @error('instructor_id.' . $i)
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </td>
+            <td>
+                <select class="custom-select" name="new_day[${i}][day]">
+                    <option value="1">Monday</option>
+                    <option value="2">Tuesday</option>
+                    <option value="3">Wednesday</option>
+                    <option value="4">Thursday</option>
+                    <option value="5">Friday</option>
+                </select>
+                @error('day.' . $i)
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </td>
+            <td>
+                <select class="custom-select" name="new_start_time[${i}][start_time]">
+                    <option value="8:00">8:00 AM</option>
+                    <option value="9:00">9:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    </select>
+                @error('start_time.' . $i)
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </td>
+            <td>
+                <select class="custom-select" name="new_subject_id[${i}][subject_id]">
+                    @foreach($subjects as $subject)
+                        <option value="{{$subject->id}}">{{$subject->name}}</option>
+                    @endforeach
+                </select>
+                @error('subject_id.' . $i)
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </td>
+            <td>
+                <div>
+                    <input type="text" name="new_class_room[${i}][class_room]" class="form-control" placeholder="{{__('schedules/add_schedule.Lectures_Table.Lecture')}}">
+                    @error('class_room.' . $i)
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </td>
+            <td class="project-actions text-right">
+                <a class="btn btn-danger btn-sm text-white remove-input-field">
+                    <i class="fas fa-trash" ></i>
+                    {{__('shared/shared.Delete')}}
+                </a>
+            </td>
+        </tr>
+    `);
+  });
+
+  $(document).on('click', '.remove-input-field', function () {
+    $(this).closest('tr').remove();
+  });
+</script>
+@endpush
 @endsection
 
 

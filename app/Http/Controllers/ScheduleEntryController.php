@@ -24,6 +24,19 @@ class ScheduleEntryController extends Controller
 
     }
 
+    public function view(Schedule $schedule){
+
+        
+        
+        $scheduleEntries = ScheduleEntry::where('schedule_id',$schedule->id)->get();
+
+
+        return view('schedules.view_schedule',['scheduleEntries'=> $scheduleEntries,
+        'schedule' =>$schedule
+    ]); 
+
+    }
+
     
     public function create(){
 
@@ -136,16 +149,75 @@ class ScheduleEntryController extends Controller
 
        
       
-        return redirect()->route('schedules'); 
+      
 
 
 
         
     
-    }// end of if         
+                             }// end of if         
         
         
     }
+
+
+    public function edit(Schedule $schedule ){
+        $subjects = Subject::get();
+        $instructors = Instructor::get();
+
+        $scheduleEntries = ScheduleEntry::where('schedule_id',$schedule->id)->get();
+
+        $i = 0;
+
+
+        return view('schedules.edit_schedule',['subjects'=> $subjects,
+         'instructors'=>$instructors,
+         'scheduleEntries' => $scheduleEntries,
+         'schedule' => $schedule,
+         'i' => $i
+     ]); 
+
+
+    }
+ 
+    public function update(Request $request){
+
+     return $request;
         
+    }
+    
+     public function delete($id)  {
+   
+        $scheduleEntries_toBe_deleted= ScheduleEntry::where('schedule_id',$id)->get();
+
+        foreach($scheduleEntries_toBe_deleted as $entry){
+         
+            $entry->delete();
+
+        }
+        $schedule= Schedule::find($id);
+        if($schedule->delete())
+        return redirect()->route('schedules'); 
+        
+
+        
+     }
+     public function delete_entry($id)  {
+   
+        $scheduleEntry= ScheduleEntry::find($id);
+
+        
+         
+        $scheduleEntry->delete();
+
+        
+        ;
+        if($scheduleEntry->delete())
+        return redirect()->back(); 
+        
+
+        
+     }
+
 
 }

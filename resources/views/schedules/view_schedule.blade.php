@@ -43,9 +43,10 @@
                     <thead>
                         <tr>
                             <th colspan="6">
-                                {{__('schedules/view_schedule.Lectures_Table.Table_Name')}} : تقنية المعلومات الترم الاول
+                                {{__('schedules/view_schedule.Lectures_Table.Table_Name')}} : {{$schedule->name}}
                             </th>
                         </tr>
+                       
                         <tr>
                             <th>{{__('schedules/view_schedule.Lectures_Table.Day')}}</th>
                             <th>{{__('schedules/view_schedule.Lectures_Table.Instructor')}}</th> 
@@ -55,27 +56,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                    @foreach($scheduleEntries as $entry)
                         <tr>
-                            <td>الاثنين</td>
-                            <td>مالك الجبري</td>
-                            <td>8:00 - 10:00</td>
-                            <td>طرق منهجية البحث</td>
-                            <td>5</td>
+                            <td>{{$entry->day}}</td>
+                            <td>{{$entry->instructor->name}}</td>
+                            <td>{{$entry->start_time}}</td>
+                            <td>{{$entry->subject->name}}</td>
+                            <td>{{$entry->class_room}}</td>
                         </tr>
-                        <tr>
-                            <td>السبت</td>
-                            <td>ناجي الشيباني</td>
-                            <td>10:00 - 12:00</td>
-                            <td>ادارة امنية المعلومات</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                          <td>الاحد</td>
-                          <td>مختار غيلان</td>
-                          <td>12:00 - 2:00</td>
-                          <td>ادارة قواعد البيانات</td>
-                          <td>2</td>
-                      </tr>
+                      @endforeach
                     </tbody>
                 </table>
             </div>

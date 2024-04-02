@@ -149,9 +149,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
     // Route::view('/add_schedule', 'schedules.add_schedule')->name('add_schedule');
 
-    Route::get('/edit_schedule', [ScheduleEntryController::class,'edit'])->name('edit_schedule');
+    Route::get('/edit_schedule/{schedule}', [ScheduleEntryController::class,'edit'])->name('edit_schedule');
+    Route::post('/edit_schedule/{schedule}', [ScheduleEntryController::class,'update'])->name('update_schedule');
   
-    Route::view('/view_schedule', 'schedules.view_schedule')->name('view_schedule');
+    Route::get('/view_schedule/{schedule}', [ScheduleEntryController::class,'view'])->name('view_schedule');
+    Route::get('/delete_schedule/{id}', [ScheduleEntryController::class,'delete'])->name('delete_schedule');
+    Route::get('/delete_schedule_entry/{id}', [ScheduleEntryController::class,'delete_entry'])->name('delete_schedule_entry');
   
   });
 

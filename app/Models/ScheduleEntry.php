@@ -22,12 +22,12 @@ class ScheduleEntry extends Model
      public function subject(){
 
 
-        return $this->hasOne(Subject::class , 'subject_id');
+        return $this->belongsTo(Subject::class , 'subject_id');
      }
      public function instructor(){
 
 
-        return $this->hasOne(Instructor::class , 'Instructor_id');
+        return $this->belongsTo(Instructor::class , 'instructor_id');
      }
     
 
