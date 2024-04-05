@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class StudentSubjectScore extends Model
 {
     use HasFactory;
+    protected $hidden = ['deleted_at', 'created_at', 'updated_at'];
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 }
