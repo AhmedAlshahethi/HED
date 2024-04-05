@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Instructor;
 use App\Models\Student;
 use Exception;
 use Illuminate\Http\Request;
@@ -42,9 +43,13 @@ class APIController extends Controller
 
   public function logout(Request $request)
   {
-    $student = Student::find($request->user()->id);
-    $student->tokens()->delete();
-    return response()->json(['success' => true]);
+    try {
+      $student = Student::find($request->user()->id);
+      $student->tokens()->delete();
+      return response()->json(['success' => true]);
+    } catch (Exception $e) {
+      return response()->json(['success' => false], 500);
+    }
   }
 
   public function info(Request $request)
@@ -95,5 +100,29 @@ class APIController extends Controller
         'schedule' => $entry->schedule->name
       ]))->toArray()))->sortBy('day_number')->groupBy('schedule')
     ]);
+  }
+
+  public function instructors(Request $request)
+  {
+    $instructors = Instructor::all();
+
+    return response()->json(['success' => true, 'instructors' => $instructors->map(fn ($instructor) => [
+      'id' => $instructor->id,
+      'img' => $instructor->image,
+      'name' => $instructor->name,
+      'position' => $instructor->academic_level
+    ])]);
+  }
+
+  public function instructor(Instructor $instructor)
+  {
+    return response()->json(['success' => true, 'instructor' => [
+      'name' => $instructor->name,
+      'email' => $instructor->email,
+      'position' => $instructor->academic_level,
+      'img' => $instructor->image,
+      'department' => $instructor->departments->name,
+      'description' => $instructor->description
+    ]]);
   }
 }

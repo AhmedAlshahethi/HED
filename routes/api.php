@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\APIController;
-use Illuminate\Http\Request;
+use App\Http\Middleware\APIAuthMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/login', [APIController::class, 'login']);
+Route::get('/instructors', [APIController::class, 'instructors']);
+Route::get('/instructors/{instructor}', [APIController::class, 'instructor']);
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/marks', [APIController::class, 'marks']);
     Route::get('/info', [APIController::class, 'info']);
     Route::get('/schedule', [APIController::class, 'schedule']);
+    Route::get('/logout', [APIController::class, 'logout']);
 });
