@@ -7,28 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class ScheduleEntry extends Model
 {
-    use HasFactory;
-    protected $fillable = ['day', 'start_time','class_room','department_id','schedule_id','subject_id','instructor_id',''];
+  use HasFactory;
+  protected $fillable = ['day', 'start_time', 'class_room', 'department_id', 'schedule_id', 'subject_id', 'instructor_id', ''];
 
+  public function schedule()
+  {
+    return $this->belongsTo(Schedule::class, 'schedule_id');
+  }
 
+  public function subject()
+  {
+    return $this->belongsTo(Subject::class, 'subject_id');
+  }
 
-     public function schedule(){
-
-     return $this->belongsTo(Schedule::class,'schedule_id');
-
-
-
-     }
-     public function subject(){
-
-
-        return $this->belongsTo(Subject::class , 'subject_id');
-     }
-     public function instructor(){
-
-
-        return $this->belongsTo(Instructor::class , 'instructor_id');
-     }
-    
-
+  public function instructor()
+  {
+    return $this->belongsTo(Instructor::class, 'instructor_id');
+  }
 }
