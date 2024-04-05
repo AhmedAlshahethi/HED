@@ -94,9 +94,12 @@ class ScheduleEntryController extends Controller
                 $instructorIds[] = $instructorData['instructor_id'];
                 $numberofentries++; // Access the nested ID
             }
-            else{
-                $class_rooms[] = $class_roomData['class_room']; // Access the nested ID
-
+            foreach ($data['class_room'] as $class_roomData) {
+                if($class_roomData['class_room']==null){
+                    $class_rooms[] ="undecided";
+                }
+                  else{
+                $class_rooms[] = $class_roomData['class_room'] ;} // Access the nested ID
             }
 
         }
