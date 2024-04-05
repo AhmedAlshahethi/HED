@@ -45,8 +45,8 @@ return new class extends Migration
       $table->float('high_school_exam_id');
       $table->string('english_name');
       $table->string('english_birth_place');
-      $table->string('english_address');
-      $table->string('notes');
+      $table->string('english_address')->nullable();
+      $table->string('notes')->nullable();
       $table->string('last_degree');
       $table->string('university');
       $table->string('college');
