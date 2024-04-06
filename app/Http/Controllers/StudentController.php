@@ -23,6 +23,11 @@ class StudentController extends Controller
     $students=Student::with('departments')->get();
     return view('students.manage_students_info.list_students')->with('all_students',$students);
   }
+  public function index_students_doc()
+  {
+    $students=Student::with('departments')->get();
+    return view('students.manage_students_doc.list_students')->with('all_students',$students);
+  }
   public function create()
   {
     return view('students.manage_students_info.add_student', [

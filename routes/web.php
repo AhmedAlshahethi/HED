@@ -48,7 +48,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     Route::get('/edit/{student}', [StudentController::class, 'edit'])->name('edit_student');
     Route::get('/delete/{id}', [StudentController::class, 'delete'])->name('delete_student');
     Route::post('/update/{student}', [StudentController::class, 'update'])->name('update_student');
-    Route::view('/documents', 'students.manage_students_doc.list_students')->name('students_documents');
+    Route::get('/documents', [StudentController::class, 'index_students_doc'])->name('students_documents');
   });
 
   Route::group(['prefix' => 'departments'], function () {
@@ -88,7 +88,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
   });
 
   Route::group(['prefix' => 'documents'], function () {
-    Route::view('/info', 'students.manage_students_doc.list_students')->name('documents');
+    Route::view('/info','students.manage_students_doc.view_document')->name('documents');
     Route::get('/add', [DocumentController::class, 'create'])->name('add_document');
     Route::post('/store', [DocumentController::class, 'store'])->name('store_document');
 
@@ -102,7 +102,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
   });
 
   Route::group(['prefix' => 'fees'], function () {
-    Route::view('/info', 'students.manage_students_fees.list_students')->name('students_fees');
+    Route::get('/info', [StudentPaymentController::class, 'index'])->name('students_fees');
     Route::get('/add', [StudentPaymentController::class, 'create'])->name('add_fee');
     Route::post('/store', [StudentPaymentController::class, 'store'])->name('store_fee');
     Route::view('/edit_fees', 'students.manage_students_fees.edit_fee')->name('edit_fee');
@@ -113,7 +113,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
   });
 
   Route::group(['prefix' => 'marks'], function () {
-    Route::view('/info', 'students.manage_students_marks.list_students')->name('students_marks');
+    Route::get('/info', [FinalResultController::class, 'index'])->name('students_marks');
     Route::get('/add', [FinalResultController::class, 'create'])->name('add_mark');
     Route::post('/store', [FinalResultController::class, 'store'])->name('store_mark');
 

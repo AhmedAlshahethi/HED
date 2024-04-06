@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Student;
 
 use Illuminate\Http\Request;
 
 class DocumentController extends Controller
 {
+    
     public function create(){
         return view('students.manage_students_doc.add_document');
     }
