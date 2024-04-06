@@ -10,19 +10,25 @@ use App\Models\Student;
 class SeminarController extends Controller
 {
     public function index()
-  {
-    $students=Student::with('departments')->get();
-    return view('students_thesis.seminars.list_students')->with('all_students',$students);
-  }
-    public function create(Student $student){
+    {
+        $students = Student::with('departments')->get();
+        return view('students_thesis.seminars.list_students')->with('all_students', $students);
+    }
+    public function create(Student $student)
+    {
 
-        return view('students_thesis.seminars.add_seminar',
-        ['student'=>$student ,
-        'instructors' => Instructor::all(['id', 'name'])]);
+        return view(
+            'students_thesis.seminars.add_seminar',
+            [
+                'student' => $student,
+                'instructors' => Instructor::all(['id', 'name'])
+            ]
+        );
     }
     public function store(Request $request)
     {
         $data = $request->validate([
+            'student' => 'required',
             'title' => 'required',
             'date' => 'required',
             'supervisor' => 'required|exists:instructors,id',
@@ -36,5 +42,4 @@ class SeminarController extends Controller
         );
         return redirect()->route('documents_type')->with($notification);
     }
-
 }

@@ -8,6 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Seminar extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'date', 'supervisor', 'sub_supervisor'];
-
+    protected $fillable = ['student', 'title', 'date', 'supervisor', 'sub_supervisor'];
 }
