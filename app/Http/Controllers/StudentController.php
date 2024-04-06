@@ -180,5 +180,18 @@ return redirect()->route('students_info')->with('success', 'تمت الاضاف�
 
 
 }
+public function view(Student $student)
+{  
+
+     // $department = $instructor->departments->name;
+    
+    
+
+      
+
+    return view('students.manage_students_info.view_student',['student'=> $student
+  ]); 
+   
+}
 
 }

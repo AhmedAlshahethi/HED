@@ -88,7 +88,7 @@
                   <td>{{$student->registration_type}}</td>
                   <td>{{$student->departments->name}}</td>
                   <td class="project-actions text-right">
-                    <a class="btn btn-primary btn-sm" href="{{route('view_student')}}">
+                    <a class="btn btn-primary btn-sm" href="{{route('view_student',$student->id)}}">
                       <i class="fas fa-eye"></i>
                       {{__('shared/shared.View')}}
                     </a>

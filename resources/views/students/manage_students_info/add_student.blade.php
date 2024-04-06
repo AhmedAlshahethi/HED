@@ -132,7 +132,6 @@
                                         <label>{{ __('students/add_student.Identity_type.Identity_type') }}</label>
                                         <select name="Identity_type" class="form-control">
                                             @foreach ($identityTypes as $key => $identity)
-                                                <option value="{{ $identity }}">{{ $identity }}</option>
                                                 <option value="{{ $identity }}"
                                                     @if (old('Identity_type') == $identity) selected @endif>{{ $identity }}
                                                 </option>

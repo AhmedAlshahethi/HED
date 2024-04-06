@@ -44,7 +44,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     Route::get('/info', [StudentController::class, 'index'])->name('students_info');
     Route::get('/add', [StudentController::class, 'create'])->name('add_student');
     Route::post('/store', [StudentController::class, 'store'])->name('store_student');
-    Route::view('/view', 'students.manage_students_info.view_student')->name('view_student');
+    Route::get('/view/{student}', [StudentController::class, 'view'])->name('view_student');
     Route::get('/edit/{student}', [StudentController::class, 'edit'])->name('edit_student');
     Route::get('/delete/{id}', [StudentController::class, 'delete'])->name('delete_student');
     Route::post('/update/{student}', [StudentController::class, 'update'])->name('update_student');
