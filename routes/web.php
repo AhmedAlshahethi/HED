@@ -172,8 +172,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
   });
 
   Route::group(['prefix' => 'seminars'], function () {
-    Route::View('/info', 'students_thesis.seminars.list_students')->name('students_seminars');
-    Route::get('/add', [SeminarController::class, 'create'])->name('add_seminar');
+    Route::get('/info',[SeminarController::class, 'index'])->name('students_seminars');
+    Route::get('/add/{student}', [SeminarController::class, 'create'])->name('add_seminar');
     Route::post('/store', [SeminarController::class, 'store'])->name('store_seminar');
 
     // Route::View('/add_seminar', 'students_thesis.seminars.add_seminar')->name('add_seminar');

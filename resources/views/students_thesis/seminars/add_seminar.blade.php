@@ -15,7 +15,8 @@
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
 </div>
-<form>
+<form method="POST" action="{{ route('store_seminar') }}">
+  @csrf
     <section class="content">
         <div class="container-fluid">
           <!-- SELECT2 EXAMPLE -->
@@ -31,7 +32,7 @@
                   <thead>
                       <tr>
                           <th colspan="2">
-                            {{__('shared/shared.Student_Name')}} : احمد الشاحذي
+                            {{__('shared/shared.Student_Name')}} {{ $student->name }}
                           </th>
                           <th colspan="2">
                             {{__('shared/shared.Student_Id')}} : 21160021
@@ -46,42 +47,55 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label>{{__('students_thesis/seminar.Title')}}</label>
-                            <input type="text" class="form-control" placeholder="{{__('students_thesis/seminar.Title')}}">
+                            <input name="title" type="text" class="form-control" placeholder="{{__('students_thesis/seminar.Title')}}">
                           </div>
+                          @error('title')
+                          <span class="text-danger">{{ $message }}</span>
+              @enderror
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <div class="form-group">
                             <label>{{__('students_thesis/seminar.Date')}}</label>
-                            <input type="text" class="form-control" placeholder="{{__('students_thesis/seminar.Date')}}">
+                            <input name="date" type="date" class="form-control" placeholder="{{__('students_thesis/seminar.Date')}}">
+                            
                           </div>
+                          @error('date')
+                          <span class="text-danger">{{ $message }}</span>
+              @enderror
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                             <label>{{__('students_thesis/seminar.Supervisor')}}</label>
-                            <select class="form-control select2" style="width: 100%;">
-                                <option selected="selected"></option>
-                                <option>احمد محمد الشاحذي</option>
-                                <option>اكرم علي المعرسي</option>
-                                <option>خالد محسن الشيباني</option>
-                                <option>محمد عبدالواسع الدقاف</option>
-                                <option>عبدالكريم جلال النزيلي</option>
+                            <select name="supervisor" class="form-control select2" style="width: 100%;">
+                              <option selected="selected"></option>
+
+                              @foreach ($instructors as $instructor)
+                              <option value="{{$instructor->id}}">{{$instructor->name}}</option>
+                      @endforeach
+                               
+                               
                               </select>
+                              @error('supervisor')
+                              <span class="text-danger">{{ $message }}</span>
+                  @enderror
                     </div>
                 </div>
                 <div class="col-md-6">
                 <div class="form-group">
                     <label>{{__('students_thesis/seminar.Assistant_Supervisor')}}</label>
-                    <select class="form-control select2" style="width: 100%;">
+                    <select name="sub_supervisor" class="form-control select2" style="width: 100%;">
                       <option selected="selected"></option>
-                      <option>احمد محمد الشاحذي</option>
-                      <option>اكرم علي المعرسي</option>
-                      <option>خالد محسن الشيباني</option>
-                      <option>محمد عبدالواسع الدقاف</option>
-                      <option>عبدالكريم جلال النزيلي</option>
+
+                      @foreach ($instructors as $instructor)
+                      <option value="{{$instructor->id}}">{{$instructor->name}}</option>
+              @endforeach
                     </select>
+                    @error('sub_supervisor')
+                    <span class="text-danger">{{ $message }}</span>
+        @enderror
                   </div>
                 </div>                
               </div>
