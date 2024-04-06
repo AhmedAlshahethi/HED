@@ -360,8 +360,10 @@
     <script src="{{ asset('plugins/inputmask/jquery.inputmask.min.js') }}"></script>
     <!-- AdminLTE App -->
     {{-- <script src="{{asset('dist/js/adminlte.js')}}"></script> --}}
+
+
     <!-- table search -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
     <script>
         $(document).ready(function() {
             // Real-time filtering on input change
@@ -407,7 +409,7 @@
         });
     </script>
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
 
     <!-- Add Lectures -->
 
@@ -581,8 +583,9 @@
             $(this).parents('tr').remove();
         });
     </script>
+
     <!-- Select2 -->
-    <script src="../../plugins/select2/js/select2.full.min.js"></script>
+    <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
     <script>
         $(function() {
             //Initialize Select2 Elements
@@ -595,6 +598,16 @@
 
             //Date picker
             $('#reservationdate').datetimepicker({
+                format: 'L'
+            });
+
+            // Initialize section_approvement_date date picker
+            $('#section_approvement_date').datetimepicker({
+                format: 'L'
+            });
+
+            // Initialize college_approvement_date date picker
+            $('#college_approvement_date').datetimepicker({
                 format: 'L'
             });
 
