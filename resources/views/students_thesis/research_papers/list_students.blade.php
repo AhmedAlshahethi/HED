@@ -86,28 +86,38 @@
                                             <td>{{ $student->students->registration_type }}</td>
                                             <td>{{ $student->students->departments->name }}</td>
                                             <td class="project-actions text-right">
-                                                <a class="btn btn-primary btn-sm" href="{{ route('view_seminar') }}">
-                                                    <i class="fas fa-eye">
-                                                    </i>
-                                                    {{ __('shared/shared.View') }}
-                                                </a>
-                                                <a class="btn btn-success btn-sm"
-                                                    href="{{ route('add_research_paper', $student->id) }}">
-                                                    <i class="fas fa-folder">
-                                                    </i>
-                                                    {{ __('shared/shared.Add') }}
-                                                </a>
-                                                <a class="btn btn-info btn-sm" href="{{ route('edit_seminar') }}">
-                                                    <i class="fas fa-pencil-alt">
-                                                    </i>
-                                                    {{ __('shared/shared.Edit') }}
-                                                </a>
-                                                <a class="btn btn-danger btn-sm text-white"
-                                                    href="{{ route('delete_seminar') }}">
-                                                    <i class="fas fa-trash">
-                                                    </i>
-                                                    {{ __('shared/shared.Delete') }}
-                                                </a>
+                                                @php
+                                                    $seminarId = $student->id;
+                                                    $hasResearchPaper = \App\Models\ResearchPaper::where(
+                                                        'seminar_id',
+                                                        $seminarId,
+                                                    )->exists();
+                                                @endphp
+                                                @if (!$hasResearchPaper)
+                                                    <!-- Show the add button -->
+                                                    <a class="btn btn-success btn-sm"
+                                                        href="{{ route('add_research_paper', $student->id) }}">
+                                                        <i class="fas fa-folder"></i>
+                                                        {{ __('shared/shared.Add') }}
+                                                    </a>
+                                                @else
+                                                    <!-- Show the view button -->
+                                                    <a class="btn btn-primary btn-sm"
+                                                        href="{{ route('view_seminar', $student->id) }}">
+                                                        <i class="fas fa-eye"></i>
+                                                        {{ __('shared/shared.View') }}
+                                                    </a>
+                                                    <a class="btn btn-info btn-sm"
+                                                        href="{{ route('edit_research_paper', $student->id) }}">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                        {{ __('shared/shared.Edit') }}
+                                                    </a>
+                                                    <a class="btn btn-danger btn-sm text-white"
+                                                        href="{{ route('delete_seminar', $student->id) }}">
+                                                        <i class="fas fa-trash"></i>
+                                                        {{ __('shared/shared.Delete') }}
+                                                    </a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

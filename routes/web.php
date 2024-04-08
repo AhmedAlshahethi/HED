@@ -185,7 +185,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
     // Route::View('/add_research_paper', 'students_thesis.research_papers.add_research_paper')->name('add_research_paper');
 
-    Route::View('/edit_research_paper', 'students_thesis.research_papers.edit_research_paper')->name('edit_research_paper');
+    Route::get('/edit/{researchPaper}', [ResearchPaperController::class, 'edit'])->name('edit_research_paper');
+    Route::post('/update', [ResearchPaperController::class, 'update'])->name('update_research_paper');
 
     Route::View('/view_research_paper', 'students_thesis.research_papers.view_research_paper')->name('view_research_paper');
 

@@ -17,8 +17,10 @@
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
-    <form>
+    <form method="POST" action="{{ route('store_research_paper') }}" enctype="multipart/form-data">
+        @csrf
         <section class="content">
+            <input type="hidden" name="seminar_id" value="{{ $seminar->id }}">
             <div class="container-fluid">
                 <!-- SELECT2 EXAMPLE -->
                 <div class="card card-default">
@@ -36,7 +38,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="2">
-                                        {{ __('shared/shared.Student_Name') }} : احمد الشاحذي
+                                        {{ __('shared/shared.Student_Name') }} : {{ $student->name }}
                                     </th>
                                     <th colspan="2">
                                         {{ __('shared/shared.Student_Id') }} : 21160021
@@ -52,8 +54,8 @@
                                 <div class="form-group">
                                     <div class="form-group">
                                         <label>{{ __('students_thesis/thesis.Thesis_Title') }}</label>
-                                        <input type="text" class="form-control"
-                                            placeholder=" تحسين كفائة شبكة الجيل السادس في اليمن" disabled>
+                                        <input type="text" class="form-control" placeholder="{{ $seminar->title }}"
+                                            disabled>
                                     </div>
                                 </div>
                             </div>
@@ -61,8 +63,11 @@
                                 <div class="form-group">
                                     <div class="form-group">
                                         <label>{{ __('students_thesis/thesis.Score') }}</label>
-                                        <input type="text" class="form-control"
-                                            placeholder="{{ __('students_thesis/thesis.Score') }}">
+                                        <input name="score" value="{{ old('score') }}" type="text"
+                                            class="form-control" placeholder="{{ __('students_thesis/thesis.Score') }}">
+                                        @error('score')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +75,8 @@
                                 <div class="form-group">
                                     <label>{{ __('students_thesis/thesis.Section_Approvement_Date') }}</label>
                                     <div class="input-group date" id="section_approvement_date" data-target-input="nearest">
-                                        <input name="section_approvement_date" type="text"
+                                        <input name="section_approvement_date"
+                                            value="{{ old('section_approvement_date') }}" type="text"
                                             class="form-control datetimepicker-input"
                                             data-target="#section_approvement_date"
                                             placeholder="{{ __('students_thesis/thesis.Section_Approvement_Date') }}" />
@@ -79,14 +85,22 @@
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>
                                     </div>
+                                    @error('section_approvement_date')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-group">
                                         <label>{{ __('students_thesis/thesis.Section_Approvement_Number') }}</label>
-                                        <input type="text" class="form-control"
+                                        <input name="section_approvement_number"
+                                            value="{{ old('section_approvement_number') }}" type="text"
+                                            class="form-control"
                                             placeholder="{{ __('students_thesis/thesis.Section_Approvement_Number') }}">
+                                        @error('section_approvement_number')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +108,8 @@
                                 <div class="form-group">
                                     <label>{{ __('students_thesis/thesis.College_Approvement_Date') }}</label>
                                     <div class="input-group date" id="college_approvement_date" data-target-input="nearest">
-                                        <input name="college_approvement_date" type="text"
+                                        <input name="college_approvement_date"
+                                            value="{{ old('college_approvement_date') }}" type="text"
                                             class="form-control datetimepicker-input"
                                             data-target="#college_approvement_date"
                                             placeholder="{{ __('students_thesis/thesis.College_Approvement_Date') }}" />
@@ -103,41 +118,50 @@
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>
                                     </div>
+                                    @error('college_approvement_date')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-group">
                                         <label>{{ __('students_thesis/thesis.College_Approvement_Number') }}</label>
-                                        <input type="text" class="form-control"
+                                        <input name="college_approvement_number"
+                                            value="{{ old('college_approvement_number') }}" type="text"
+                                            class="form-control"
                                             placeholder="{{ __('students_thesis/thesis.College_Approvement_Number') }}">
+                                        @error('college_approvement_number')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label for="exampleInputFile">{{ __('students_thesis/thesis.Thesis_File') }}</label>
                                     <div class="form-group">
-                                        <label
-                                            for="exampleInputFile">{{ __('students_thesis/thesis.Thesis_File') }}</label>
-                                        <div class="input-group">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="exampleInputFile">
-                                                <label class="custom-file-label" for="exampleInputFile"></label>
-                                            </div>
-                                            <div class="input-group-append">
-                                                <span
-                                                    class="input-group-text">{{ __('instructors/add_instructor.Upload') }}</span>
-                                            </div>
+                                        <div class="custom-file">
+                                            <input name="file_path" type="file" class="custom-file-input"
+                                                id="customFile">
+                                            <label class="custom-file-label <?php echo app()->getLocale() === 'ar' ? 'rtl-file-label' : 'ltr-file-label'; ?>"
+                                                for="customFile">{{ __('students_thesis/thesis.Thesis_File') }}</label>
                                         </div>
                                     </div>
+                                    @error('file_path')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-group">
                                         <label>{{ __('students_thesis/thesis.Notes') }}</label>
-                                        <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                        <textarea name="notes" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                                     </div>
+                                    @error('notes')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

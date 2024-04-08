@@ -50,12 +50,27 @@
     @else
         <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
     @endif
+
+
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> --}}
+
+    <style>
+        /* File input alignment */
+        .custom-file-label.rtl-file-label::after {
+            right: unset !important;
+            left: 0 !important;
+        }
+
+        .custom-file-label.ltr-file-label::after {
+            right: 0 !important;
+            left: unset !important;
+        }
+    </style>
 
 </head>
 
@@ -598,17 +613,17 @@
 
             //Date picker
             $('#reservationdate').datetimepicker({
-                format: 'L'
+                format: 'YYYY-MM-DD'
             });
 
             // Initialize section_approvement_date date picker
             $('#section_approvement_date').datetimepicker({
-                format: 'L'
+                format: 'YYYY-MM-DD'
             });
 
             // Initialize college_approvement_date date picker
             $('#college_approvement_date').datetimepicker({
-                format: 'L'
+                format: 'YYYY-MM-DD'
             });
 
             $('[data-mask]').inputmask();
@@ -650,6 +665,15 @@
     <script src="{{ asset('dist/js/code/code.js') }}"></script>
 
     <!-- End Notifications Messages & Pop Message -->
+
+    <!-- bs-custom-file-input -->
+    <script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+
+    <script>
+        $(function() {
+            bsCustomFileInput.init();
+        });
+    </script>
 
 
     <!-- DataTables  & Plugins -->
