@@ -173,7 +173,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
     Route::View('/view_seminar', 'students_thesis.seminars.view_seminar')->name('view_seminar');
 
-    Route::View('/edit_seminar', 'students_thesis.seminars.edit_seminar')->name('edit_seminar');
+    Route::get('/edit/{student}', [SeminarController::class, 'edit'])->name('edit_seminar');
+    Route::post('/update', [SeminarController::class, 'update'])->name('update_seminar');
 
     Route::View('/delete_seminar', 'students_thesis.seminars.delete_seminar')->name('delete_seminar');
   });

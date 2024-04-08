@@ -40,6 +40,39 @@ class SeminarController extends Controller
             'message' => 'تمت اضافة نوع سيمنار بنجاح',
             'alert-type' => 'success'
         );
-        return redirect()->route('documents_type')->with($notification);
+        return redirect()->route('students_seminars')->with($notification);
+    }
+
+    public function edit(Student $student)
+    {
+        return view(
+            'students_thesis.seminars.edit_seminar',
+            [
+                'student' => $student,
+                'seminar' => Seminar::where('student', $student->id)->first(),
+                'instructors' => Instructor::all(['id', 'name'])
+            ]
+        );
+    }
+
+    public function update(Request $request)
+    {
+        $data = $request->validate([
+            'student' => 'required',
+            'title' => 'required',
+            'date' => 'required',
+            'supervisor' => 'required|exists:instructors,id',
+            'sub_supervisor' => 'required|exists:instructors,id',
+            'status' => 'nullable',
+        ]);
+        $data['status'] = $request->has('status') ? 1 : 0;
+
+        Seminar::where('id', $request->id)->update($data);
+
+        $notification = array(
+            'message' => 'تم تعديل بيانات سيمنار بنجاح',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('students_seminars')->with($notification);
     }
 }
