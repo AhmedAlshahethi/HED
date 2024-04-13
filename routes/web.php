@@ -4,6 +4,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\DocumentTypeController;
 use App\Http\Controllers\FinalResultController;
+use App\Http\Controllers\ImportController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\PublishedResearchPaperController;
 use App\Http\Controllers\ResearchPaperController;
@@ -38,7 +39,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
   Route::view('/login', 'login_page.login')->name('login');
 
-  
+  Route::prefix('data')->group(function () {
+    Route::get('/import/{type}', [ImportController::class, 'index'])->name('import_data');
+    Route::post('/import/{type}', [ImportController::class, 'import'])->name('import_data');
+  });
 
   Route::group(['prefix' => 'students'], function () {
     Route::get('/info', [StudentController::class, 'index'])->name('students_info');
@@ -54,7 +58,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
   Route::group(['prefix' => 'departments'], function () {
     //Route::view('/info', 'sections.list_sections')->name('sections');
 
-      Route::get('/info', [DepartmentController::class, 'Index'])->name('sections');
+    Route::get('/info', [DepartmentController::class, 'Index'])->name('sections');
     Route::get('/add', [DepartmentController::class, 'create'])->name('add_section');
     Route::post('/store', [DepartmentController::class, 'store'])->name('store_section');
     Route::view('/edit_section', 'sections.edit_section')->name('edit_section');
@@ -62,19 +66,16 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
   Route::group(['prefix' => 'subjects'], function () {
     //Route::view('/info','subjects.list_subjects')->name('subjects');
-     Route::get('/info',[SubjectController::class,'index'])->name('subjects');
-    
+    Route::get('/info', [SubjectController::class, 'index'])->name('subjects');
+
     Route::get('/add', [SubjectController::class, 'create'])->name('add_subject');
     Route::post('/store', [SubjectController::class, 'store'])->name('store_subject');
     Route::get('/edit_subject/{subject}', [SubjectController::class, 'edit'])->name('edit_subject');
     Route::post('/update_subject/{subject}', [SubjectController::class, 'update'])->name('update_subject');
     Route::get('/delete_subject/{id}', [SubjectController::class, 'delete'])->name('delete_subject');
-
-
-
   });
   Route::group(['prefix' => 'instructors'], function () {
-    Route::get('/info', [InstructorController::class,'index'])->name('instructors');
+    Route::get('/info', [InstructorController::class, 'index'])->name('instructors');
     Route::get('/edit_instructor/{instructor}', [InstructorController::class, 'edit'])->name('edit_instructor');
     Route::get('/profile/{instructor}', [InstructorController::class, 'profile'])->name('profile_instructor');
     Route::get('/delete_instructor/{id}', [InstructorController::class, 'delete'])->name('delete_instructor');
@@ -83,8 +84,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
     Route::get('/add', [InstructorController::class, 'create'])->name('add_instructor');
     Route::post('/store', [InstructorController::class, 'store'])->name('store_instructor');
-   // Route::view('/edit_instructor', 'instructors.edit_instructor')->name('edit_instructor');
-   // Route::view('/profile', 'instructors.profile_instructor')->name('profile_instructor');
+    // Route::view('/edit_instructor', 'instructors.edit_instructor')->name('edit_instructor');
+    // Route::view('/profile', 'instructors.profile_instructor')->name('profile_instructor');
   });
 
   Route::group(['prefix' => 'documents'], function () {
@@ -95,7 +96,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     // Route::view('/add_document', 'students.manage_students_doc.add_document')->name('add_document');
 
     Route::view('/view_document', 'students.manage_students_doc.view_document')->name('view_document');
- 
+
     Route::view('/edit_document', 'students.manage_students_doc.edit_document')->name('edit_document');
 
     Route::view('/delete_document', 'students.manage_students_doc.delete_document')->name('delete_document');
@@ -109,7 +110,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     Route::view('/view_fees', 'students.manage_students_fees.view_fee')->name('view_fee');
     Route::view('/delete_fees', 'students.manage_students_fees.delete_fee')->name('delete_fee');
 
-  // Route::view('/add_fee', 'students.manage_students_fees.add_fee')->name('add_fee');
+    // Route::view('/add_fee', 'students.manage_students_fees.add_fee')->name('add_fee');
   });
 
   Route::group(['prefix' => 'marks'], function () {
@@ -117,45 +118,42 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     Route::get('/add', [FinalResultController::class, 'create'])->name('add_mark');
     Route::post('/store', [FinalResultController::class, 'store'])->name('store_mark');
 
-  // Route::view('/add_mark', 'students.manage_students_marks.add_mark')->name('add_mark');
+    // Route::view('/add_mark', 'students.manage_students_marks.add_mark')->name('add_mark');
 
-  Route::view('/view_marks', 'students.manage_students_marks.view_mark')->name('view_mark');
+    Route::view('/view_marks', 'students.manage_students_marks.view_mark')->name('view_mark');
 
-  Route::view('/edit_marks', 'students.manage_students_marks.edit_mark')->name('edit_mark');
+    Route::view('/edit_marks', 'students.manage_students_marks.edit_mark')->name('edit_mark');
 
-  Route::view('/delete_marks', 'students.manage_students_marks.delete_mark')->name('delete_mark');
+    Route::view('/delete_marks', 'students.manage_students_marks.delete_mark')->name('delete_mark');
   });
 
 
   Route::group(['prefix' => 'documents_types'], function () {
-    Route::get('/info', [DocumentTypeController::class,'index'])->name('documents_type');
+    Route::get('/info', [DocumentTypeController::class, 'index'])->name('documents_type');
     Route::get('/add', [DocumentTypeController::class, 'create'])->name('add_document_type');
     Route::post('/store', [DocumentTypeController::class, 'store'])->name('store_document_type');
 
 
-  // Route::view('/add_document_type', 'documents.add_document')->name('add_document_type');
-  Route::get('/edit_document_type/{docs_type}', [DocumentTypeController::class,'edit'])->name('edit_document_type');
-  Route::post('/update_document_type/{docs_type}', [DocumentTypeController::class, 'update'])->name('update_document_type');
+    // Route::view('/add_document_type', 'documents.add_document')->name('add_document_type');
+    Route::get('/edit_document_type/{docs_type}', [DocumentTypeController::class, 'edit'])->name('edit_document_type');
+    Route::post('/update_document_type/{docs_type}', [DocumentTypeController::class, 'update'])->name('update_document_type');
 
-  Route::get('/delete_document_type/{id}', [DocumentTypeController::class, 'delete'])->name('delete_document_type');
-
-
+    Route::get('/delete_document_type/{id}', [DocumentTypeController::class, 'delete'])->name('delete_document_type');
   });
 
   Route::group(['prefix' => 'schedules'], function () {
-    Route::get('/info', [ScheduleEntryController::class,'index'])->name('schedules');
+    Route::get('/info', [ScheduleEntryController::class, 'index'])->name('schedules');
     Route::get('/add', [ScheduleEntryController::class, 'create'])->name('add_schedule');
     Route::post('/store', [ScheduleEntryController::class, 'store'])->name('store_schedule');
 
     // Route::view('/add_schedule', 'schedules.add_schedule')->name('add_schedule');
 
-    Route::get('/edit_schedule/{schedule}', [ScheduleEntryController::class,'edit'])->name('edit_schedule');
-    Route::post('/edit_schedule/{schedule}', [ScheduleEntryController::class,'update'])->name('update_schedule');
-  
-    Route::get('/view_schedule/{schedule}', [ScheduleEntryController::class,'view'])->name('view_schedule');
-    Route::get('/delete_schedule/{id}', [ScheduleEntryController::class,'delete'])->name('delete_schedule');
-    Route::get('/delete_schedule_entry/{id}', [ScheduleEntryController::class,'delete_entry'])->name('delete_schedule_entry');
-  
+    Route::get('/edit_schedule/{schedule}', [ScheduleEntryController::class, 'edit'])->name('edit_schedule');
+    Route::post('/edit_schedule/{schedule}', [ScheduleEntryController::class, 'update'])->name('update_schedule');
+
+    Route::get('/view_schedule/{schedule}', [ScheduleEntryController::class, 'view'])->name('view_schedule');
+    Route::get('/delete_schedule/{id}', [ScheduleEntryController::class, 'delete'])->name('delete_schedule');
+    Route::get('/delete_schedule_entry/{id}', [ScheduleEntryController::class, 'delete_entry'])->name('delete_schedule_entry');
   });
 
 
@@ -167,7 +165,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     // Route::view('/add_user', 'users.add_user')->name('add_user');
 
     Route::view('/edit_user', 'users.edit_user')->name('edit_user');
-  
   });
 
   Route::group(['prefix' => 'seminars'], function () {
@@ -177,12 +174,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
     // Route::View('/add_seminar', 'students_thesis.seminars.add_seminar')->name('add_seminar');
 
-  Route::View('/view_seminar', 'students_thesis.seminars.view_seminar')->name('view_seminar');
+    Route::View('/view_seminar', 'students_thesis.seminars.view_seminar')->name('view_seminar');
 
-  Route::View('/edit_seminar', 'students_thesis.seminars.edit_seminar')->name('edit_seminar');
+    Route::View('/edit_seminar', 'students_thesis.seminars.edit_seminar')->name('edit_seminar');
 
-  Route::View('/delete_seminar', 'students_thesis.seminars.delete_seminar')->name('delete_seminar');
-  
+    Route::View('/delete_seminar', 'students_thesis.seminars.delete_seminar')->name('delete_seminar');
   });
 
   Route::group(['prefix' => 'research_papers'], function () {
@@ -193,11 +189,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     // Route::View('/add_research_paper', 'students_thesis.research_papers.add_research_paper')->name('add_research_paper');
 
     Route::View('/edit_research_paper', 'students_thesis.research_papers.edit_research_paper')->name('edit_research_paper');
-  
+
     Route::View('/view_research_paper', 'students_thesis.research_papers.view_research_paper')->name('view_research_paper');
-  
+
     Route::View('/delete_research_paper', 'students_thesis.research_papers.delete_research_paper')->name('delete_research_paper');
-  
   });
 
   Route::group(['prefix' => 'discussions'], function () {
@@ -207,12 +202,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
     // Route::View('/add_discussion', 'students_thesis.research_discussions.add_discussion')->name('add_discussion');
 
-  Route::View('/edit_discussion', 'students_thesis.research_discussions.edit_discussion')->name('edit_discussion');
+    Route::View('/edit_discussion', 'students_thesis.research_discussions.edit_discussion')->name('edit_discussion');
 
-  Route::View('/view_discussion', 'students_thesis.research_discussions.view_discussion')->name('view_discussion');
+    Route::View('/view_discussion', 'students_thesis.research_discussions.view_discussion')->name('view_discussion');
 
-  Route::View('/delete_discussion', 'students_thesis.research_discussions.delete_discussion')->name('delete_discussion');
-  
+    Route::View('/delete_discussion', 'students_thesis.research_discussions.delete_discussion')->name('delete_discussion');
   });
 
 
@@ -223,17 +217,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
     // Route::View('/add_journal', 'students_thesis.journals.add_journal')->name('add_journal');
 
-  Route::View('/edit_journal', 'students_thesis.journals.edit_journal')->name('edit_journal');
+    Route::View('/edit_journal', 'students_thesis.journals.edit_journal')->name('edit_journal');
 
-  Route::View('/view_journal', 'students_thesis.journals.view_journal')->name('view_journal');
+    Route::View('/view_journal', 'students_thesis.journals.view_journal')->name('view_journal');
 
-  Route::View('/delete_journal', 'students_thesis.journals.delete_journal')->name('delete_journal');
+    Route::View('/delete_journal', 'students_thesis.journals.delete_journal')->name('delete_journal');
   });
 
 
 
   Route::view('/archive_thesis', 'thesis.list_thesis')->name('archive_thesis');
-
-
 });
  //Route::get('/courses',[SubjectController::class,'Index']);

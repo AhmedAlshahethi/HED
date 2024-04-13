@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class StudentSubjectScore extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'class_mark',
+        'final_exam',
+        'general_grade',
+        'status',
+        'subject_id',
+        'student_id',
+    ];
     protected $hidden = ['deleted_at', 'created_at', 'updated_at'];
 
     public function subject()

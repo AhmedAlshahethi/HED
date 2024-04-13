@@ -24,6 +24,7 @@ class Student extends Authenticatable
     'address',
     'phone_number',
     'email',
+    'password',
     'high_school_name',
     'high_school_city',
     'high_school_district',
@@ -35,6 +36,7 @@ class Student extends Authenticatable
     'high_school_total_percentage',
     'high_school_exam_id',
     'english_name',
+    'english_address',
     'english_birth_place',
     'last_degree', 'university',
     'college',
@@ -46,6 +48,7 @@ class Student extends Authenticatable
     'graduation_country',
     'registration_type',
     'department_id',
+    'notes',
     'fees'
   ];
   protected $hidden = ['deleted_at', 'created_at', 'updated_at'];
