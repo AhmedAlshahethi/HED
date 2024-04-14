@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\DocumentsExport;
+use App\Exports\PaymentsExport;
+use App\Exports\ScoresExport;
+use App\Exports\StudentsExport;
 use App\Imports\DocumentsImport;
 use App\Imports\PaymentsImport;
 use App\Imports\ScoresImport;
@@ -55,5 +59,21 @@ class ImportController extends Controller
       }
       return back()->withErrors($errors)->withInput();
     }
+  }
+
+  public function download(Request $request, $type)
+  {
+    $model = null;
+    if ($type == 'students') {
+      $model = new StudentsExport;
+    } else if ($type == 'marks') {
+      $model = new ScoresExport($request->student_id);
+    } else if ($type == 'documents') {
+      $model = new DocumentsExport($request->student_id);
+    } else if ($type == 'fees') {
+      $model = new PaymentsExport($request->student_id);
+    } else return abort(404);
+
+    return Excel::download($model, $type . '.xlsx');
   }
 }

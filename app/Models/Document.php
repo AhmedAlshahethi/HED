@@ -20,4 +20,9 @@ class Document extends Model
     {
         return $this->belongsTo(Student::class);
     }
+
+    public function type()
+    {
+        return $this->belongsTo(DocumentType::class, 'document_type_id');
+    }
 }

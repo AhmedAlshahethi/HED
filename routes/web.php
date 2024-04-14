@@ -42,6 +42,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
   Route::prefix('data')->group(function () {
     Route::get('/import/{type}', [ImportController::class, 'index'])->name('import_data');
     Route::post('/import/{type}', [ImportController::class, 'import'])->name('import_data');
+    Route::get('/export/{type}', [ImportController::class, 'download'])->name('export_data');
   });
 
   Route::group(['prefix' => 'students'], function () {

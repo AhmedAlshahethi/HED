@@ -62,4 +62,14 @@ class Student extends Authenticatable
   {
     return $this->hasMany(StudentSubjectScore::class);
   }
+
+  public function documents()
+  {
+    return $this->hasMany(Document::class);
+  }
+
+  public function payments()
+  {
+    return $this->hasMany(StudentPayment::class);
+  }
 }
