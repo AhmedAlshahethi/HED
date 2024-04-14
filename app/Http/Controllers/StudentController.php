@@ -19,7 +19,11 @@ class StudentController extends Controller
     $students = Student::with('departments')->get();
     return view('students.manage_students_info.list_students')->with('all_students', $students);
   }
-
+  public function index_students_doc()
+  {
+    $students = Student::with('departments')->get();
+    return view('students.manage_students_doc.list_students')->with('all_students', $students);
+  }
   public function create()
   {
     return view('students.manage_students_info.add_student', [
@@ -150,11 +154,26 @@ class StudentController extends Controller
     $student->update($data);
     return redirect()->route('students_info')->with('success', 'تمت الاضافة بنجاح');
   }
-
   public function delete($id)
   {
+
     $student = Student::find($id);
+
+
     if ($student->delete())
       return redirect()->route('students_info')->with('success', 'تمت الاضافة بنجاح');
+  }
+  public function view(Student $student)
+  {
+
+    // $department = $instructor->departments->name;
+
+
+
+
+
+    return view('students.manage_students_info.view_student', [
+      'student' => $student
+    ]);
   }
 }

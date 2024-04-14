@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('seminars', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('student')->references('id')->on('students')->restrictOnDelete()->cascadeOnUpdate();
             $table->string('title');
             $table->string('supervisor');
             $table->string('sub_supervisor')->nullable();

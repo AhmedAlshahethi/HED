@@ -42,43 +42,43 @@
                           <tbody> 
                               <tr>
                                   <th>{{__('students/view_student.Student_Name')}}</th>
-                                  <td>احمد محمد علي الشاحذي</td>
+                                  <td>{{ $student->name }}</td>
                               </tr>
                               <tr>
                                   <th>{{__('students/view_student.Student_BirthDate')}}</th>
-                                  <td>22-5-2001</td>
+                                  <td>{{ $student->birthdate }}</td>
                               </tr>
                               <tr>
                                   <th>{{__('students/view_student.Identity_type.Identity_type')}}</th>
-                                  <td>بطاقة شخصية</td>
+                                  <td>{{ $student->Identity_type }}</td>
                               </tr>
                               <tr>
                                   <th>{{__('students/view_student.Identity_Number')}}</th>
-                                  <td>1569432185</td>
+                                  <td>{{ $student->identity_number }}</td>
                               </tr>
                               <tr>
                                   <th>{{__('students/view_student.Nationality')}}</th>
-                                  <td>يمني</td>
+                                  <td>{{ $student->nationality }}</td>
                               </tr>
                               <tr>
                                   <th>{{__('students/view_student.Country_of_Nationality')}}</th>
-                                  <td>اليمن</td>
+                                  <td>{{ $student->nationality_country }}</td>
                               </tr>
                               <tr>
                                   <th>{{__('students/view_student.Sex.Sex')}}</th>
-                                  <td>ذكر</td>
+                                  <td>{{ $student->gender }}</td>
                               </tr>
                               <tr>
                                   <th>{{__('students/view_student.blood_type.blood_type')}}</th>
-                                  <td>A+</td>
+                                  <td>{{ $student->blood_type }}</td>
                               </tr>
                               <tr>
                                   <th>{{__('students/view_student.Governorate')}}</th>
-                                  <td>صنعاء</td>
+                                  <td>{{ $student->city }}</td>
                               </tr>
                               <tr>
                                   <th>{{__('students/view_student.Directorate')}}</th>
-                                  <td>معين</td>
+                                  <td>{{ $student->district }}</td>
                               </tr>
                           </tbody>
                       </table>
@@ -109,15 +109,15 @@
                             <tbody>
                                 <tr>
                                     <th>{{__('students/view_student.Phone_Number')}}</th>
-                                    <td>772323972</td>
+                                    <td>{{ $student->phone_number }}</td>
                                 </tr>
                                 <tr>
                                     <th>{{__('students/view_student.Email')}}</th>
-                                    <td>ahmedalshahethy1@gmail.com</td>
+                                    <td>{{ $student->email }}</td>
                                 </tr>
                                 <tr>
                                     <th>{{__('students/view_student.Address')}}</th>
-                                    <td>صنعاء -معين -شارع هائل</td>
+                                    <td>{{ $student->address }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -149,15 +149,15 @@
                           <tbody>
                               <tr>
                                   <th>{{__('students/view_student.student_Name')}}</th>
-                                  <td>Ahmed Alshahethi</td>
+                                  <td>{{ $student->english_name }}</td>
                               </tr>
                               <tr>
                                   <th>{{__('students/view_student.Place_of_Birth')}}</th>
-                                  <td>Sana'a</td>
+                                  <td>{{ $student->english_birth_place }}</td>
                               </tr>
                               <tr>
                                   <th>{{__('students/view_student.identity_type')}}</th>
-                                  <td>ID Card</td>
+                                  <td>{{ $student->english_address }}</td>
                               </tr>
                           </tbody>
                       </table>
@@ -189,11 +189,11 @@
                           <tbody>
                               <tr>
                                   <th>{{__('students/edit_student.Academic_Level')}}</th>
-                                  <td>ماجستير</td>
+                                  <td>{{ $student->registration_type }}</td>
                               </tr>
                               <tr>
                                   <th>{{__('students/edit_student.Section_Type')}}</th>
-                                  <td>تقنية المعلومات</td>
+                                  <td>{{ $student->departments->name }}</td>
                               </tr>
                           </tbody>
                       </table>
@@ -234,43 +234,43 @@
                                 <tbody>
                                     <tr>
                                         <th>{{__('students/view_student.University_Name')}}</th>
-                                        <td>جامعة صنعاء</td>
+                                        <td>{{ $student->university }}</td>
                                     </tr>
                                     <tr>
                                         <th>{{__('students/view_student.College_Name')}}</th>
-                                        <td>كلية الحاسوب</td>
+                                        <td>{{ $student->college }}</td>
                                     </tr>
                                     <tr>
                                         <th>{{__('students/view_student.Section.Section')}}</th>
-                                        <td>تقنية المعلومات</td>
+                                        <td>{{ $student->college_department }}</td>
                                     </tr>
                                     <tr>
                                         <th>{{__('students/view_student.Major.Major')}}</th>
-                                        <td>تقنية المعلومات</td>
+                                        <td>{{ $student->major_name }}</td>
                                     </tr>
                                     <tr>
                                         <th>{{__('students/view_student.percentage')}}</th>
-                                        <td>88.23</td>
+                                        <td>{{ $student->total_percentage }}</td>
                                     </tr>
                                     <tr>
                                         <th>{{__('students/view_student.General_appreciation.General_appreciation')}}</th>
-                                        <td>جيد جدا</td>
+                                        <td>{{ $student->general_grade }}</td>
                                     </tr>
                                     <tr>
                                         <th>{{__('students/view_student.Name_of_qualification.Name_of_qualification')}}</th>
-                                        <td>ماجستير</td>
+                                        <td>{{ $student->last_degree }}</td>
                                     </tr>
                                     <tr>
                                         <th>{{__('students/view_student.Graduation_Year')}}</th>
-                                        <td>2022</td>
+                                        <td>{{ $student->graduation_year }}</td>
                                     </tr>
                                     <tr>
                                         <th>{{__('students/view_student.Graduation_country')}}</th>
-                                        <td>اليمن</td>
+                                        <td>غير موجوده في قاعده البيانات</td>
                                     </tr>
                                     <tr>
                                         <th>{{__('students/view_student.Country_of_birth')}}</th>
-                                        <td>اليمن</td>
+                                        <td>غير موجوده في قاعده البيانات</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -302,39 +302,39 @@
                               <tbody>
                                   <tr>
                                       <th>{{__('students/view_student.Student_School_ID')}}</th>
-                                      <td>2052354</td>
+                                      <td>{{ $student->high_school_exam_id }}</td>
                                   </tr>
                                   <tr>
                                       <th>{{__('students/view_student.School_Name')}}</th>
-                                      <td>ثانوية ابن ماجد</td>
+                                      <td>{{ $student->school_name }}</td>
                                   </tr>
                                   <tr>
                                       <th>{{__('students/view_student.High_school_governorate')}}</th>
-                                      <td>صنعاء</td>
+                                      <td>{{ $student->high_school_city }}</td>
                                   </tr>
                                   <tr>
                                       <th>{{__('students/view_student.High_school_directorate')}}</th>
-                                      <td>الوحدة</td>
+                                      <td>{{ $student->high_school_district }}</td>
                                   </tr>
                                   <tr>
                                       <th>{{__('students/view_student.Graduation_year')}}</th>
-                                      <td>2019</td>
+                                      <td>{{ $student->high_school_graduation_year }}</td>
                                   </tr>
                                   <tr>
                                       <th>{{__('students/view_student.High_school_type.High_school_type')}}</th>
-                                      <td>علمي</td>
+                                      <td>{{ $student->high_school_type }}</td>
                                   </tr>
                                   <tr>
                                       <th>{{__('students/view_student.Total_scores')}}</th>
-                                      <td>800</td>
+                                      <td>{{ $student->high_school_total_score }}</td>
                                   </tr>
                                   <tr>
                                       <th>{{__('students/view_student.High_school_percentage')}}</th>
-                                      <td>84</td>
+                                      <td>{{ $student->high_school_total_percentage }}</td>
                                   </tr>
                                   <tr>
                                       <th>{{__('students/view_student.The_maxmim_degree')}}</th>
-                                      <td>100</td>
+                                      <td>{{ $student->high_school_max_score }}</td>
                                   </tr>
                               </tbody>
                           </table>
@@ -366,13 +366,41 @@
                   <thead>
                     <tr>
                       <th>{{__('students/view_student.Notes')}}</th>
+                      <td>{{ $student->notes }}</td>
                     </tr>
                   </thead>
-                  <tbody>
+                </table>
+              </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.container-fluid -->
+  </section> <section class="content">
+    <div class="container-fluid">
+      <!-- SELECT2 EXAMPLE -->
+      <div class="card card-default">
+        <div class="card-header">
+          <h3 class="card-title" style="float: {{LaravelLocalization::getCurrentLocale() == 'ar' ? 'right' : 'left'}}">{{__('students/view_student.Fees')}}</h3>
+          <div class="card-tools" style="float: {{LaravelLocalization::getCurrentLocale() == 'ar' ? 'left' : 'right'}}">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <div class="row">
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
                     <tr>
-                      <td> - </td>
+                      <th>{{__('students/view_student.Fees')}}</th>
+                      <td>{{ $student->fees }}</td>
                     </tr>
-                  </tbody>
+                  </thead>
+    
                 </table>
               </div>
           </div>

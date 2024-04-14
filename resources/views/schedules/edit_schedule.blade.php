@@ -75,7 +75,7 @@
                             
                           <td>
                            
-                            <select class="custom-select" name="instructor[{{$i}}][instructor]">
+                            <select class="custom-select" name="{{$entry->id}}[instructor]">
                             <option value="{{$entry->instructor_id}}">{{$entry->instructor->name}}</option>
 
                               @foreach($instructors as $instructor)
@@ -88,7 +88,7 @@
                             </select>
                           </td>
                           <td>
-                            <select class="custom-select" name="day[{{$i}}][day]">
+                            <select class="custom-select" name="{{$entry->id}}[day]">
                             <option value="1">Monday</option>
                            <option value="2">Tuesday</option>
                           <option value="3">Wednesday</option>
@@ -97,7 +97,7 @@
                             </select>
                           </td>
                           <td>
-                <select class="custom-select" name="start_time[{{$i}}][start_time]">
+                <select class="custom-select" name="{{$entry->id}}[start_time]">
                     <option value="8:00">8:00 AM</option>
                     <option value="9:00">9:00 AM</option>
                     <option value="10:00">10:00 AM</option>
@@ -107,7 +107,7 @@
                 @enderror
             </td>
             <td>
-                <select class="custom-select" name="subject_id[{{$i}}][subject_id]">
+                <select class="custom-select" name="{{$entry->id}}[subject_id]">
                 <option value="{{$entry->subject_id}}">{{$entry->subject->name}}</option>
                 @foreach($subjects as $subject)
                 @if($entry->subject_id == $subject->id)
@@ -123,7 +123,7 @@
             </td>
             <td>
                 <div>
-                    <input type="text" name="class_room[{{$i}}][class_room]" class="form-control" placeholder="{{__('schedules/add_schedule.Lectures_Table.Lecture')}}" value="{{$entry->class_room}}">
+                    <input type="text" name="{{$entry->id}}[class_room]" class="form-control" placeholder="{{__('schedules/add_schedule.Lectures_Table.Lecture')}}" value="{{$entry->class_room}}">
                     @error('class_room.' . $i)
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -136,9 +136,9 @@
                               </a>
                           </td>
                         </tr>
-                      
-                        {{$i++}}
-                        @endforeach
+                      <
+                      {{$i++}}             
+                                @endforeach
 
                       </tbody>
                     </table>
@@ -167,7 +167,7 @@
     $("#dynamicAddRemove").append(`
         <tr>
             <td>
-                <select class="custom-select" name="new_instructor_id[${i}][instructor_id]">
+                <select class="custom-select" name="instructor_id[${i}][instructor_id]">
                     @foreach($instructors as $instructor)
                         <option value="{{$instructor->id}}">{{$instructor->name}}</option>
                     @endforeach
@@ -177,7 +177,7 @@
                 @enderror
             </td>
             <td>
-                <select class="custom-select" name="new_day[${i}][day]">
+                <select class="custom-select" name="day[${i}][day]">
                     <option value="1">Monday</option>
                     <option value="2">Tuesday</option>
                     <option value="3">Wednesday</option>
@@ -189,7 +189,7 @@
                 @enderror
             </td>
             <td>
-                <select class="custom-select" name="new_start_time[${i}][start_time]">
+                <select class="custom-select" name="start_time[${i}][start_time]">
                     <option value="8:00">8:00 AM</option>
                     <option value="9:00">9:00 AM</option>
                     <option value="10:00">10:00 AM</option>
@@ -199,7 +199,7 @@
                 @enderror
             </td>
             <td>
-                <select class="custom-select" name="new_subject_id[${i}][subject_id]">
+                <select class="custom-select" name="subject_id[${i}][subject_id]">
                     @foreach($subjects as $subject)
                         <option value="{{$subject->id}}">{{$subject->name}}</option>
                     @endforeach
@@ -210,7 +210,7 @@
             </td>
             <td>
                 <div>
-                    <input type="text" name="new_class_room[${i}][class_room]" class="form-control" placeholder="{{__('schedules/add_schedule.Lectures_Table.Lecture')}}">
+                    <input type="text" name="class_room[${i}][class_room]" class="form-control" placeholder="{{__('schedules/add_schedule.Lectures_Table.Lecture')}}">
                     @error('class_room.' . $i)
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -218,7 +218,7 @@
             </td>
             <td class="project-actions text-right">
                 <a class="btn btn-danger btn-sm text-white remove-input-field">
-                    <i class="fas fa-trash" ></i>
+                    <i class="fas fa-trash"></i>
                     {{__('shared/shared.Delete')}}
                 </a>
             </td>
