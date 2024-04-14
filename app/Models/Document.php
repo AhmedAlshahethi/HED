@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Document extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'number',
+        'date',
+        'file_path',
+        'document_type_id',
+        'student_id',
+    ];
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 }
