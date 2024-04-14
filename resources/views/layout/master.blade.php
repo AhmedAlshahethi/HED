@@ -45,42 +45,30 @@
     <link rel="stylesheet" href="{{ asset('dist/css/rtl/custom.css') }}">
     <!-- toastr -->
     <link rel="stylesheet" href="{{ asset('dist/css/toastr.css') }}">
-
-    @if (LaravelLocalization::getCurrentLocale() == 'ar')
-      <!-- Theme style -->
-      <link rel="stylesheet" href="{{ asset('dist/css/rtl/adminlte.min.css') }}">
-      <!-- Google Font: Source Sans Pro -->
-      <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-      <!-- Bootstrap 4 RTL -->
-      <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
-      <!-- Custom style for RTL -->
-      <link rel="stylesheet" href="{{ asset('dist/css/rtl/custom.css') }}">
-      <!-- toastr -->
-      <link rel="stylesheet" href="{{ asset('dist/css/toastr.css') }}">
-    @else
-      <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-    @endif
+  @else
+    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+  @endif
 
 
-    <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+  {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> --}}
 
-    <style>
-      /* File input alignment */
-      .custom-file-label.rtl-file-label::after {
-        right: unset !important;
-        left: 0 !important;
-      }
+  <style>
+    /* File input alignment */
+    .custom-file-label.rtl-file-label::after {
+      right: unset !important;
+      left: 0 !important;
+    }
 
-      .custom-file-label.ltr-file-label::after {
-        right: 0 !important;
-        left: unset !important;
-      }
-    </style>
+    .custom-file-label.ltr-file-label::after {
+      right: 0 !important;
+      left: unset !important;
+    }
+  </style>
 
 </head>
 
@@ -384,7 +372,7 @@
   <!-- AdminLTE App -->
   {{-- <script src="{{asset('dist/js/adminlte.js')}}"></script> --}}
   <!-- table search -->
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
   <script>
     $(document).ready(function() {
       // Real-time filtering on input change
