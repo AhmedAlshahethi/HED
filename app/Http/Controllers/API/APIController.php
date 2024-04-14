@@ -125,4 +125,18 @@ class APIController extends Controller
       'description' => $instructor->description
     ]]);
   }
+
+  public function files()
+  {
+    $files = array_map(fn ($file) => basename($file), glob(public_path('WebsiteFiles') . '/*'));
+    return response()->json(['success' => true, 'files' => $files]);
+  }
+
+  public function downloadFile($file)
+  {
+    if (!file_exists(public_path('WebsiteFiles') . '/' . $file)) {
+      abort(404);
+    }
+    return response()->file(public_path('WebsiteFiles') . '/' . $file);
+  }
 }

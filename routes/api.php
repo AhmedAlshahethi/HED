@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [APIController::class, 'login']);
 Route::get('/instructors', [APIController::class, 'instructors']);
 Route::get('/instructors/{instructor}', [APIController::class, 'instructor']);
+Route::get('/files', [APIController::class, 'files']);
+Route::get('/files/{file}', [APIController::class, 'downloadFile']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/marks', [APIController::class, 'marks']);
