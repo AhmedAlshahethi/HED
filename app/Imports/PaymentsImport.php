@@ -5,10 +5,12 @@ namespace App\Imports;
 use App\Models\StudentPayment;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithUpserts;
 use Maatwebsite\Excel\Concerns\WithValidation;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
-class PaymentsImport implements ToModel, WithHeadingRow, WithUpserts, WithValidation
+class PaymentsImport implements ToModel, WithHeadingRow, WithUpserts, WithValidation, WithMapping
 {
     /**
      * @param array $row
@@ -26,6 +28,12 @@ class PaymentsImport implements ToModel, WithHeadingRow, WithUpserts, WithValida
         ]);
     }
 
+    public function map($row): array
+    {
+        $row['date'] = Date::excelToDateTimeObject($row['date']);
+        return $row;
+    }
+
     /**
      * @return array
      */
@@ -34,8 +42,8 @@ class PaymentsImport implements ToModel, WithHeadingRow, WithUpserts, WithValida
         return [
             'payment' => 'required',
             'receipt' => 'required',
-            'date' => 'required',
-            'student' => 'required',
+            'date' => 'required|date',
+            'student' => 'required|exists:students,id',
         ];
     }
 

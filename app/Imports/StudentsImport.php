@@ -13,11 +13,12 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithUpserts;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 
-class StudentsImport implements ToModel, WithHeadingRow, WithValidation, WithUpserts
+class StudentsImport implements ToModel, WithHeadingRow, WithValidation, WithUpserts, WithMapping
 {
   /**
    * @param array $row
@@ -36,7 +37,7 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation, WithUps
       'gender' => $row['gender'],
       'city' => $row['city'],
       'district' => $row['district'],
-      'birthdate' => Date::excelToDateTimeObject($row['birthdate']),
+      'birthdate' => $row['birthdate'],
       'birth_place' => $row['birth_place'],
       'Identity_type' => $row['identity_type'],
       'identity_number' => $row['identity_number'],
@@ -74,6 +75,12 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation, WithUps
     ]);
   }
 
+  public function map($row): array
+  {
+    $row['birthdate'] = Date::excelToDateTimeObject($row['birthdate']);
+    return $row;
+  }
+
   /**
    * @return array
    */
@@ -84,7 +91,7 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation, WithUps
       'gender' => 'required|in:' . join(",", Gender::values()),
       'city' => 'required',
       'district' => 'required',
-      'birthdate' => 'required',
+      'birthdate' => 'required|date',
       'birth_place' => 'required',
       'identity_type' => 'required|in:' . join(",", IdentityType::values()),
       'identity_number' => 'required|numeric',
