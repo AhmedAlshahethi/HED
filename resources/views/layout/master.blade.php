@@ -45,53 +45,42 @@
     <link rel="stylesheet" href="{{ asset('dist/css/rtl/custom.css') }}">
     <!-- toastr -->
     <link rel="stylesheet" href="{{ asset('dist/css/toastr.css') }}">
-  <<<<<<< HEAD @else <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-  @endif
-  <!-- DataTables -->
-  <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  =======
+
+    @if (LaravelLocalization::getCurrentLocale() == 'ar')
+      <!-- Theme style -->
+      <link rel="stylesheet" href="{{ asset('dist/css/rtl/adminlte.min.css') }}">
+      <!-- Google Font: Source Sans Pro -->
+      <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+      <!-- Bootstrap 4 RTL -->
+      <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
+      <!-- Custom style for RTL -->
+      <link rel="stylesheet" href="{{ asset('dist/css/rtl/custom.css') }}">
+      <!-- toastr -->
+      <link rel="stylesheet" href="{{ asset('dist/css/toastr.css') }}">
+    @else
+      <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+    @endif
 
 
-  @if (LaravelLocalization::getCurrentLocale() == 'ar')
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('dist/css/rtl/adminlte.min.css') }}">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <!-- Bootstrap 4 RTL -->
-    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
-    <!-- Custom style for RTL -->
-    <link rel="stylesheet" href="{{ asset('dist/css/rtl/custom.css') }}">
-    <!-- toastr -->
-    <link rel="stylesheet" href="{{ asset('dist/css/toastr.css') }}">
-  @else
-    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-  @endif
-
-
-  <!-- DataTables -->
-  <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-  {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> --}}
 
-  <style>
-    /* File input alignment */
-    .custom-file-label.rtl-file-label::after {
-      right: unset !important;
-      left: 0 !important;
-    }
+    <style>
+      /* File input alignment */
+      .custom-file-label.rtl-file-label::after {
+        right: unset !important;
+        left: 0 !important;
+      }
 
-    .custom-file-label.ltr-file-label::after {
-      right: 0 !important;
-      left: unset !important;
-    }
-  </style>
-  >>>>>>> c0b50abbce98d777de9b522ac49075abeac1ff2b
+      .custom-file-label.ltr-file-label::after {
+        right: 0 !important;
+        left: unset !important;
+      }
+    </style>
 
 </head>
 
@@ -352,166 +341,108 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <<<<<<< HEAD=======<!-- jQuery -->
-      <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-      <!-- jQuery UI 1.11.4 -->
-      <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-      <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-      <script>
-        $.widget.bridge('uibutton', $.ui.button)
-      </script>
-      <!-- Bootstrap 4 -->
-      <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-      <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"></script>
-      <!-- ChartJS -->
-      <script src="plugins/chart.js/Chart.min.js"></script>
-      <!-- Sparkline -->
-      <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
-      <!-- JQVMap -->
-      <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-      <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
-      <!-- jQuery Knob Chart -->
-      <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
-      <!-- daterangepicker -->
-      <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
-      <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
-      <!-- Tempusdominus Bootstrap 4 -->
-      <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-      <!-- Summernote -->
-      <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
-      <!-- overlayScrollbars -->
-      <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-      <!-- InputMask -->
-      <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
-      <script src="{{ asset('plugins/inputmask/jquery.inputmask.min.js') }}"></script>
-      <!-- AdminLTE App -->
-      {{-- <script src="{{asset('dist/js/adminlte.js')}}"></script> --}}
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
 
+  <!-- jQuery -->
+  <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script>
+    $.widget.bridge('uibutton', $.ui.button)
+  </script>
+  <!-- Bootstrap 4 -->
+  <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"></script>
+  <!-- ChartJS -->
+  <script src="plugins/chart.js/Chart.min.js"></script>
+  <!-- Sparkline -->
+  <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
+  <!-- JQVMap -->
+  <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
+  <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+  <!-- jQuery Knob Chart -->
+  <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+  <!-- daterangepicker -->
+  <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+  <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
+  <!-- Tempusdominus Bootstrap 4 -->
+  <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+  <!-- Summernote -->
+  <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
+  <!-- overlayScrollbars -->
+  <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+  <!-- InputMask -->
+  <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+  <script src="{{ asset('plugins/inputmask/jquery.inputmask.min.js') }}"></script>
+  <!-- AdminLTE App -->
+  {{-- <script src="{{asset('dist/js/adminlte.js')}}"></script> --}}
+  <!-- table search -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Real-time filtering on input change
+      $('#table_search').on('input', function() {
+        var searchTerm = $(this).val().toLowerCase();
 
-      <!-- table search -->
-      {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
-      <script>
-        $(document).ready(function() {
-              // Real-time filtering on input change
-              $('#table_search').on('input', function() {
-                    var searchTerm = $(this).val().toLowerCase(); >>>
-                    >>> > c0b50abbce98d777de9b522ac49075abeac1ff2b
+        // Iterate through each row in the table
+        $('#table_body tr').each(function() {
+          var rowData = $(this).text().toLowerCase();
 
-                      <
-                      !--Control Sidebar-- >
-                      <
-                      aside class = "control-sidebar control-sidebar-dark" >
-                      <
-                      !--Control sidebar content goes here-- >
-                      <
-                      /aside> <
-                      !--/.control-sidebar --> <
-                      /div> <
-                      !--. / wrapper-- >
-
-                      <
-                      !--jQuery-- >
-                      <
-                      script src = "{{ asset('plugins/jquery/jquery.min.js') }}" >
-      </script>
-      <!-- jQuery UI 1.11.4 -->
-      <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-      <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-      <script>
-        $.widget.bridge('uibutton', $.ui.button)
-      </script>
-      <!-- Bootstrap 4 -->
-      <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-      <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"></script>
-      <!-- ChartJS -->
-      <script src="plugins/chart.js/Chart.min.js"></script>
-      <!-- Sparkline -->
-      <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
-      <!-- JQVMap -->
-      <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-      <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
-      <!-- jQuery Knob Chart -->
-      <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
-      <!-- daterangepicker -->
-      <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
-      <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
-      <!-- Tempusdominus Bootstrap 4 -->
-      <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-      <!-- Summernote -->
-      <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
-      <!-- overlayScrollbars -->
-      <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-      <!-- InputMask -->
-      <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
-      <script src="{{ asset('plugins/inputmask/jquery.inputmask.min.js') }}"></script>
-      <!-- AdminLTE App -->
-      {{-- <script src="{{asset('dist/js/adminlte.js')}}"></script> --}}
-      <!-- table search -->
-      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-      <script>
-        $(document).ready(function() {
-          // Real-time filtering on input change
-          $('#table_search').on('input', function() {
-            var searchTerm = $(this).val().toLowerCase();
-
-            // Iterate through each row in the table
-            $('#table_body tr').each(function() {
-              var rowData = $(this).text().toLowerCase();
-
-              // Show or hide the row based on the search term
-              $(this).toggle(rowData.indexOf(searchTerm) > -1);
-            });
-
-            <<
-            << << < HEAD
-            // Show/hide the clear icon based on whether there is entered data
-            toggleClearIcon();
-          }); ===
-          === =
-          {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
-            >>>
-            >>> > c0b50abbce98d777de9b522ac49075abeac1ff2b
-
-          // Clear button functionality
-          $('#clear_button_container').on('click', '#clear_button', function() {
-            // Clear the search input and show all rows in the table
-            $('#table_search').val('');
-            $('#table_body tr').show();
-
-            // Hide the clear icon after clearing the input
-            toggleClearIcon();
-          });
-
-          // Function to toggle the clear icon based on the input value
-          function toggleClearIcon() {
-            var inputValue = $('#table_search').val();
-
-            if (inputValue) {
-              // Add the clear icon
-              $('#clear_button_container').html(
-                '<button type="button" id="clear_button" class="btn btn-default"><i class="fas fa-times"></i></button>'
-              );
-            } else {
-              // Remove the clear icon
-              $('#clear_button_container').html('');
-            }
-          }
+          // Show or hide the row based on the search term
+          $(this).toggle(rowData.indexOf(searchTerm) > -1);
         });
-      </script>
 
-      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        // Show/hide the clear icon based on whether there is entered data
+        toggleClearIcon();
+      });
 
-      <!-- Add Lectures -->
+      // Clear button functionality
+      $('#clear_button_container').on('click', '#clear_button', function() {
+        // Clear the search input and show all rows in the table
+        $('#table_search').val('');
+        $('#table_body tr').show();
+
+        // Hide the clear icon after clearing the input
+        toggleClearIcon();
+      });
+
+      // Function to toggle the clear icon based on the input value
+      function toggleClearIcon() {
+        var inputValue = $('#table_search').val();
+
+        if (inputValue) {
+          // Add the clear icon
+          $('#clear_button_container').html(
+            '<button type="button" id="clear_button" class="btn btn-default"><i class="fas fa-times"></i></button>'
+          );
+        } else {
+          // Remove the clear icon
+          $('#clear_button_container').html('');
+        }
+      }
+    });
+  </script>
+
+  {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
+
+  <!-- Add Lectures -->
 
 
 
-      <!-- Add Student Fees -->
+  <!-- Add Student Fees -->
 
-      <script>
-        var i = 0;
-        $("#dynamic-ar_2").click(function() {
-          ++i;
-          $("#dynamicAddRemove_2").append(`<tr>
+  <script>
+    var i = 0;
+    $("#dynamic-ar_2").click(function() {
+      ++i;
+      $("#dynamicAddRemove_2").append(`<tr>
                                             <td>
                                               <div>
                                                 <input type="text" name="B[` + i + `][B]" class="form-control" placeholder="{{ __('students/add_student.Payment_Fees') }}">
@@ -543,19 +474,19 @@
                                                 </a>
                                             </td>
                                         </tr>`);
-        });
-        $(document).on('click', '.remove-input-field_2', function() {
-          $(this).parents('tr').remove();
-        });
-      </script>
+    });
+    $(document).on('click', '.remove-input-field_2', function() {
+      $(this).parents('tr').remove();
+    });
+  </script>
 
-      <!-- Add Student Documents -->
+  <!-- Add Student Documents -->
 
-      <script>
-        var i = 0;
-        $("#dynamic-ar_3").click(function() {
-          ++i;
-          $("#dynamicAddRemove_3").append(`<tr>
+  <script>
+    var i = 0;
+    $("#dynamic-ar_3").click(function() {
+      ++i;
+      $("#dynamicAddRemove_3").append(`<tr>
                                   <td>
                                     <div>
                                       <input type="text" name="Doc_title[` + i + `][title]" class="form-control" placeholder="{{ __('students/add_student.Document_Title') }}">
@@ -590,19 +521,19 @@
                                       </a>
                                   </td>
                               </tr>`);
-        });
-        $(document).on('click', '.remove-input-field_3', function() {
-          $(this).parents('tr').remove();
-        });
-      </script>
+    });
+    $(document).on('click', '.remove-input-field_3', function() {
+      $(this).parents('tr').remove();
+    });
+  </script>
 
-      <!-- Add Student Marks -->
+  <!-- Add Student Marks -->
 
-      <script>
-        var i = 0;
-        $("#dynamic-ar_4").click(function() {
-          ++i;
-          $("#dynamicAddRemove_4").append(`<tr>
+  <script>
+    var i = 0;
+    $("#dynamic-ar_4").click(function() {
+      ++i;
+      $("#dynamicAddRemove_4").append(`<tr>
                                   <td>
                                     <select class="custom-select" name="term[` + i + `][term]">
                                       <option>{{ __('students/edit_student.Term.option 1') }}</option>
@@ -633,19 +564,19 @@
                                       </a>
                                   </td>
                               </tr>`);
-        });
-        $(document).on('click', '.remove-input-field_4', function() {
-          $(this).parents('tr').remove();
-        });
-      </script>
+    });
+    $(document).on('click', '.remove-input-field_4', function() {
+      $(this).parents('tr').remove();
+    });
+  </script>
 
-      <!-- Add Student Journals -->
+  <!-- Add Student Journals -->
 
-      <script>
-        var i = 0;
-        $("#dynamic-ar_5").click(function() {
-          ++i;
-          $("#dynamicAddRemove_5").append(`<tr>
+  <script>
+    var i = 0;
+    $("#dynamic-ar_5").click(function() {
+      ++i;
+      $("#dynamicAddRemove_5").append(`<tr>
                                         <td>
                                           <div>
                                             <input type="text" name="journal_name[` + i + `][journal_name]" class="form-control" placeholder="{{ __('students_thesis/journal.Journal_Name') }}">
@@ -668,135 +599,135 @@
                                             </a>
                                         </td>
                                     </tr>`);
-        });
-        $(document).on('click', '.remove-input-field_5', function() {
-          $(this).parents('tr').remove();
-        });
-      </script>
+    });
+    $(document).on('click', '.remove-input-field_5', function() {
+      $(this).parents('tr').remove();
+    });
+  </script>
 
-      <!-- Select2 -->
-      <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
-      <script>
-        $(function() {
-          //Initialize Select2 Elements
-          $('.select2').select2()
+  <!-- Select2 -->
+  <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
+  <script>
+    $(function() {
+      //Initialize Select2 Elements
+      $('.select2').select2()
 
-          //Initialize Select2 Elements
-          $('.select2bs4').select2({
-            theme: 'bootstrap4'
-          });
+      //Initialize Select2 Elements
+      $('.select2bs4').select2({
+        theme: 'bootstrap4'
+      });
 
-          //Date picker
-          $('#reservationdate').datetimepicker({
-            format: 'YYYY-MM-DD'
-          });
+      //Date picker
+      $('#reservationdate').datetimepicker({
+        format: 'YYYY-MM-DD'
+      });
 
-          // Initialize section_approvement_date date picker
-          $('#section_approvement_date').datetimepicker({
-            format: 'YYYY-MM-DD'
-          });
+      // Initialize section_approvement_date date picker
+      $('#section_approvement_date').datetimepicker({
+        format: 'YYYY-MM-DD'
+      });
 
-          // Initialize college_approvement_date date picker
-          $('#college_approvement_date').datetimepicker({
-            format: 'YYYY-MM-DD'
-          });
+      // Initialize college_approvement_date date picker
+      $('#college_approvement_date').datetimepicker({
+        format: 'YYYY-MM-DD'
+      });
 
-          $('[data-mask]').inputmask();
+      $('[data-mask]').inputmask();
 
-        });
+    });
 
-        $("input[data-bootstrap-switch]").each(function() {
-          $(this).bootstrapSwitch('state', $(this).prop('checked'));
-        })
-      </script>
+    $("input[data-bootstrap-switch]").each(function() {
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    })
+  </script>
 
-      <!-- Start Notifications Messages & Pop Message -->
+  <!-- Start Notifications Messages & Pop Message -->
 
-      <script src="{{ asset('dist/js/code/toastr.js') }}"></script>
-      <script>
-        @if (Session::has('message'))
-          var type = "{{ Session::get('alert-type', 'info') }}"
-          switch (type) {
-            case 'info':
-              toastr.info(" {{ Session::get('message') }} ");
-              break;
+  <script src="{{ asset('dist/js/code/toastr.js') }}"></script>
+  <script>
+    @if (Session::has('message'))
+      var type = "{{ Session::get('alert-type', 'info') }}"
+      switch (type) {
+        case 'info':
+          toastr.info(" {{ Session::get('message') }} ");
+          break;
 
-            case 'success':
-              toastr.success(" {{ Session::get('message') }} ");
-              break;
+        case 'success':
+          toastr.success(" {{ Session::get('message') }} ");
+          break;
 
-            case 'warning':
-              toastr.warning(" {{ Session::get('message') }} ");
-              break;
+        case 'warning':
+          toastr.warning(" {{ Session::get('message') }} ");
+          break;
 
-            case 'error':
-              toastr.error(" {{ Session::get('message') }} ");
-              break;
-          }
-        @endif
-      </script>
+        case 'error':
+          toastr.error(" {{ Session::get('message') }} ");
+          break;
+      }
+    @endif
+  </script>
 
-      <script src="{{ asset('dist/js/code/sweetalert2.js') }}"></script>
-      <script src="{{ asset('dist/js/code/code.js') }}"></script>
+  <script src="{{ asset('dist/js/code/sweetalert2.js') }}"></script>
+  <script src="{{ asset('dist/js/code/code.js') }}"></script>
 
-      <!-- End Notifications Messages & Pop Message -->
+  <!-- End Notifications Messages & Pop Message -->
 
-      <!-- bs-custom-file-input -->
-      <script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+  <!-- bs-custom-file-input -->
+  <script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 
-      <script>
-        $(function() {
-          bsCustomFileInput.init();
-        });
-      </script>
+  <script>
+    $(function() {
+      bsCustomFileInput.init();
+    });
+  </script>
 
 
-      <!-- DataTables  & Plugins -->
-      <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
-      <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-      <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-      <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-      <script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-      <script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-      <script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
-      <script src="{{ asset('plugins/pdfmake/pdfmake.min.js') }}"></script>
-      <script src="{{ asset('plugins/pdfmake/vfs_fonts.js') }}"></script>
-      <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-      <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
-      <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-      <!-- AdminLTE App -->
-      <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
-      <script>
-        $(function() {
-          $("#example1").DataTable({
-            "responsive": true,
-            "lengthChange": false,
-            "autoWidth": false,
-            "searching": true,
-            "buttons": ["excel", "pdf", "print", "colvis"]
-          }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-          $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-            "buttons": ["excel", "pdf", "print", "colvis"],
-          });
-        });
-      </script>
+  <!-- DataTables  & Plugins -->
+  <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+  <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+  <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+  <script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+  <script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+  <script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
+  <script src="{{ asset('plugins/pdfmake/pdfmake.min.js') }}"></script>
+  <script src="{{ asset('plugins/pdfmake/vfs_fonts.js') }}"></script>
+  <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+  <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+  <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+  <!-- AdminLTE App -->
+  <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+  <script>
+    $(function() {
+      $("#example1").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        "searching": true,
+        "buttons": ["excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "buttons": ["excel", "pdf", "print", "colvis"],
+      });
+    });
+  </script>
 
-      <script>
-        $('#exampleInputFile').on('change', function() {
-          //get the file name
-          var fileName = $(this).val();
-          //replace the "Choose a file" label
-          $(this).next('.custom-file-label').html(this.files[0].name);
-        })
-      </script>
-      @stack('scripts')
+  <script>
+    $('#exampleInputFile').on('change', function() {
+      //get the file name
+      var fileName = $(this).val();
+      //replace the "Choose a file" label
+      $(this).next('.custom-file-label').html(this.files[0].name);
+    })
+  </script>
+  @stack('scripts')
 
 
 </body>
