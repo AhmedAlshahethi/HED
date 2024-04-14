@@ -29,7 +29,7 @@
                 </a>
               </h3>
               <h3 class="card-title mr-2">
-                <a href="#">
+                <a href="{{ route('export_data', ['type' => 'marks']) }}">
                   <button type="button"
                     class="btn btn-block bg-success">{{ __('students/list_students.export_marks') }}</button>
                 </a>
