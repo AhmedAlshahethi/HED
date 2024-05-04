@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\DB;
 class Seminar extends Model
 {
     use HasFactory;
-    protected $fillable = ['student', 'title', 'date', 'supervisor', 'sub_supervisor'];
+    protected $fillable = ['student_id', 'title', 'date', 'supervisor', 'sub_supervisor'];
 
     public function students()
     {
-        return $this->belongsTo(Student::class, 'student', 'id');
+        return $this->belongsTo(Student::class, 'student_id', 'id');
     }
 
     public function departments()

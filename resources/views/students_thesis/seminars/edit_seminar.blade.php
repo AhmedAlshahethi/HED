@@ -17,9 +17,9 @@
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
-    <form method="POST" action="{{ route('update_seminar') }}">
+    <form method="POST" action="{{ route('update_seminar',$student) }}">
         @csrf
-        <input type="hidden" name="student" value="{{ $student->id }}">
+        <input type="hidden" name="student_id" value="{{ $student->id }}">
         <input type="hidden" name="id" value="{{ $seminar->id }}">
         <section class="content">
             <div class="container-fluid">

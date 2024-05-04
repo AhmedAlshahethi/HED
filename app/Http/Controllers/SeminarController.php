@@ -28,7 +28,7 @@ class SeminarController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'student' => 'required',
+            'student_id' => 'required',
             'title' => 'required',
             'date' => 'required',
             'supervisor' => 'required|exists:instructors,id',
@@ -49,7 +49,7 @@ class SeminarController extends Controller
             'students_thesis.seminars.edit_seminar',
             [
                 'student' => $student,
-                'seminar' => Seminar::where('student', $student->id)->first(),
+                'seminar' => Seminar::where('student_id', $student->id)->first(),
                 'instructors' => Instructor::all(['id', 'name'])
             ]
         );
@@ -58,7 +58,7 @@ class SeminarController extends Controller
     public function update(Request $request)
     {
         $data = $request->validate([
-            'student' => 'required',
+            'student_id' => 'required',
             'title' => 'required',
             'date' => 'required',
             'supervisor' => 'required|exists:instructors,id',

@@ -19,7 +19,8 @@
     </div>
     <form method="POST" action="{{ route('store_seminar') }}">
         @csrf
-        <input type="hidden" name="student" value="{{ $student->id }}">
+        <input name="student_id" type="hidden" class="form-control" value="{{ $student->id }}">
+
         <section class="content">
             <div class="container-fluid">
                 <!-- SELECT2 EXAMPLE -->
@@ -66,6 +67,7 @@
                                 <div class="form-group">
                                     <div class="form-group">
                                         <label>{{ __('students_thesis/seminar.Date') }}</label>
+
                                         <input name="date" type="date" class="form-control"
                                             placeholder="{{ __('students_thesis/seminar.Date') }}">
 

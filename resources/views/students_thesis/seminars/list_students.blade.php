@@ -88,7 +88,7 @@
                       <td class="project-actions text-right">
                         @php
                           $studentId = $student->id;
-                          $hasSeminar = App\Models\Seminar::where('student', $studentId)->exists();
+                          $hasSeminar = App\Models\Seminar::where('student_id', $studentId)->exists();
                         @endphp
                         @if (!$hasSeminar)
                           <a class="btn btn-success btn-sm" href="{{ route('add_seminar', $student->id) }}">
