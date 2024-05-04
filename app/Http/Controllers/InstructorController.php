@@ -32,11 +32,14 @@ class InstructorController extends Controller
 
     public function upload_image($image){
 
+        if($image != null){
         $image_name = time().'.'.$image->extension();
         $image->move(public_path('/images'),$image_name);
 
         return $image_name;
-
+        }else{
+            return "unknown.jpg";
+        }
 
     }
 

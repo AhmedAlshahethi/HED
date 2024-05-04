@@ -2,7 +2,6 @@
 /node_modules
 /public/hot
 /public/storage
-/public/images
 /storage/*.key
 /vendor
 .env
@@ -17,3 +16,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+composer.json
+public/images/1712371385.jpg
+public/images/1712371477.jpg
+.gitignore
