@@ -306,7 +306,7 @@
                                   </tr>
                                   <tr>
                                       <th>{{__('students/view_student.School_Name')}}</th>
-                                      <td>{{ $student->school_name }}</td>
+                                      <td>{{ $student->high_school_name }}</td>
                                   </tr>
                                   <tr>
                                       <th>{{__('students/view_student.High_school_governorate')}}</th>

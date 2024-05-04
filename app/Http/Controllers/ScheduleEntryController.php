@@ -41,9 +41,6 @@ class ScheduleEntryController extends Controller
     public function create()
     {
 
-
-
-
         $instructors = Instructor::all(['id', 'name']);
         $subjects = Subject::all(['id', 'name']);
         $i = 0; // Initial value for row counter
@@ -56,26 +53,6 @@ class ScheduleEntryController extends Controller
     public function store(Request $request)
     {
        
-       
-     
-          
-         $schedule = new Schedule();
-     $data = new Collection($request);
-     $schedule->name =$data['name'];
-     if($schedule->save()){
-        $numberofentries=0;
-        
-      
-     $instructorIds = [];
-     $subjectIds=[];
-     $days=[];
-     $start_times=[];
-     $class_rooms=[];
-
-
-
-
-
         $schedule = new Schedule();
         $data = new Collection($request);
         $schedule->name = $data['name'];
@@ -94,6 +71,9 @@ class ScheduleEntryController extends Controller
                 $instructorIds[] = $instructorData['instructor_id'];
                 $numberofentries++; // Access the nested ID
             }
+            foreach ($data['subject_id'] as $subjectData) {
+                $subjectIds[] = $subjectData['subject_id'];
+            }
             foreach ($data['class_room'] as $class_roomData) {
                 if($class_roomData['class_room']==null){
                     $class_rooms[] ="undecided";
@@ -102,7 +82,7 @@ class ScheduleEntryController extends Controller
                 $class_rooms[] = $class_roomData['class_room'] ;} // Access the nested ID
             }
 
-        }
+        
         foreach ($data['day'] as $dayData) {
             $days[] = $dayData['day']; // Access the nested ID
         }
@@ -113,26 +93,12 @@ class ScheduleEntryController extends Controller
           
              $saved_entries_counter=0;
 
-       for($x=0 ;$x<$numberofentries ;$x++){  //loop should start form zero
-          
-        $scheduleEntry =new ScheduleEntry();
-
-        $scheduleEntry->schedule_id =$schedule->id;
-        $scheduleEntry->instructor_id = $instructorIds[$x];
-        $scheduleEntry->subject_id = $subjectIds[$x];
-        $scheduleEntry->class_room = $class_rooms[$x];
-        $scheduleEntry->day = $days[$x];
-        $scheduleEntry->start_time = $start_times[$x];
-        
-          $scheduleEntry->save();
-         
-                                            }
+    
             
              //return "recieved should be :".$numberofentries."</br>inserted:".$saved_entries_counter."</br>deleted".$deleted;
-            return redirect()->route("schedules");
              
 
-            for ($x = 0; $x < $numberofentries; $x++) {  //loop should start form zero
+            for ($x=0; $x < $numberofentries; $x++) {  //loop should start form zero
 
                 $scheduleEntry = new ScheduleEntry();
 
@@ -159,7 +125,10 @@ class ScheduleEntryController extends Controller
                     $schedule->delete();
                 }
             }
+            return redirect()->route("schedules");
 
+        }
+            // end of if 
 
 
 
@@ -181,7 +150,7 @@ class ScheduleEntryController extends Controller
 
 
 
-        } // end of if         
+                
 
 
     }
@@ -270,7 +239,7 @@ class ScheduleEntryController extends Controller
     public function update(Request $request ,Schedule $schedule){
          
 
-        return  $request;
+        //return  $request;
          
 
            
