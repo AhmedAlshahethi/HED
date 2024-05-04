@@ -218,16 +218,17 @@
                     <p>{{ __('layout/master.Student_Thesis.Seminars') }}</p>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a href="{{ route('students_papers') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>{{ __('layout/master.Student_Thesis.Thesis') }}</p>
-                  </a>
-                </li>
+               
                 <li class="nav-item">
                   <a href="{{ route('students_discussions') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{ __('layout/master.Student_Thesis.Discussions') }}</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('students_papers') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>{{ __('layout/master.Student_Thesis.Thesis') }}</p>
                   </a>
                 </li>
                 <li class="nav-item">
