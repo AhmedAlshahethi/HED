@@ -75,4 +75,20 @@ class SeminarController extends Controller
         );
         return redirect()->route('students_seminars')->with($notification);
     }
+    public function view(Student $student){
+        $seminar =  Seminar::where('student_id', $student->id)->get();
+        return view('students_thesis.seminars.view_seminar', [
+            'seminars' => $seminar,
+            'student' => $student
+          ]);
+
+    }
+    public function delete(Student $student){
+        $seminar =  Seminar::where('student_id', $student->id)->get();
+        return view('students_thesis.seminars.delete_seminar', [
+            'seminars' => $seminar,
+            'student' => $student
+          ]);
+
+    }
 }

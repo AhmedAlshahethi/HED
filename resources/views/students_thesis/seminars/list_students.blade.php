@@ -97,7 +97,7 @@
                             {{ __('shared/shared.Add') }}
                           </a>
                         @else
-                          <a class="btn btn-primary btn-sm" href="{{ route('view_seminar') }}">
+                          <a class="btn btn-primary btn-sm" href="{{ route('view_seminar',$student->id) }}">
                             <i class="fas fa-eye">
                             </i>
                             {{ __('shared/shared.View') }}
@@ -108,7 +108,7 @@
                             </i>
                             {{ __('shared/shared.Edit') }}
                           </a>
-                          <a class="btn btn-danger btn-sm text-white" href="{{ route('delete_seminar') }}">
+                          <a class="btn btn-danger btn-sm text-white" href="{{ route('delete_seminar',$student->id) }}">
                             <i class="fas fa-trash">
                             </i>
                             {{ __('shared/shared.Delete') }}

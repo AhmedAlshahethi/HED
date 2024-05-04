@@ -28,7 +28,7 @@
               <thead>
                   <tr>
                       <th colspan="2">
-                        {{__('shared/shared.Student_Name')}} : احمد الشاحذي
+                        {{__('shared/shared.Student_Name')}} : {{ $student->name }}
                       </th>
                       <th colspan="2">
                         {{__('shared/shared.Student_Id')}} : 21160021
@@ -53,17 +53,22 @@
                   </thead>
                   <tbody>
                     <tr>
-                         <td>تحسن كفاءة شبكة الجيل السادس</td>
-                         <td>احمد محمد علي الشاحذي</td>
-                         <td>عبدالكريم جلال النزيلي</td>
-                         <td>22-5-2023</td>
-                         <td>مقبول</td>
-                         <td class="project-actions text-right">
+                      @foreach ($seminars as $seminar )
+                      <tr>
+                           <td>{{ $seminar->title }}</td>
+                           <td> {{ $seminar->instructors->name }}</td>
+                           <td> {{ $seminar->instructors->name }}</td>
+                           <td> {{ $seminar->date }}</td>
+                           <td> {{ $seminar->status }}</td>
+                           <td class="project-actions text-right">
                             <a class="btn btn-danger btn-sm text-white">
                                 <i class="fas fa-trash"></i>
                                 {{__('shared/shared.Delete')}}
                             </a>
                         </td>
+                      </tr>        
+                      @endforeach
+                        
                     </tr>        
                   </tbody>
                 </table>

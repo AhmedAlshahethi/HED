@@ -176,12 +176,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
     // Route::View('/add_seminar', 'students_thesis.seminars.add_seminar')->name('add_seminar');
 
-    Route::View('/view_seminar', 'students_thesis.seminars.view_seminar')->name('view_seminar');
+    Route::get('/view_seminar/{student}', [SeminarController::class, 'view'])->name('view_seminar');
 
     Route::get('/edit/{student}', [SeminarController::class, 'edit'])->name('edit_seminar');
     Route::post('/update', [SeminarController::class, 'update'])->name('update_seminar');
 
-    Route::View('/delete_seminar', 'students_thesis.seminars.delete_seminar')->name('delete_seminar');
+    Route::get('/delete_seminar/{student}', [SeminarController::class, 'delete'])->name('delete_seminar');
   });
 
   Route::group(['prefix' => 'research_papers'], function () {

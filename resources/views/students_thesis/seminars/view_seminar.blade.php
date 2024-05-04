@@ -33,7 +33,7 @@
               <thead>
                   <tr>
                       <th colspan="2">
-                        {{__('shared/shared.Student_Name')}} : احمد الشاحذي
+                        {{__('shared/shared.Student_Name')}} : {{ $student->name }}
                       </th>
                       <th colspan="2">
                         {{__('shared/shared.Student_Id')}} : 21160021
@@ -57,13 +57,16 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach ($seminars as $seminar )
                     <tr>
-                         <td>تحسن كفاءة شبكة الجيل السادس</td>
-                         <td>احمد محمد علي الشاحذي</td>
-                         <td>عبدالكريم جلال النزيلي</td>
-                         <td>22-5-2023</td>
-                         <td>مقبول</td>
+                         <td>{{ $seminar->title }}</td>
+                         <td> {{ $seminar->instructors->name }}</td>
+                         <td> {{ $seminar->instructors->name }}</td>
+                         <td> {{ $seminar->date }}</td>
+                         <td> {{ $seminar->status }}</td>
+                         
                     </tr>        
+                    @endforeach
                   </tbody>
                 </table>
               </div>
