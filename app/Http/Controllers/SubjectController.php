@@ -16,77 +16,81 @@ class SubjectController extends Controller
 {
 
 
-    
-    public function index(){
 
-         $subjects = Subject::with('departments')->get();
-          
-         return view('subjects.list_subjects')->with('Allsubjects',$subjects);
+    public function index()
+    {
+
+        $subjects = Subject::with('departments')->get();
+
+        return view('subjects.list_subjects')->with('Allsubjects', $subjects);
         // return view('subjects.list_subjects', compact('subjects'));  // Pass $subjects with key 'subjects'
 
-          
-  }
+
+    }
 
 
-    public function create(){
-        return view('subjects.add_subject',[
-            'departments' => Department::all(['id', 'name'])
-            ,'semesters' => Semester::array(),
+    public function create()
+    {
+        return view('subjects.add_subject', [
+            'departments' => Department::all(['id', 'name']), 'semesters' => Semester::array(),
         ]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $data = $request->validate([
             'name' => 'required',
             'hours' => 'required|numeric',
-            'semester' =>'required|in:' . join(",", Semester::values()),
+            'semester' => 'required|in:' . join(",", Semester::values()),
             'department_id' => 'required|exists:departments,id',
         ]);
 
         Subject::create($data);
 
-        return redirect()->route('subjects')->with('success', 'تمت الاضافة بنجاح');
+        $notification = [
+            'message' => 'تمت إضافة مادة بنجاح',
+            'alert-type' => 'success'
+        ];
+
+        return redirect()->route('subjects')->with($notification);
     }
 
     public function edit(Subject $subject)
-    { 
+    {
         $departments = Department::get();
-    
-    
-        return view('subjects.edit_subject',['subject'=> $subject, 'Alldepartments'=>$departments,'semesters'=>Semester::array()]); 
-       
+
+
+        return view('subjects.edit_subject', ['subject' => $subject, 'Alldepartments' => $departments, 'semesters' => Semester::array()]);
     }
 
-    public function update(Request $request,Subject $subject){
+    public function update(Request $request, Subject $subject)
+    {
 
         $data = $request->validate([
             'name' => 'required',
             'hours' => 'required|numeric',
-            'semester' =>'required|in:' . join(",", Semester::values()),
-             'department_id' => 'required|exists:departments,id',
+            'semester' => 'required|in:' . join(",", Semester::values()),
+            'department_id' => 'required|exists:departments,id',
         ]);
-          
-           
-         if($subject->update($data))
-          return redirect()->route('subjects')->with('success', 'تمت الاضافة بنجاح');
-         else 
-         return '2';  
-         
-     }
 
-     public function delete( $id)
-{
-    $subject = Subject::find($id);
 
-   
+        if ($subject->update($data))
+            return redirect()->route('subjects')->with('success', 'تمت الاضافة بنجاح');
+        else
+            return '2';
+    }
 
-    if( $subject->delete())
-    return redirect()->route('subjects')->with('success', 'تمت الاضافة بنجاح');
-    
+    public function delete($id)
+    {
+        $subject = Subject::find($id);
 
 
 
-}
-
-  
+        if ($subject->delete())
+            $notification = [
+                'message' => 'تمت حذف مادة بنجاح',
+                'alert-type' => 'success'
+            ];
+        return redirect()->route('subjects')->with($notification);
+    }
 }

@@ -1,7 +1,7 @@
-<?php  
+<?php
 
-return[
-    
+return [
+
     'Print' => 'طباعة',
     'Section_Filter' => ['Section' => 'القسم', 'All' => 'الكل', 'IT' => 'تقنية المعلومات', 'نظم معلومات', 'علوم حاسوب'],
     'Student_Name' => 'اسم الطالب',
@@ -23,7 +23,8 @@ return[
     'Thesis_Title' => 'عنوان الرسالة',
     'Researcher_Name' => 'اسم الباحث',
     'Button_Operations' => ['Print' => 'طباعة', 'Save' => 'حفظ', 'Delete' => 'حذف'],
-
+    'semester' => 'الترم',
+    'hours' => 'الساعات',
     'Sign_In' => 'تسجيل دخول',
     'user_name' => 'معرف الدخول',
     'Password' => 'الباسورد',

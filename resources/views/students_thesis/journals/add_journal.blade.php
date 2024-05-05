@@ -19,7 +19,7 @@
     </div>
     <form method="POST" action="{{ route('store_journal') }}">
         @csrf
-        <input type="text" name="research_id" value="{{ $research_id }}">
+        <input type="hidden" name="research_id" value="{{ $research_id }}">
         <section class="content">
             <div class="container-fluid">
                 <!-- SELECT2 EXAMPLE -->
