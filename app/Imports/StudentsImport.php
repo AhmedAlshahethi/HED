@@ -77,7 +77,7 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation, WithUps
 
   public function map($row): array
   {
-    $row['birthdate'] = Date::excelToDateTimeObject($row['birthdate']);
+    // $row['birthdate'] = Date::excelToDateTimeObject($row['birthdate']);
     return $row;
   }
 
@@ -101,6 +101,7 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation, WithUps
       'address' => 'required',
       'phone_number' => 'required',
       'email' => 'nullable|unique:students,email',
+      'password' => 'required',
       'high_school_name' => 'required',
       'high_school_city' => 'required',
       'high_school_district' => 'required',

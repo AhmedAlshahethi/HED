@@ -16,7 +16,7 @@ class StudentsExport implements FromCollection, WithHeadings
       $student->gender,
       $student->city,
       $student->district,
-      $student->birthdate,
+      str_replace('-', '/', $student->birthdate),
       $student->birth_place,
       $student->Identity_type,
       $student->identity_number,
