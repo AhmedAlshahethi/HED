@@ -28,7 +28,7 @@ class SeminarController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'student_id' => 'required',
+            'student' => 'required',
             'title' => 'required',
             'date' => 'required',
             'supervisor' => 'required|exists:instructors,id',
@@ -49,7 +49,7 @@ class SeminarController extends Controller
             'students_thesis.seminars.edit_seminar',
             [
                 'student' => $student,
-                'seminar' => Seminar::where('student_id', $student->id)->first(),
+                'seminar' => Seminar::where('student', $student->id)->first(),
                 'instructors' => Instructor::all(['id', 'name'])
             ]
         );
@@ -58,7 +58,7 @@ class SeminarController extends Controller
     public function update(Request $request)
     {
         $data = $request->validate([
-            'student_id' => 'required',
+            'student' => 'required',
             'title' => 'required',
             'date' => 'required',
             'supervisor' => 'required|exists:instructors,id',
@@ -75,20 +75,20 @@ class SeminarController extends Controller
         );
         return redirect()->route('students_seminars')->with($notification);
     }
-    public function view(Student $student){
-        $seminar =  Seminar::where('student_id', $student->id)->get();
+    public function view(Student $student)
+    {
+        $seminar =  Seminar::where('student', $student->id)->get();
         return view('students_thesis.seminars.view_seminar', [
             'seminars' => $seminar,
             'student' => $student
-          ]);
-
+        ]);
     }
-    public function delete(Student $student){
+    public function delete(Student $student)
+    {
         $seminar =  Seminar::where('student_id', $student->id)->get();
         return view('students_thesis.seminars.delete_seminar', [
             'seminars' => $seminar,
             'student' => $student
-          ]);
-
+        ]);
     }
 }

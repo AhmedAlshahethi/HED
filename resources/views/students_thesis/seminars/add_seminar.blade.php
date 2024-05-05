@@ -19,7 +19,7 @@
     </div>
     <form method="POST" action="{{ route('store_seminar') }}">
         @csrf
-        <input name="student_id" type="hidden" class="form-control" value="{{ $student->id }}">
+        <input name="student" type="hidden" class="form-control" value="{{ $student->id }}">
 
         <section class="content">
             <div class="container-fluid">

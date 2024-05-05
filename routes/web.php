@@ -200,7 +200,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
   });
 
   Route::group(['prefix' => 'discussions'], function () {
-    Route::View('/info', 'students_thesis.research_discussions.list_students')->name('students_discussions');
+    Route::get('/info', [ResearchPaperDiscussionController::class, 'index'])->name('students_discussions');
     Route::get('/add', [ResearchPaperDiscussionController::class, 'create'])->name('add_discussion');
     Route::post('/store', [ResearchPaperDiscussionController::class, 'store'])->name('store_discussion');
 
