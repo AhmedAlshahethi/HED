@@ -19,4 +19,9 @@ class ResearchPaper extends Model
         'notes',
         'seminar_id',
     ];
+
+    public function seminar()
+    {
+        return $this->belongsTo(Seminar::class, 'seminar_id');
+    }
 }

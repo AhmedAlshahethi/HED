@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class PublishedResearchPaper extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['journal_name', 'link', 'notes', 'research_paper_id'];
 }
