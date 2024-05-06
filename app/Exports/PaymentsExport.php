@@ -52,7 +52,7 @@ class PaymentsExport implements FromCollection, WithMapping, ShouldAutoSize, Wit
                 return [
                     $payment->payment,
                     $payment->reciet,
-                    $payment->date,
+                    str_replace('-', '/', $payment->date),
                     $payment->notes,
                 ];
             })->toArray(),

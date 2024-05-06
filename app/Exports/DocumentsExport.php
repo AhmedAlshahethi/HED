@@ -51,7 +51,7 @@ class DocumentsExport implements FromCollection, WithMapping, ShouldAutoSize, Wi
         return [
           $document->type->name,
           $document->number,
-          $document->date,
+          str_replace('-', '/', $document->date),
         ];
       })->toArray(),
       []
