@@ -1,18 +1,22 @@
-<?php 
+<?php
 
-return[
+return [
     'Admins' => 'Super Admin',
-    'Students' => ['Students' => 'Students', 'Manage_Students_Registration' => 'Manage Students Registration', 'Manage_Documents' => 'Manage Documents', 
-    'Manage_Fees' => 'Manage Fees', 'Manage_Marks' => 'Manage Marks'],
-    'Student_Thesis' => ['Student_Thesis' => 'Students Thesis' ,'Journals' => 'Journals', 'Seminars' => 'Seminars',
-    'Thesis' => 'Thesis Data', 'Discussions' => 'Discussion Thesis'],
+    'Students' => [
+        'Students' => 'Students', 'Manage_Students_Data' => 'Students Data', 'Manage_Students_Registration' => 'Manage Students Registration', 'Manage_Documents' => 'Manage Documents',
+        'Manage_Fees' => 'Manage Fees', 'Manage_Marks' => 'Manage Marks'
+    ],
+    'Student_Thesis' => [
+        'Student_Thesis' => 'Students Thesis', 'Journals' => 'Journals', 'Seminars' => 'Seminars',
+        'Thesis' => 'Thesis Data', 'Discussions' => 'Discussion Thesis'
+    ],
     'Sections' => 'Sections',
-    'Subjects'=> 'Subjects',
+    'Subjects' => 'Subjects',
     'Instructors' => 'Instructors',
     'Documents_Type' => 'Documents Type',
     'Tables' => 'Tables',
     'Archive_Thesis' => 'Archive Thesis',
     'Users' => 'Users',
-    'Logout'=> 'Logout',
+    'Logout' => 'Logout',
 
 ];
