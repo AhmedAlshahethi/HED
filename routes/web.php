@@ -219,13 +219,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     Route::get('/add/{student}/{researchPaper}', [PublishedResearchPaperController::class, 'create'])->name('add_journal');
     Route::post('/store', [PublishedResearchPaperController::class, 'store'])->name('store_journal');
 
-    // Route::View('/add_journal', 'students_thesis.journals.add_journal')->name('add_journal');
-
-    Route::View('/edit_journal', 'students_thesis.journals.edit_journal')->name('edit_journal');
+    // Route::get('/edit_journal/{researchPaper}', [PublishedResearchPaperController::class, 'edit'])->name('edit_journal');
+    Route::post('/update_journal', [PublishedResearchPaperController::class, 'update'])->name('update_journal');
 
     Route::View('/view_journal', 'students_thesis.journals.view_journal')->name('view_journal');
 
-    Route::View('/delete_journal', 'students_thesis.journals.delete_journal')->name('delete_journal');
+    Route::get('/delete_journal/{id}', [PublishedResearchPaperController::class, 'delete'])->name('delete_journal');
   });
 
 

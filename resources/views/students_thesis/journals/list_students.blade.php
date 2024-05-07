@@ -131,17 +131,17 @@
                                                     </i>
                                                     {{ __('shared/shared.Add') }}
                                                 </a>
-                                                <a class="btn btn-info btn-sm" href="{{ route('edit_journal') }}">
+                                                {{-- <a class="btn btn-info btn-sm" href="{{ route('edit_journal') }}">
                                                     <i class="fas fa-pencil-alt">
                                                     </i>
                                                     {{ __('shared/shared.Edit') }}
-                                                </a>
-                                                <a class="btn btn-danger btn-sm text-white"
+                                                </a> --}}
+                                                {{-- <a class="btn btn-danger btn-sm text-white"
                                                     href="{{ route('delete_journal') }}">
                                                     <i class="fas fa-trash">
                                                     </i>
                                                     {{ __('shared/shared.Delete') }}
-                                                </a>
+                                                </a> --}}
                                             </td>
                                         </tr>
                                     @endforeach
