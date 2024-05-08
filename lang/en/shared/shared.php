@@ -9,6 +9,7 @@ return [
     'Student_Id' => 'Student ID',
     'Search' => 'Search',
     'Save' => 'Save',
+    'Cancel' => 'Cancel',
     'View' => 'View',
     'Edit' => 'Edit',
     'Delete' => 'Delete',

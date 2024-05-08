@@ -67,24 +67,12 @@
                                             <th></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="dynamicAddRemove_5">
                                         @foreach ($journals as $journal)
                                             <tr>
                                                 <td>{{ $journal->journal_name }}</td>
                                                 <td>{{ $journal->link }}</td>
                                                 <td>{{ $journal->notes }}</td>
-                                                {{-- <td class="project-actions text-right">
-
-                                                    <a class="btn btn-danger btn-sm text-white edit-button">
-                                                        <i class="fas fa-edit"></i>
-                                                        {{ __('schedules/add_schedule.Lectures_Table.Edit') }}
-                                                    </a>
-
-                                                    <a class="btn btn-danger btn-sm text-white delete-button">
-                                                        <i class="fas fa-trash"></i>
-                                                        {{ __('schedules/add_schedule.Lectures_Table.Delete') }}
-                                                    </a>
-                                                </td> --}}
                                                 <td class="project-actions text-right">
                                                     <a href="#" class="btn btn-info btn-sm edit-button"
                                                         data-toggle="modal" data-target="#journalModal"
@@ -95,65 +83,60 @@
                                                         <i class="fas fa-pencil-alt"></i>
                                                         {{ __('students_thesis/journal.Edit') }}
                                                     </a>
-                                                    {{-- @if (!empty($journal->journal_name)) --}}
-                                                    {{-- <form action="{{ route('delete_journal', ['id' => $journal->id]) }}"
-                                                        method="POST" id="delete-form">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm text-white"
-                                                            onclick="confirmDelete(event)">
-                                                            <i class="fas fa-trash"></i>
-                                                            {{ __('schedules/add_schedule.Lectures_Table.Delete') }}
-                                                        </button>
-                                                    </form> --}}
                                                     <a href="{{ route('delete_journal', ['id' => $journal->id]) }}"
                                                         class="btn btn-danger btn-sm text-white delete-button"
                                                         id="delete">
                                                         <i class="fas fa-trash"></i>
                                                         {{ __('schedules/add_schedule.Lectures_Table.Delete') }}
                                                     </a>
-                                                    {{-- @endif --}}
                                                 </td>
                                             </tr>
                                         @endforeach
-                                        <tr id="template-row" style="display: none;">
-                                            <td>
-                                                <div>
-                                                    <input type="text" name="journal_name[]" class="form-control"
-                                                        placeholder="{{ __('students_thesis/journal.Journal_Name') }}"
-                                                        value="{{ old('journal_name') }}">
-                                                    @error('journal_name')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    <input type="text" name="journal_link[]" class="form-control"
-                                                        placeholder="{{ __('students_thesis/journal.Journal_Link') }}"
-                                                        value="{{ old('journal_link') }}">
-                                                    @error('journal_link')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    <input type="text" name="notes[]" class="form-control"
-                                                        placeholder="{{ __('students_thesis/journal.Notes') }}"
-                                                        value="{{ old('notes') }}">
-                                                    @error('notes')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                            </td>
-                                            <td class="project-actions text-right">
-                                                <a class="btn btn-danger btn-sm text-white delete-button">
-                                                    <i class="fas fa-trash"></i>
-                                                    {{ __('schedules/add_schedule.Lectures_Table.Delete') }}
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        @for ($i = 0; $i < count(old('journal_name', [''])); $i++)
+                                            <tr>
+                                                <td>
+                                                    <div>
+                                                        <input type="text"
+                                                            name="journal_name[{{ $i }}][journal_name]"
+                                                            class="form-control"
+                                                            placeholder="{{ __('students_thesis/journal.Journal_Name') }}"
+                                                            value="{{ old("journal_name.${i}.journal_name") }}">
+                                                        @error("journal_name.${i}.journal_name")
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <input type="text"
+                                                            name="journal_link[{{ $i }}][journal_link]"
+                                                            class="form-control"
+                                                            placeholder="{{ __('students_thesis/journal.Journal_Link') }}"
+                                                            value="{{ old("journal_link.${i}.journal_link") }}">
+                                                        @error("journal_link.${i}.journal_link")
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <input type="text" name="notes[{{ $i }}][notes]"
+                                                            class="form-control"
+                                                            placeholder="{{ __('students_thesis/journal.Notes') }}"
+                                                            value="{{ old("notes.${i}.notes") }}">
+                                                        @error("notes.${i}.notes")
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                </td>
+                                                <td class="project-actions text-right">
+                                                    <a class="btn btn-danger btn-sm text-white remove-input-field_5">
+                                                        <i class="fas fa-trash"></i>
+                                                        {{ __('schedules/add_schedule.Lectures_Table.Delete') }}
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endfor
                                     </tbody>
                                 </table>
                             </div>
@@ -171,7 +154,7 @@
         </section>
     </form>
 
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Add Journal Entry
             document.getElementById('dynamic-ar_5').addEventListener('click', function() {
@@ -189,28 +172,8 @@
                 }
             });
         });
-    </script>
+    </script> --}}
 
-    {{-- @push('scripts')
-        <script>
-            $(document).ready(function() {
-                // Edit Button Click Event
-                $(document).on('click', '.edit-button', function() {
-                    var journalId = $(this).data('journal-id');
-                    var journalName = $(this).data('journal-name');
-                    var journalLink = $(this).data('journal-link');
-                    var notes = $(this).data('notes');
-
-                    $('#journalId').val(journalId);
-                    $('#journalName').val(journalName);
-                    $('#journalLink').val(journalLink);
-                    $('#notes').val(notes);
-
-                    $('#journalModal').modal('show');
-                });
-            });
-        </script>
-    @endpush --}}
 
     @push('scripts')
         <script>
@@ -248,7 +211,11 @@
                             // You can display a success message or perform any desired action
                             // For example, you can close the modal and refresh the table of journals
                             $('#journalModal').modal('hide');
-                            location.reload(); // Refresh the page to update the table
+                            toastr.success(response.message);
+                            setTimeout(function() {
+                                location.reload();
+                            }, 1000);
+                            // Refresh the page to update the table
                         },
                         error: function(xhr) {
                             // Handle form submission errors
@@ -293,15 +260,7 @@
         </script>
     @endpush
 
-    <script>
-        function confirmDelete(event) {
-            event.preventDefault();
 
-            if (confirm('Are you sure you want to delete this journal?')) {
-                document.getElementById('delete-form').submit();
-            }
-        }
-    </script>
 
     <!-- Add/Edit Journal Modal -->
     <div class="modal fade" id="journalModal" tabindex="-1" role="dialog" aria-labelledby="journalModalLabel"
@@ -309,7 +268,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="journalModalLabel">{{ __('students_thesis/journal.Add_Edit_Journal') }}
+                    <h5 class="modal-title" id="journalModalLabel">
+                        {{ __('students_thesis/shared.Home_Journal.Edit_Journal') }}
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -340,8 +300,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary"
-                            data-dismiss="modal">{{ __('students_thesis/journal.Cancel') }}</button>
-                        <button type="submit" class="btn btn-primary">{{ __('students_thesis/journal.Save') }}</button>
+                            data-dismiss="modal">{{ __('shared/shared.Cancel') }}</button>
+                        <button type="submit" class="btn btn-success">{{ __('shared/shared.Save') }}</button>
                     </div>
                 </form>
             </div>

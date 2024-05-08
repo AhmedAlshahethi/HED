@@ -67,26 +67,12 @@ class PublishedResearchPaperController extends Controller
             $journal->save();
         }
 
-        PublishedResearchPaper::where('reasearch_paper_id', $request->research_id)->delete();
-
-
         $notification = [
             'message' => 'تمت إضافة بيانات المجلة العلمية بنجاح',
             'alert-type' => 'success'
         ];
         return redirect()->route('students_journals')->with($notification);
     }
-
-    // public function edit(ResearchPaper $researchPaper)
-    // {
-    //     return view(
-    //         'students_thesis.journals.edit_journal',
-    //         [
-    //             'researchPaper' => $researchPaper,
-    //             'seminar' => Seminar::where('id', $researchPaper->id)->first(),
-    //         ]
-    //     );
-    // }
 
 
     public function update(Request $request)
@@ -101,30 +87,18 @@ class PublishedResearchPaperController extends Controller
             // Optionally, you can add a success flash message or perform any other actions
         }
 
-        $notification = [
+        // $notification = [
+        //     'message' => 'تمت تعديل بيانات المجلة العلمية بنجاح',
+        //     'alert-type' => 'success'
+        // ];
+        // return redirect()->back()->with($notification);
+
+        return response()->json([
             'message' => 'تمت تعديل بيانات المجلة العلمية بنجاح',
-            'alert-type' => 'success'
-        ];
-        return redirect()->back()->with($notification);
+            // 'delay' => 1000
+        ]);
     }
 
-    // public function delete($id)
-    // {
-    //     $journal = PublishedResearchPaper::find($id);
-
-    //     // if (!$journal) {
-    //     //     return Response::json(['error' => 'Journal not found.'], 404);
-    //     // }
-
-    //     $journal->delete();
-
-    //     $notification = [
-    //         'message' => 'تمت حذف بيانات المجلة العلمية بنجاح',
-    //         'alert-type' => 'success'
-    //     ];
-
-    //     return redirect()->back()->with($notification);
-    // }
 
     public function delete($id)
     {

@@ -1,4 +1,4 @@
-<?php  
+<?php
 
 
 return [
@@ -6,4 +6,5 @@ return [
     'Journal_Name' => 'Journal Name',
     'Journal_Link' => 'Journal Link',
     'Notes' => 'Notes',
+    'Edit' => 'Edit',
 ];

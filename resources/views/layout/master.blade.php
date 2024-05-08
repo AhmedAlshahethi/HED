@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>HED | Dashboard</title>
 
     <!-- Google Font: Source Sans Pro -->
@@ -637,12 +636,7 @@
             <a class="btn btn-danger btn-sm text-white remove-input-field_5">
                 <i class="fas fa-trash"></i>
                 {{ __('schedules/add_schedule.Lectures_Table.Delete') }}
-            </a>
-            <a href="#" class="btn btn-primary btn-sm text-white edit-journal">
-                <i class="fas fa-pencil-alt"></i>
-                {{ __('schedules/add_schedule.Lectures_Table.Edit') }}
-            </a>
-            
+            </a>                    
         </td>
         </tr>`;
 

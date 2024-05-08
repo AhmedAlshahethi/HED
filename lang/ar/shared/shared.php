@@ -8,6 +8,7 @@ return [
     'Student_Id' => 'الرقم الاكاديمي',
     'Search' => 'بحث',
     'Save' => 'حفظ',
+    'Cancel' => 'الغاء',
     'View' => 'عرض',
     'Edit' => 'تعديل',
     'Delete' => 'حذف',
