@@ -92,7 +92,7 @@
                           </i>
                           {{ __('shared/shared.View') }}
                         </a>
-                        <a class="btn btn-success btn-sm" href="{{ route('add_document') }}">
+                        <a class="btn btn-success btn-sm" href="{{ route('add_document',$student->id) }}">
                           <i class="fas fa-folder">
                           </i>
                           {{ __('shared/shared.Add') }}

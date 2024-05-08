@@ -15,7 +15,9 @@
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
 </div>
-<form>
+<form method="POST" action="{{route('store_document')}}">
+  @csrf
+  <input type="hidden" name="student_id" value="{{ $student->id }}">
     <section class="content">
         <div class="container-fluid">
             <!-- SELECT2 EXAMPLE -->
@@ -29,7 +31,7 @@
                       <thead>
                           <tr>
                               <th colspan="2">
-                                {{__('shared/shared.Student_Name')}} : احمد الشاحذي
+                                {{__('shared/shared.Student_Name')}} : {{ $student->name }}
                               </th>
                               <th colspan="2">
                                 {{__('shared/shared.Student_Id')}} : 21160021
@@ -57,10 +59,13 @@
                                 <tbody id="dynamicAddRemove_3">
                                     <tr>
                                         <td>
-                                          <div>
-                                            <input type="text" name="Doc_title[0][title]" class="form-control" placeholder="{{__('students/add_student.Document_Title')}}">
+                                          <div class="custom-file">
+                                            <input type="file" name="file_path[0][file_path]" class="custom-file-input" id="exampleInputFile">
+                                            <label class="custom-file-label" for="exampleInputFile"></label>
                                           </div>
                                         </td>
+                                        
+                                        
                                         <td>
                                           <div>
                                             <input type="text" name="number[0][number]" class="form-control" placeholder="{{__('students/add_student.Document_Number')}}">
@@ -71,16 +76,17 @@
                                             <div class="input-group-prepend">
                                               <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                             </div>
-                                            <input type="text" name="date[0][date]" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                                            <input type="date" name="date[0][date]" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
                                           </div>
                                         </td>
                                         <td>
                                           <select class="custom-select" name="document_type_id[0][document_type_id]">
-                                            <option>option 1</option>
-                                            <option>option 2</option>
-                                            <option>option 3</option>
-                                            <option>option 4</option>
-                                            <option>option 5</option>
+                                            @foreach ($doc_types as $doc_type )
+                                              
+                                            <option value="{{ $doc_type->id }}">{{ $doc_type->name }}</option>
+                                            
+                                            @endforeach
+
                                           </select>
                                         </td>
                                         <td class="project-actions text-right">
@@ -107,6 +113,54 @@
         <!-- /.container-fluid -->
     </section>
 </form>
+@push('scripts')
+<script>
+  var i = 0;
+  $("#dynamic-ar_3").click(function() {
+    ++i;
+    $("#dynamicAddRemove_3").append(`<tr>
+                                      <td>
+                                        <div class="custom-file">
+                                          <input type="file" name="file_path[${i}][file_path]" class="custom-file-input" id="exampleInputFile">
+                                          <label class="custom-file-label" for="exampleInputFile"></label>
+                                        </div>
+                                      </td>
+                                <td>
+                                  <div>
+                                    <input type="text" name="number[${i}][number]" class="form-control" placeholder="{{ __('students/add_student.Document_Number') }}">
+                                  </div>
+                                </td>
+                                 <td>
+                                        <div class="input-group">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                          </div>
+                                          <input type="date" name="date[${i}][date]" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" inputmode="numeric" placeholder="dd/mm/yyyy">
+                                        </div>
+                                 </td>
+                                <td>
+                                  <select class="custom-select" name="document_type_id[${i}][document_type_id]">
+                                    @foreach ($doc_types as $doc_type )
+                                            
+                                          <option value="{{ $doc_type->id }}">{{ $doc_type->name }}</option>
+                                          
+                                          @endforeach
+                                  </select>
+                                </td>
+                                 <td class="project-actions text-right">
+                                    <a class="btn btn-danger btn-sm text-white remove-input-field_3">
+                                        <i class="fas fa-trash"></i>
+                                        {{ __('schedules/add_schedule.Lectures_Table.Delete') }}
+                                    </a>
+                                 </td>
+                            </tr>`);
+  });
+  $(document).on('click', '.remove-input-field_3', function() {
+    $(this).parents('tr').remove();
+  });
+</script>
+@endpush
+
 @endsection
 
 

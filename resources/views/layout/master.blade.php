@@ -474,50 +474,7 @@
 
     <!-- Add Student Documents -->
 
-    <script>
-        var i = 0;
-        $("#dynamic-ar_3").click(function() {
-            ++i;
-            $("#dynamicAddRemove_3").append(`<tr>
-                                  <td>
-                                    <div>
-                                      <input type="text" name="Doc_title[` + i + `][title]" class="form-control" placeholder="{{ __('students/add_student.Document_Title') }}">
-                                    </div>
-                                  </td>
-                                  <td>
-                                    <div>
-                                      <input type="text" name="number[` + i + `][number]" class="form-control" placeholder="{{ __('students/add_student.Document_Number') }}">
-                                    </div>
-                                  </td>
-                                  <td>
-                                    <div class="input-group">
-                                      <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                                      </div>
-                                      <input type="text" name="date[` + i + `][date]" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
-                                    </div>
-                                  </td>
-                                  <td>
-                                    <select class="custom-select" name="document_type_id[` + i + `][document_type_id]">
-                                      <option>option 1</option>
-                                      <option>option 2</option>
-                                      <option>option 3</option>
-                                      <option>option 4</option>
-                                      <option>option 5</option>
-                                    </select>
-                                  </td>
-                                  <td class="project-actions text-right">
-                                      <a class="btn btn-danger btn-sm text-white remove-input-field_3">
-                                          <i class="fas fa-trash"></i>
-                                          {{ __('schedules/add_schedule.Lectures_Table.Delete') }}
-                                      </a>
-                                  </td>
-                              </tr>`);
-        });
-        $(document).on('click', '.remove-input-field_3', function() {
-            $(this).parents('tr').remove();
-        });
-    </script>
+  
 
     <!-- Add Student Marks -->
 
