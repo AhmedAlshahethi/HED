@@ -96,22 +96,20 @@
                       <td>{{ $student->departments->name }}</td>
                       <td class="project-actions text-right">
                         {{-- <a class="btn btn-primary btn-sm"
-                                                    href="{{ route('view_student', $student->id) }}">
-                                                    <i class="fas fa-eye"></i>
-                                                    {{ __('shared/shared.View') }}
-                                                </a> --}}
+                            href="{{ route('view_student', $student->id) }}">
+                            <i class="fas fa-eye"></i>
+                            {{ __('shared/shared.View') }}
+                        </a> --}}
                         <a class="btn btn-info btn-sm" href="{{ route('edit_student', $student->id) }}">
                           <i class="fas fa-pencil-alt">
                           </i>
                           {{ __('shared/shared.Edit') }}
                         </a>
-                        {{-- <!-- TODO: Do we need delete student button? --> --}}
-                        {{-- <a class="btn btn-danger btn-sm text-white"
-                                                    href="{{ route('delete_student', $student->id) }}">
-                                                    <i class="fas fa-trash">
-                                                    </i>
-                                                    {{ __('shared/shared.Delete') }}
-                                                </a> --}}
+                        {{-- <a class="btn btn-danger btn-sm text-white" href="{{ route('delete_student', $student->id) }}">
+                            <i class="fas fa-trash">
+                            </i>
+                            {{ __('shared/shared.Delete') }}
+                        </a> --}}
                       </td>
                     </tr>
                   @endforeach
