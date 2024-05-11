@@ -14,9 +14,16 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
-    $students = Student::with('departments')->get();
+    $students = Student::with('departments')->when($request->search, function ($query) use ($request) {
+      return $query->where('name', 'like', '%' . $request->search . '%');
+      // ->where('academic_number', 'like', '%' . $request->search . '%'); TODO: run this line
+    })->when($request->department, function ($query) use ($request) {
+      return $query->where('department_id', $request->department);
+    })->when($request->level, function ($query) use ($request) {
+      return $query->where('registration_type', $request->level);
+    })->get();
     return view('students.manage_students_info.list_students')->with('all_students', $students);
   }
   public function index_students_doc()
