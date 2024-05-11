@@ -24,4 +24,9 @@ class ResearchPaper extends Model
     {
         return $this->belongsTo(Seminar::class, 'seminar_id');
     }
+
+    public function discussion()
+    {
+        return $this->hasOne(ResearchPaperDiscussion::class, 'research_paper_id');
+    }
 }

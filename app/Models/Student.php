@@ -74,6 +74,6 @@ class Student extends Authenticatable
   }
   public function seminars()
   {
-    return $this->hasMany(Seminar::class);
+    return $this->hasMany(Seminar::class, 'student');
   }
 }

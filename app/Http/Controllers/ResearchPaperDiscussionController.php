@@ -13,18 +13,20 @@ class ResearchPaperDiscussionController extends Controller
     public function index()
     {
         $students = Seminar::where('status', '1')->with('departments')->with('students')->get();
-        return view('students_thesis.research_papers.list_students')->with('all_students', $students);
+        return view('students_thesis.research_discussions.list_students')->with('all_students', $students);
     }
-    public function create(Student $student)
+    public function create()
     {
 
-        return view(
-            'students_thesis.research_papers.add_research_paper',
-            [
-                'student' => $student,
-                'seminar' => Seminar::where('student', $student->id)->first(),
-            ]
-        );
+        return view('students_thesis.research_discussions.add_discussion');
+
+        // return view(
+        //     'students_thesis.research_discussions.add_discussions'
+        //     [
+        //         'student' => $student,
+        //         'seminar' => Seminar::where('student', $student->id)->first(),
+        //     ]
+        // );
     }
 
     public function store(Request $request)
