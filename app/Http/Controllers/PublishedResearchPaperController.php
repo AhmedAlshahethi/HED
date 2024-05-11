@@ -7,6 +7,7 @@ use App\Models\ResearchPaper;
 use App\Models\Seminar;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
 class PublishedResearchPaperController extends Controller
@@ -24,18 +25,18 @@ class PublishedResearchPaperController extends Controller
     }
     public function create(Student $student, ResearchPaper $researchPaper)
     {
+        $journals = PublishedResearchPaper::where('reasearch_paper_id', $researchPaper->id)->get();
 
         return view(
             'students_thesis.journals.add_journal',
             [
                 'student' => $student,
                 'seminar' => Seminar::where('student', $student->id)->first(),
-                'research_id' => $researchPaper->id
+                'research_id' => $researchPaper->id,
+                'journals' => $journals,
             ]
         );
     }
-
-
 
     public function store(Request $request)
     {
@@ -73,49 +74,47 @@ class PublishedResearchPaperController extends Controller
         return redirect()->route('students_journals')->with($notification);
     }
 
-    // public function edit(ResearchPaper $researchPaper)
-    // {
-    //     return view(
-    //         'students_thesis.research_papers.edit_research_paper',
-    //         [
-    //             'researchPaper' => $researchPaper,
-    //             'seminar' => Seminar::where('id', $researchPaper->id)->first(),
-    //         ]
-    //     );
-    // }
 
-    // public function update(Request $request)
-    // {
-    //     $data = $request->validate([
-    //         'section_approvement_date' => 'required',
-    //         'section_approvement_number' => 'required|numeric',
-    //         'college_approvement_date' => 'required',
-    //         'college_approvement_number' => 'required|numeric',
-    //         'score' => 'required|numeric',
-    //         'file_path' => 'nullable|file',
-    //         'notes' => 'nullable',
-    //         'seminar_id' => 'required',
-    //     ]);
+    public function update(Request $request)
+    {
+        $journalId = $request->input('journal_id');
+        $journal = PublishedResearchPaper::find($journalId);
+        if ($journal) {
+            $journal->journal_name = $request->input('journal_name');
+            $journal->link = $request->input('journal_link');
+            $journal->notes = $request->input('notes');
+            $journal->save();
+            // Optionally, you can add a success flash message or perform any other actions
+        }
 
-    //     if ($request->hasFile('file_path')) {
-    //         $existingData = ResearchPaper::where('id', $request->id)->first();
-    //         if ($existingData) {
-    //             @unlink(public_path($existingData->file_path));
-    //         }
-    //         $file = $request->file('file_path');
-    //         $filename = hexdec(uniqid()) . '.' . $file->getClientOriginalExtension();
-    //         $file->move(public_path('upload/files/research_paper'), $filename);
-    //         $save_url = 'upload/files/research_paper/' . $filename;
+        // $notification = [
+        //     'message' => 'تمت تعديل بيانات المجلة العلمية بنجاح',
+        //     'alert-type' => 'success'
+        // ];
+        // return redirect()->back()->with($notification);
 
-    //         $data['file_path'] = $save_url;
-    //     }
-    //     $data['updated_at'] = Carbon::now();
-    //     ResearchPaper::where('id', $request->id)->update($data);
+        return response()->json([
+            'message' => 'تمت تعديل بيانات المجلة العلمية بنجاح',
+            // 'delay' => 1000
+        ]);
+    }
 
-    //     $notification = array(
-    //         'message' => 'تم تحديث بيانات رسالة بنجاح',
-    //         'alert-type' => 'success'
-    //     );
-    //     return redirect()->route('students_papers')->with($notification);
-    // }
+
+    public function delete($id)
+    {
+        $journal = PublishedResearchPaper::find($id);
+
+        // if (!$journal) {
+        //     return Response::json(['error' => 'Journal not found.'], 404);
+        // }
+
+        $journal->delete();
+
+        $notification = [
+            'message' => 'تمت حذف بيانات المجلة العلمية بنجاح',
+            'alert-type' => 'success'
+        ];
+
+        return redirect()->back()->with($notification);
+    }
 }
