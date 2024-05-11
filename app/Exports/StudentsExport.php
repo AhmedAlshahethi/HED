@@ -13,6 +13,7 @@ class StudentsExport implements FromCollection, WithHeadings
   {
     return Student::all()->map(fn ($student) => [
       $student->name,
+      $student->academic_number,
       $student->gender,
       $student->city,
       $student->district,
@@ -47,6 +48,7 @@ class StudentsExport implements FromCollection, WithHeadings
       $student->general_grade,
       $student->total_percentage,
       $student->graduation_year,
+      $student->graduation_country,
       $student->registration_type,
       Department::find($student->department_id)->name,
       $student->fees,
@@ -57,6 +59,7 @@ class StudentsExport implements FromCollection, WithHeadings
   {
     return [
       'Name',
+      'Academic Number',
       'Gender',
       'City',
       'District',
@@ -91,6 +94,7 @@ class StudentsExport implements FromCollection, WithHeadings
       'General Grade',
       'Total Percentage',
       'Graduation Year',
+      'Graduation Country',
       'Registration Type',
       'Department',
       'Fees',

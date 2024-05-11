@@ -51,13 +51,13 @@ return new class extends Migration
       $table->string('university');
       $table->string('college');
       $table->string('college_department');
-      $table->string('major_name'); 
+      $table->string('major_name');
       $table->enum('general_grade', GeneralGrade::values());
       $table->string('total_percentage');
       $table->string('graduation_year');
       $table->enum('registration_type', AcademicLevel::values());
       $table->foreignId('department_id')->references('id')->on('departments')->restrictOnDelete()->cascadeOnUpdate();
-      $table->float('fees');
+      $table->float('fees', 20);
       $table->softDeletes();
       $table->timestamps();
     });

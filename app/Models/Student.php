@@ -11,6 +11,7 @@ class Student extends Authenticatable
   use HasFactory, HasApiTokens;
   protected $fillable = [
     'name',
+    'academic_number',
     'gender',
     'city',
     'district',

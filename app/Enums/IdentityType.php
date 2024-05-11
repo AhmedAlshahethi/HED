@@ -6,5 +6,5 @@ enum IdentityType: string
 {
   use EnumToArray;
   case PASSPORT = 'جواز سفر';
-  case PERSONAL_ID = 'بطاقة الشخصية';
+  case PERSONAL_ID = 'بطاقة شخصية';
 }
