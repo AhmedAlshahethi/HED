@@ -45,6 +45,7 @@ return [
     'student_Name' => 'Student Name',
     'Place_of_Birth' => 'Place of BirthDate',
     'identity_type' => 'Identity type',
+    'english_address' => 'Address',
 
     //Data_of_previous_university_qualification
     'Data_of_previous_university_qualification' => 'Data of previous university qualification',
