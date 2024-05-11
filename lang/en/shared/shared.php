@@ -6,7 +6,7 @@ return [
     'Print' => 'Print',
     'Section_Filter' => ['Section' => 'Section', 'All' => 'All', 'IT' => 'Inormation Technology', 'Inormation System', 'Computer Since'],
     'Student_Name' => 'Student Name',
-    'Student_Id' => 'Student ID',
+    'Academic_Number' => 'Academic Number',
     'Search' => 'Search',
     'Save' => 'Save',
     'Cancel' => 'Cancel',

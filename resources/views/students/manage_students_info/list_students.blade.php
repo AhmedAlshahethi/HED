@@ -79,7 +79,7 @@
                 <thead>
                   <tr>
                     <th>{{ __('shared/shared.Student_Name') }}</th>
-                    <th>{{ __('shared/shared.Student_Id') }}</th>
+                    <th>{{ __('shared/shared.Academic_Number') }}</th>
                     <th>{{ __('shared/shared.Level') }}</th>
                     <th>{{ __('shared/shared.Section') }}</th>
                     <th></th>
@@ -89,7 +89,7 @@
                   @foreach ($all_students as $student)
                     <tr>
                       <td>{{ $student->name }}</td>
-                      <td>21160021</td>
+                      <td>{{ $student->academic_number }}</td>
                       <td>{{ $student->registration_type }}</td>
                       <td>{{ $student->departments->name }}</td>
                       <td class="project-actions text-right">
@@ -102,6 +102,7 @@
                           </i>
                           {{ __('shared/shared.Edit') }}
                         </a>
+                        {{-- <!-- TODO: Do we need delete student button? --> --}}
                         <a class="btn btn-danger btn-sm text-white" href="{{ route('delete_student', $student->id) }}">
                           <i class="fas fa-trash">
                           </i>
@@ -111,15 +112,6 @@
                     </tr>
                   @endforeach
                 </tbody>
-                <tfoot>
-                  <tr>
-                    <th>{{ __('shared/shared.Student_Name') }}</th>
-                    <th>{{ __('shared/shared.Student_Id') }}</th>
-                    <th>{{ __('shared/shared.Level') }}</th>
-                    <th>{{ __('shared/shared.Section') }}</th>
-                    <th></th>
-                  </tr>
-                </tfoot>
               </table>
             </div>
             <!-- /.card-body -->

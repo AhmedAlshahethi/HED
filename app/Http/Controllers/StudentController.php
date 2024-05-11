@@ -42,6 +42,7 @@ class StudentController extends Controller
     //$student = new Student();
     $data  = $request->validate([
       'name' => 'required',
+      'academic_number' => 'required|integer',
       'gender' => 'required|in:' . join(",", Gender::values()),
       'city' => 'required',
       'district' => 'required',
@@ -93,6 +94,7 @@ class StudentController extends Controller
   public function edit(Student $student)
   {
     $departments = Department::get();
+    // dd($student->toArray());
 
     return view('students.manage_students_info.edit_student', [
       'student' => $student, 'departments' => $departments,
@@ -109,6 +111,7 @@ class StudentController extends Controller
   {
     $data  = $request->validate([
       'name' => 'required',
+      'academic_number' => 'required|integer',
       'gender' => 'required|in:' . join(",", Gender::values()),
       'city' => 'required',
       'district' => 'required',
@@ -134,7 +137,7 @@ class StudentController extends Controller
       'english_name' => 'required',
       'english_birth_place' => 'required',
       'english_address' => 'required',
-      'notes' => 'required',
+      'notes' => 'nullable',
       'last_degree' => 'required',
       'university' => 'required',
       'college' => 'required',
@@ -143,7 +146,7 @@ class StudentController extends Controller
       'general_grade' => 'required',
       'total_percentage' => 'required|numeric',
       'graduation_year' => 'required|numeric',
-      // 'graduation_country' => 'required',
+      'graduation_country' => 'required',
       'registration_type' => 'required|in:' . join(",", AcademicLevel::values()),
       'department_id' => 'required|exists:departments,id',
       'fees' => 'required|numeric',

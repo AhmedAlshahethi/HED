@@ -1,18 +1,19 @@
-<?php 
+<?php
 
-return[
+return [
 
     //Student_Registeration_Type
     'Student_Registeration_Type' => 'Student Registeration Type',
     'Academic_Level' => 'Academic Level',
     'Section_Type' => 'Section',
 
-    
+
     // Student_information_data
     'Student_information_data' => 'Student information data',
     'Student_Name' => 'Student Name',
+    'Academic_Number' => 'Academic Number',
     'Student_BirthDate' => 'Student BirthDate',
-    'Identity_type' => ['Identity_type'=> 'Identity type', 'option 1'=> 'option 1', 'option 2'=> 'option 2'],
+    'Identity_type' => ['Identity_type' => 'Identity type', 'option 1' => 'option 1', 'option 2' => 'option 2'],
     'Identity_Number' => 'Identity Number',
     'Nationality' => 'Nationality',
     'Country_of_Nationality' => 'Country of Nationality',
@@ -46,13 +47,13 @@ return[
     'identity_type' => 'Identity type',
 
     //Data_of_previous_university_qualification
-    'Data_of_previous_university_qualification'=> 'Data of previous university qualification',
+    'Data_of_previous_university_qualification' => 'Data of previous university qualification',
     'University_Name' => 'University Name',
     'College_Name' => 'College Name',
-    'Section' => ['Section' => 'Section', 'option 1' => 'option 1', 'option 2' => 'option 2' ],
+    'Section' => ['Section' => 'Section', 'option 1' => 'option 1', 'option 2' => 'option 2'],
     'Major' => ['Major' => 'Major', 'option 1' => 'option 1', 'option 2' => 'option 2'],
     'percentage' => 'percentage',
-    'General_appreciation' => ['General_appreciation' => 'General appreciation' ,'option 1' => 'option 1', 'option 2' => 'option 2' ],
+    'General_appreciation' => ['General_appreciation' => 'General appreciation', 'option 1' => 'option 1', 'option 2' => 'option 2'],
     'Name_of_qualification' => ['Name_of_qualification' => 'Name of qualification', 'option 1' => 'option 1', 'option 2' => 'option 2'],
     'Graduation_Year' => 'Graduation Year',
     'Graduation_country' => 'Graduation country',
@@ -69,7 +70,7 @@ return[
     'Notes_Fees' => 'Notes',
 
     //Documents
-    'Documents'=> 'Documents',
+    'Documents' => 'Documents',
     'Add_Document' => 'Add Document',
     'Document_type' => ['Document_type' => 'Document type', 'option 1' => 'option 1', 'option 2' => 'option 2'],
     'Document_Title' => 'Document Title',
@@ -77,8 +78,8 @@ return[
     'Received_Date' => 'Received Date',
 
     //Notes
-    'Notes'=> 'Notes',
-    
+    'Notes' => 'Notes',
+
     //Marks
     'Marks' => 'Marks',
     'Add_marks' => 'Add marks',
@@ -91,16 +92,16 @@ return[
     'Total_Score' => 'Total Score',
     'Precentage' => 'Precentage',
 
-    'Home'=> 'Edit Student Data',
+    'Home' => 'Edit Student Data',
     'Screen' => 'Manage Students Registeration',
 
-    'Home_Document'=> 'Edit Student Documents',
+    'Home_Document' => 'Edit Student Documents',
     'Screen_Document' => 'Manage Students Documents',
 
-    'Home_Mark'=> 'Edit Student Marks',
+    'Home_Mark' => 'Edit Student Marks',
     'Screen_Mark' => 'Manage Students Marks',
 
-    'Home_Fee'=> 'Edit Student Fees',
+    'Home_Fee' => 'Edit Student Fees',
     'Screen_Fee' => 'Manage Students Fees',
 
 

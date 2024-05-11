@@ -5,6 +5,7 @@ namespace App\Imports;
 use App\Enums\AcademicLevel;
 use App\Enums\BloodType;
 use App\Enums\Gender;
+use App\Enums\GeneralGrade;
 use App\Enums\HighSchoolType;
 use App\Enums\IdentityType;
 use App\Models\Department;
@@ -34,6 +35,7 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation, WithUps
     }
     return new Student([
       'name' => $row['name'],
+      'academic_number' => $row['academic_number'],
       'gender' => $row['gender'],
       'city' => $row['city'],
       'district' => $row['district'],
@@ -69,6 +71,7 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation, WithUps
       'general_grade' => $row['general_grade'],
       'total_percentage' => $row['total_percentage'],
       'graduation_year' => $row['graduation_year'],
+      'graduation_country' => $row['graduation_country'],
       'registration_type' => $row['registration_type'],
       'department_id' => $department->id,
       'fees' => $row['fees'],
@@ -88,6 +91,7 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation, WithUps
   {
     return [
       'name' => 'required',
+      'academic_number' => 'required|integer|unique:students,academic_number',
       'gender' => 'required|in:' . join(",", Gender::values()),
       'city' => 'required',
       'district' => 'required',
@@ -100,7 +104,7 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation, WithUps
       'blood_type' => 'required|in:' . join(",", BloodType::values()),
       'address' => 'required',
       'phone_number' => 'required',
-      'email' => 'nullable|unique:students,email',
+      'email' => 'nullable',
       'password' => 'required',
       'high_school_name' => 'required',
       'high_school_city' => 'required',
@@ -114,15 +118,16 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation, WithUps
       'english_name' => 'required',
       'english_birth_place' => 'required',
       'english_address' => 'required',
-      'notes' => 'required',
+      'notes' => 'nullable',
       'last_degree' => 'required',
       'university' => 'required',
       'college' => 'required',
       'college_department' => 'required',
       'major_name' => 'required',
-      'general_grade' => 'required',
+      'general_grade' => 'required|in:' . join(',', GeneralGrade::values()),
       'total_percentage' => 'required|numeric',
       'graduation_year' => 'required|numeric',
+      'graduation_country' => 'required',
       'registration_type' => 'required|in:' . join(",", AcademicLevel::values()),
       'department' => 'required|exists:departments,name',
       'fees' => 'required|numeric',
