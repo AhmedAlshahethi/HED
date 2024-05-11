@@ -14,25 +14,28 @@ class PublishedResearchPaperController extends Controller
 {
     public function index()
     {
-        // Retrieve seminar IDs with status = 1
-        $seminarIds = Seminar::where('status', 1)->pluck('id');
 
         // Retrieve students from ResearchPaper table based on seminar IDs
-        $students = ResearchPaper::whereIn('seminar_id', $seminarIds)
-            ->with('seminar.students')
-            ->get();
+        $students = Student::whereHas('seminars', function ($seminar) {
+            return $seminar->whereHas("researchPaper", function ($paper) {
+                return $paper->whereHas('discussion');
+            });
+        })->get();
         return view('students_thesis.journals.list_students')->with('all_students', $students);
     }
-    public function create(Student $student, ResearchPaper $researchPaper)
+    public function create(Student $student)
     {
-        $journals = PublishedResearchPaper::where('reasearch_paper_id', $researchPaper->id)->get();
+        $student->load('seminars.researchPaper');
+        $seminar =
+            $student->seminars->last();
+        $journals = PublishedResearchPaper::where('reasearch_paper_id', $seminar->researchPaper->id)->get();
 
         return view(
             'students_thesis.journals.add_journal',
             [
                 'student' => $student,
-                'seminar' => Seminar::where('student', $student->id)->first(),
-                'research_id' => $researchPaper->id,
+                'seminar' => $seminar,
+                'research_id' => $seminar->researchPaper->id,
                 'journals' => $journals,
             ]
         );

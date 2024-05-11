@@ -24,4 +24,8 @@ class Seminar extends Model
     {
         return $this->belongsTo(Instructor::class, 'supervisor', 'id');
     }
+    public function researchPaper()
+    {
+        return $this->hasOne(ResearchPaper::class);
+    }
 }

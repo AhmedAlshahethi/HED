@@ -216,7 +216,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
   Route::group(['prefix' => 'journals'], function () {
     Route::get('/info', [PublishedResearchPaperController::class, 'index'])->name('students_journals');
-    Route::get('/add/{student}/{researchPaper}', [PublishedResearchPaperController::class, 'create'])->name('add_journal');
+    Route::get('/add/{student}', [PublishedResearchPaperController::class, 'create'])->name('add_journal');
     Route::post('/store', [PublishedResearchPaperController::class, 'store'])->name('store_journal');
 
     // Route::get('/edit_journal/{researchPaper}', [PublishedResearchPaperController::class, 'edit'])->name('edit_journal');

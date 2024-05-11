@@ -85,7 +85,7 @@
                                             <td>21160021</td>
                                             <td>{{ $student->students->registration_type }}</td>
                                             <td>{{ $student->students->departments->name }}</td>
-                                            <td class="project-actions text-right">
+                                            {{-- <td class="project-actions text-right">
                                                 @php
                                                     $seminarId = $student->id;
                                                     $hasResearchDiscussion = \App\Models\ResearchPaperDiscussion::where(
@@ -118,6 +118,27 @@
                                                         {{ __('shared/shared.Delete') }}
                                                     </a>
                                                 @endif
+                                            </td> --}}
+                                            <td class="project-actions text-right">
+                                                <a class="btn btn-primary btn-sm" href="#">
+                                                    <i class="fas fa-eye"></i>
+                                                    {{ __('shared/shared.View') }}
+                                                </a>
+                                                <a class="btn btn-success btn-sm" href="{{ route('add_discussion') }}">
+                                                    <i class="fas fa-folder">
+                                                    </i>
+                                                    {{ __('shared/shared.Add') }}
+                                                </a>
+                                                <a class="btn btn-info btn-sm" href="#">
+                                                    <i class="fas fa-pencil-alt">
+                                                    </i>
+                                                    {{ __('shared/shared.Edit') }}
+                                                </a>
+                                                <a class="btn btn-danger btn-sm text-white" href="#">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                    {{ __('shared/shared.Delete') }}
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach

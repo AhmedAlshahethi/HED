@@ -81,10 +81,11 @@
                                 <tbody id="table_body">
                                     @foreach ($all_students as $student)
                                         <tr>
-                                            <td>{{ $student->seminar->students->name }}</td>
-                                            <td>21160021</td>
-                                            <td>{{ $student->seminar->students->registration_type }}</td>
-                                            <td>{{ $student->seminar->students->departments->name }}</td>
+                                            <td>{{ $student->name }}</td>
+                                            <td>211160000</td>
+                                            {{-- <td>{{ $student->academic_number }}</td> --}}
+                                            <td>{{ $student->registration_type }}</td>
+                                            <td>{{ $student->departments->name }}</td>
                                             {{-- <td class="project-actions text-right">
                                                 @php
                                                     $seminarId = $student->id;
@@ -126,7 +127,7 @@
                                                     {{ __('shared/shared.View') }}
                                                 </a> --}}
                                                 <a class="btn btn-primary btn-sm"
-                                                    href="{{ route('add_journal', ['student' => $student->seminar->id, 'researchPaper' => $student->id]) }}">
+                                                    href="{{ route('add_journal', ['student' => $student->id]) }}">
                                                     <i class="fas fa-eye">
                                                     </i>
                                                     {{ __('shared/shared.View') }}
