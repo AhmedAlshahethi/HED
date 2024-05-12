@@ -65,7 +65,7 @@ class ImportController extends Controller
   {
     $model = null;
     if ($type == 'students') {
-      $model = new StudentsExport;
+      $model = new StudentsExport($request);
     } else if ($type == 'marks') {
       $model = new ScoresExport($request->student_id);
     } else if ($type == 'documents') {
