@@ -173,6 +173,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     Route::get('/info', [SeminarController::class, 'index'])->name('students_seminars');
     Route::get('/add/{student}', [SeminarController::class, 'create'])->name('add_seminar');
     Route::post('/store', [SeminarController::class, 'store'])->name('store_seminar');
+    Route::get('/approve/{student}', [SeminarController::class, 'approve'])->name('approve');
 
     // Route::View('/add_seminar', 'students_thesis.seminars.add_seminar')->name('add_seminar');
 

@@ -101,6 +101,12 @@
                                                         {{ __('shared/shared.Add') }}
                                                     </a>
                                                 @else
+                                                    <a class="btn btn-success btn-sm"
+                                                        href="{{ route('approve', $student->id) }}">
+                                                        <i class="fas fa-folder">
+                                                        </i>
+                                                        {{ __('shared/shared.Approval') }}
+                                                    </a>
                                                     <a class="btn btn-primary btn-sm"
                                                         href="{{ route('view_seminar', $student->id) }}">
                                                         <i class="fas fa-eye">
