@@ -4,16 +4,16 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-        </div><!-- /.col -->
+        </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item">{{ __('students/list_students.Home') }}</li>
             <li class="breadcrumb-item active"><a
                 href="{{ route('students_info') }}">{{ __('students/list_students.Screen') }}</a></li>
           </ol>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+        </div>
+      </div>
+    </div>
   </div>
   <section class="content">
     <div class="container-fluid">
@@ -34,39 +34,38 @@
                 </a>
               </h3>
               <h3 class="card-title mr-2">
-                <a href="{{ route('export_data', ['type' => 'students']) }}">
+                <a href="{{ route('export_data', ['type' => 'students', ...request()->query()]) }}">
                   <button type="button"
-                    class="btn btn-block btn-success">{{ __('students/list_students.export_students') }}</button>
+                    class="btn btn-block btn-info">{{ __('students/list_students.export_students') }}</button>
                 </a>
               </h3>
               <form class="card-tools" method="GET" action="">
                 <ul class="nav nav-pills ml-auto p-2">
                   <li class="nav-item mr-2">
-                    <input type="text" id="table_search" name="search" class="form-control float-right"
+                    <input type="text" name="search" class="form-control float-right"
+                      value="{{ !empty(app('request')->input('search')) ? app('request')->input('search') : '' }}"
                       placeholder="{{ __('shared/shared.Search') }}">
-                  </li>
-                  <li class="nav-item">
-                    <div class="input-group-append" id="clear_button_container">
-                      <!-- Clear button will be dynamically added here -->
-                    </div>
                   </li>
                   <li class="nav-item mr-2">
                     <select class="custom-select" id="selectOption" name="department">
                       <option selected disabled>{{ __('shared/shared.Section') }}</option>
-                      <option value="option1">{{ __('shared/shared.All') }}</option>
-                      <option value="option1">{{ __('shared/shared.IT') }}</option>
-                      <option value="option2">{{ __('shared/shared.IS') }}</option>
-                      <option value="option2">{{ __('shared/shared.Cs') }}</option>
-                      <!-- Add more options as needed -->
+                      <option value="">{{ __('shared/shared.All') }}</option>
+                      @foreach ($departments as $department)
+                        <option value="{{ $department->id }}"
+                          {{ app('request')->input('department') == $department->id ? 'selected' : '' }}>
+                          {{ $department->name }}</option>
+                      @endforeach
                     </select>
                   </li>
                   <li class="nav-item mr-2">
                     <select class="custom-select" id="selectOption" name="level">
                       <option selected disabled>{{ __('shared/shared.Level') }}</option>
-                      <option value="option1">{{ __('shared/shared.All') }}</option>
-                      <option value="option1">{{ __('shared/shared.Master') }}</option>
-                      <option value="option2">{{ __('shared/shared.phD') }}</option>
-                      <!-- Add more options as needed -->
+                      <option value="">{{ __('shared/shared.All') }}</option>
+                      @foreach ($academicLevels as $level)
+                        <option value="{{ $level }}"
+                          {{ app('request')->input('level') == $level ? 'selected' : '' }}>
+                          {{ $level }}</option>
+                      @endforeach
                     </select>
                   </li>
                   <li class="nav-item">
@@ -75,7 +74,6 @@
                 </ul>
               </form>
             </div>
-            <!-- /.card-header -->
             <div class="card-body">
               <table id="example2" class="table table-bordered table-striped">
                 <thead>
@@ -95,36 +93,63 @@
                       <td>{{ $student->registration_type }}</td>
                       <td>{{ $student->departments->name }}</td>
                       <td class="project-actions text-right">
-                        {{-- <a class="btn btn-primary btn-sm"
-                            href="{{ route('view_student', $student->id) }}">
-                            <i class="fas fa-eye"></i>
-                            {{ __('shared/shared.View') }}
-                        </a> --}}
-                        <a class="btn btn-info btn-sm" href="{{ route('edit_student', $student->id) }}">
+                        <a class="btn btn-warning btn-sm" href="{{ route('edit_student', $student->id) }}">
                           <i class="fas fa-pencil-alt">
                           </i>
                           {{ __('shared/shared.Edit') }}
                         </a>
-                        {{-- <a class="btn btn-danger btn-sm text-white" href="{{ route('delete_student', $student->id) }}">
-                            <i class="fas fa-trash">
-                            </i>
-                            {{ __('shared/shared.Delete') }}
-                        </a> --}}
                       </td>
                     </tr>
                   @endforeach
                 </tbody>
               </table>
+              <div class="pagination-container">
+                <div class="pagination-info">
+                  Showing {{ $current_page * $per_page - $per_page + 1 }} to
+                  {{ $current_page * $per_page - $per_page + count($all_students) }} of
+                  {{ $total }} items
+                </div>
+                <div class="pagination-buttons">
+                  @if ($current_page > 1)
+                    <a href="{{ route('students_info', [...request()->query(), 'page' => 1]) }}">
+                      <button class="pagination-button btn btn-light">
+                        1
+                      </button>
+                    </a>
+                  @endif
+                  @if ($current_page > 2)
+                    <a href="{{ route('students_info', [...request()->query(), 'page' => $current_page - 1]) }}">
+                      <button class="pagination-button btn btn-light">
+                        {{ $current_page - 1 }}
+                      </button>
+                    </a>
+                  @endif
+                  <a href="{{ route('students_info', [...request()->query(), 'page' => $current_page]) }}">
+                    <button class="pagination-button btn btn-primary">
+                      {{ $current_page }}
+                    </button>
+                  </a>
+                  @if ($current_page < $last_page - 1)
+                    <a href="{{ route('students_info', [...request()->query(), 'page' => $current_page + 1]) }}">
+                      <button class="pagination-button btn btn-light">
+                        {{ $current_page + 1 }}
+                      </button>
+                    </a>
+                  @endif
+                  @if ($current_page < $last_page)
+                    <a href="{{ route('students_info', [...request()->query(), 'page' => $last_page]) }}">
+                      <button class="pagination-button btn btn-light">
+                        {{ $last_page }}
+                      </button>
+                    </a>
+                  @endif
+                </div>
+              </div>
             </div>
-            <!-- /.card-body -->
           </div>
-          <!-- /.card -->
         </div>
-        <!-- /.col -->
       </div>
-      <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
 
   </section>
 @endsection

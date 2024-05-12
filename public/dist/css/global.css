@@ -10,3 +10,14 @@
 .status-inactive {
     background-color: #ff000050;
 }
+
+.pagination-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 1rem 0.5rem 0;
+}
+.pagination-info {
+    color: #7c7c7c;
+    font-size: 11pt;
+}
