@@ -4,14 +4,38 @@ namespace App\Exports;
 
 use App\Models\Department;
 use App\Models\Student;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class StudentsExport implements FromCollection, WithHeadings
 {
+  private $students;
+
+  public function __construct(Request $request)
+  {
+    $query = Student::when(
+      $request->search,
+      fn ($query) => $query->where(
+        fn ($q) =>
+        $q->whereRaw("LOWER(name) like '%" . strtolower($request->search) . "%'")
+          ->orWhere('academic_number', 'like', '"%' . $request->search . '%"')
+      )
+    )
+      ->when(
+        $request->department,
+        fn ($query) => $query->where('department_id', $request->department)
+      )
+      ->when(
+        $request->level,
+        fn ($query) => $query->where('registration_type', $request->level)
+      );
+    $this->students = $query->get();
+  }
+
   public function collection()
   {
-    return Student::all()->map(fn ($student) => [
+    return $this->students->map(fn ($student) => [
       $student->name,
       $student->academic_number,
       $student->gender,

@@ -1,20 +1,19 @@
 @extends('layout.master')
-
 @section('content')
   <div class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-        </div><!-- /.col -->
+        </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item">{{ __('students/list_students.Home_Document') }}</li>
             <li class="breadcrumb-item active"><a
                 href="{{ route('students_documents') }}">{{ __('students/list_students.Screen_Document') }}</a></li>
           </ol>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+        </div>
+      </div>
+    </div>
   </div>
   <section class="content">
     <div class="container-fluid">
@@ -42,7 +41,6 @@
                   </li>
                   <li class="nav-item">
                     <div class="input-group-append" id="clear_button_container">
-                      <!-- Clear button will be dynamically added here -->
                     </div>
                   </li>
                   <li class="nav-item mr-2">
@@ -52,7 +50,6 @@
                       <option value="option1">{{ __('shared/shared.IT') }}</option>
                       <option value="option2">{{ __('shared/shared.IS') }}</option>
                       <option value="option2">{{ __('shared/shared.Cs') }}</option>
-                      <!-- Add more options as needed -->
                     </select>
                   </li>
                   <li class="nav-item mr-2">
@@ -61,19 +58,17 @@
                       <option value="option1">{{ __('shared/shared.All') }}</option>
                       <option value="option1">{{ __('shared/shared.Master') }}</option>
                       <option value="option2">{{ __('shared/shared.phD') }}</option>
-                      <!-- Add more options as needed -->
                     </select>
                   </li>
                 </ul>
               </div>
             </div>
-            <!-- /.card-header -->
             <div class="card-body">
               <table id="example2" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>{{ __('shared/shared.Student_Name') }}</th>
-                    <th>{{ __('shared/shared.Student_Id') }}</th>
+                    <th>{{ __('shared/shared.Academic_Number') }}</th>
                     <th>{{ __('shared/shared.Level') }}</th>
                     <th>{{ __('shared/shared.Section') }}</th>
                     <th></th>
@@ -83,7 +78,7 @@
                   @foreach ($all_students as $student)
                     <tr>
                       <td>{{ $student->name }}</td>
-                      <td>21160021</td>
+                      <td>{{ $student->academic_number }}</td>
                       <td>{{ $student->registration_type }}</td>
                       <td>{{ $student->departments->name }}</td>
                       <td class="project-actions text-right">
@@ -91,11 +86,6 @@
                           <i class="fas fa-eye">
                           </i>
                           {{ __('shared/shared.View') }}
-                        </a>
-                        <a class="btn btn-success btn-sm" href="{{ route('add_document',$student->id) }}">
-                          <i class="fas fa-folder">
-                          </i>
-                          {{ __('shared/shared.Add') }}
                         </a>
                         <a class="btn btn-info btn-sm" href="{{ route('edit_document') }}">
                           <i class="fas fa-pencil-alt">
@@ -108,23 +98,14 @@
                           {{ __('shared/shared.Delete') }}
                         </a>
                       </td>
-
-
-
                     </tr>
                   @endforeach
                   </tfoot>
               </table>
             </div>
-            <!-- /.card-body -->
           </div>
-          <!-- /.card -->
         </div>
-        <!-- /.col -->
       </div>
-      <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
-
   </section>
 @endsection

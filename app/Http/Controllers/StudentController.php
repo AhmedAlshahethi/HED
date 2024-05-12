@@ -16,37 +16,45 @@ class StudentController extends Controller
 {
   public function index(Request $request)
   {
-    $students = Student::with('departments')->when($request->search, function ($query) use ($request) {
-      return $query->where('name', 'like', '%' . $request->search . '%');
-      // ->where('academic_number', 'like', '%' . $request->search . '%'); TODO: run this line
-    })->when($request->department, function ($query) use ($request) {
-      return $query->where('department_id', $request->department);
-    })->when($request->level, function ($query) use ($request) {
-      return $query->where('registration_type', $request->level);
-    })->get();
-    return view('students.manage_students_info.list_students')->with('all_students', $students);
-  }
-  public function index_students_doc()
-  {
-    $students = Student::with('departments')->get();
-    return view('students.manage_students_doc.list_students')->with('all_students', $students);
+    $students = Student::with('departments')
+      ->when(
+        $request->search,
+        fn ($query) => $query->where(
+          fn ($q) =>
+          $q->whereRaw("LOWER(name) like '%" . strtolower($request->search) . "%'")
+            ->orWhere('academic_number', 'like', '%' . $request->search . '%')
+        )
+      )
+      ->when(
+        $request->department,
+        fn ($query) => $query->where('department_id', $request->department)
+      )
+      ->when(
+        $request->level,
+        fn ($query) => $query->where('registration_type', $request->level)
+      )->paginate(10);
+    return view('students.manage_students_info.list_students')->with([
+      'all_students' => $students->items(),
+      'current_page' => $students->currentPage(),
+      'last_page' => $students->lastPage(),
+      'per_page' => $students->perPage(),
+      'total' => $students->total(),
+    ]);
   }
   public function create()
   {
-    return view('students.manage_students_info.add_student', [
-      'academicLevels' => AcademicLevel::array(),
+    return view('students.manage_students_info.edit_student', [
+      'student' => null,
       'identityTypes' => IdentityType::array(),
       'genders' => Gender::array(),
       'bloodTypes' => BloodType::array(),
       'highSchoolTypes' => HighSchoolType::array(),
       'generalGrades' => GeneralGrade::array(),
-      'departments' => Department::all(['id', 'name'])
     ]);
   }
 
   public function store(Request $request)
   {
-    //$student = new Student();
     $data  = $request->validate([
       'name' => 'required',
       'academic_number' => 'required|integer',
@@ -75,7 +83,7 @@ class StudentController extends Controller
       'english_name' => 'required',
       'english_birth_place' => 'required',
       'english_address' => 'required',
-      'notes' => 'required',
+      'notes' => 'nullable',
       'last_degree' => 'required',
       'university' => 'required',
       'college' => 'required',
@@ -84,7 +92,7 @@ class StudentController extends Controller
       'general_grade' => 'required',
       'total_percentage' => 'required|numeric',
       'graduation_year' => 'required|numeric',
-      // 'graduation_country' => 'required',
+      'graduation_country' => 'required',
       'registration_type' => 'required|in:' . join(",", AcademicLevel::values()),
       'department_id' => 'required|exists:departments,id',
       'fees' => 'required|numeric',
@@ -104,7 +112,8 @@ class StudentController extends Controller
     // dd($student->toArray());
 
     return view('students.manage_students_info.edit_student', [
-      'student' => $student, 'departments' => $departments,
+      'student' => $student,
+      'departments' => $departments,
       'genders' => Gender::array(),
       'academicLevels' => AcademicLevel::array(),
       'identityTypes' => IdentityType::array(),
@@ -173,17 +182,17 @@ class StudentController extends Controller
     if ($student->delete())
       return redirect()->route('students_info')->with('success', 'تمت الاضافة بنجاح');
   }
-  public function view(Student $student)
-  {
+  // public function view(Student $student)
+  // {
 
-    // $department = $instructor->departments->name;
-
-
+  //   // $department = $instructor->departments->name;
 
 
 
-    return view('students.manage_students_info.view_student', [
-      'student' => $student
-    ]);
-  }
+
+
+  //   return view('students.manage_students_info.view_student', [
+  //     'student' => $student
+  //   ]);
+  // }
 }
