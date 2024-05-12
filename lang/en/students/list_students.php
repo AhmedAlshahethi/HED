@@ -23,10 +23,9 @@ return [
   ],
 
   'Home' => 'List Students',
-  'Screen' => 'Manage Students Registration',
+  'Screen_students' => 'Manage Students Registration',
 
-  'Home_Document' => 'List Students',
-  'Screen_Document' => 'Manage Students Documents',
+  'Screen_documents' => 'Manage Students Documents',
 
   'Home_Mark' => 'List Students',
   'Screen_Mark' => 'Manage Students Marks',

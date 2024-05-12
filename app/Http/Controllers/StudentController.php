@@ -41,11 +41,6 @@ class StudentController extends Controller
       'total' => $students->total(),
     ]);
   }
-  public function index_students_doc()
-  {
-    $students = Student::with('departments')->get();
-    return view('students.manage_students_doc.list_students')->with('all_students', $students);
-  }
   public function create()
   {
     return view('students.manage_students_info.edit_student', [

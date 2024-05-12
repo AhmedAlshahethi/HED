@@ -1,4 +1,8 @@
 @extends('layout.master')
+<?php
+$pluralPageName = ['students_info' => 'students', 'students_documents' => 'documents'][Route::currentRouteName()];
+$singlePageName = ['students_info' => 'student', 'students_documents' => 'document'][Route::currentRouteName()];
+?>
 @section('content')
   <div class="content-header">
     <div class="container-fluid">
@@ -9,7 +13,8 @@
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item">{{ __('students/list_students.Home') }}</li>
             <li class="breadcrumb-item active"><a
-                href="{{ route('students_info') }}">{{ __('students/list_students.Screen') }}</a></li>
+                href="{{ route('students_info') }}">{{ __('students/list_students.Screen_' . $pluralPageName) }}</a>
+            </li>
           </ol>
         </div>
       </div>
@@ -21,22 +26,30 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
+              @if (Route::currentRouteName() == 'students_info')
+                <h3 class="card-title mr-2">
+                  <a href="{{ route('add_student') }}">
+                    <button type="button"
+                      class="btn btn-block btn-primary">{{ __('students/list_students.add_student') }}</button>
+                  </a>
+                </h3>
+              @endif
               <h3 class="card-title mr-2">
-                <a href="{{ route('add_student') }}">
+                <a href="{{ route('import_data', [
+                    'type' => $pluralPageName,
+                ]) }}">
                   <button type="button"
-                    class="btn btn-block btn-primary">{{ __('students/list_students.add_student') }}</button>
+                    class="btn btn-block btn-success">{{ __('students/list_students.import_' . $pluralPageName) }}</button>
                 </a>
               </h3>
               <h3 class="card-title mr-2">
-                <a href="{{ route('import_data', ['type' => 'students']) }}">
+                <a
+                  href="{{ route('export_data', [
+                      'type' => $pluralPageName,
+                      ...request()->query(),
+                  ]) }}">
                   <button type="button"
-                    class="btn btn-block btn-success">{{ __('students/list_students.import_students') }}</button>
-                </a>
-              </h3>
-              <h3 class="card-title mr-2">
-                <a href="{{ route('export_data', ['type' => 'students', ...request()->query()]) }}">
-                  <button type="button"
-                    class="btn btn-block btn-info">{{ __('students/list_students.export_students') }}</button>
+                    class="btn btn-block btn-info">{{ __('students/list_students.export_' . $pluralPageName) }}</button>
                 </a>
               </h3>
               <form class="card-tools" method="GET" action="">
@@ -93,7 +106,7 @@
                       <td>{{ $student->registration_type }}</td>
                       <td>{{ $student->departments->name }}</td>
                       <td class="project-actions text-right">
-                        <a class="btn btn-warning btn-sm" href="{{ route('edit_student', $student->id) }}">
+                        <a class="btn btn-warning btn-sm" href="{{ route('edit_' . $singlePageName, $student->id) }}">
                           <i class="fas fa-pencil-alt">
                           </i>
                           {{ __('shared/shared.Edit') }}
@@ -111,33 +124,37 @@
                 </div>
                 <div class="pagination-buttons">
                   @if ($current_page > 1)
-                    <a href="{{ route('students_info', [...request()->query(), 'page' => 1]) }}">
+                    <a href="{{ route(Route::currentRouteName(), [...request()->query(), 'page' => 1]) }}">
                       <button class="pagination-button btn btn-light">
                         1
                       </button>
                     </a>
                   @endif
                   @if ($current_page > 2)
-                    <a href="{{ route('students_info', [...request()->query(), 'page' => $current_page - 1]) }}">
+                    <a
+                      href="{{ route(Route::currentRouteName(), [...request()->query(), 'page' => $current_page - 1]) }}">
                       <button class="pagination-button btn btn-light">
                         {{ $current_page - 1 }}
                       </button>
                     </a>
                   @endif
-                  <a href="{{ route('students_info', [...request()->query(), 'page' => $current_page]) }}">
-                    <button class="pagination-button btn btn-primary">
-                      {{ $current_page }}
-                    </button>
-                  </a>
+                  @if ($last_page > 1)
+                    <a href="{{ route(Route::currentRouteName(), [...request()->query(), 'page' => $current_page]) }}">
+                      <button class="pagination-button btn btn-primary">
+                        {{ $current_page }}
+                      </button>
+                    </a>
+                  @endif
                   @if ($current_page < $last_page - 1)
-                    <a href="{{ route('students_info', [...request()->query(), 'page' => $current_page + 1]) }}">
+                    <a
+                      href="{{ route(Route::currentRouteName(), [...request()->query(), 'page' => $current_page + 1]) }}">
                       <button class="pagination-button btn btn-light">
                         {{ $current_page + 1 }}
                       </button>
                     </a>
                   @endif
                   @if ($current_page < $last_page)
-                    <a href="{{ route('students_info', [...request()->query(), 'page' => $last_page]) }}">
+                    <a href="{{ route(Route::currentRouteName(), [...request()->query(), 'page' => $last_page]) }}">
                       <button class="pagination-button btn btn-light">
                         {{ $last_page }}
                       </button>

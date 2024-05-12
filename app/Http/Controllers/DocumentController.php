@@ -10,18 +10,19 @@ use Illuminate\Http\Request;
 
 class DocumentController extends Controller
 {
-    
-    public function create(Student $student ){
-        $i=0;
-        $doc_types=DocumentType::get();
+    public function create(Student $student)
+    {
+        $i = 0;
+        $doc_types = DocumentType::get();
         return view('students.manage_students_doc.add_document')->with([
-            'student'=> $student,
+            'student' => $student,
             'doc_types' => $doc_types,
-            'i' =>$i
+            'i' => $i
         ]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $data = $request->validate([
             'number' => 'required',
             'date' => 'required',
@@ -30,7 +31,7 @@ class DocumentController extends Controller
             'file_path' => 'nullable',
         ]);
         $data = new Collection($request);
-        $numberofentries = 0;
+        $numberOfEntries = 0;
         $doc_numbers = [];
         $dates = [];
         $doc_types = [];
@@ -38,35 +39,28 @@ class DocumentController extends Controller
 
         foreach ($data['number'] as $numberData) {
             $doc_numbers[] = $numberData['number'];
-            $numberofentries++; // Access the nested ID
+            $numberOfEntries++; // Access the nested ID
         }
         foreach ($data['date'] as $dateData) {
             $dates[] = $dateData['date'];
         }
         foreach ($data['document_type_id'] as $doc_typeData) {
-            
-            $doc_types[] = $doc_typeData['document_type_id'] ; // Access the nested ID
+            $doc_types[] = $doc_typeData['document_type_id']; // Access the nested ID
         }
         foreach ($data['file_path'] as $doc_pathData) {
-            
-            $doc_paths[] = $doc_pathData['file_path'] ; // Access the nested ID
+            $doc_paths[] = $doc_pathData['file_path']; // Access the nested ID
         }
 
-
-        for ($x=0; $x < $numberofentries; $x++) {  //loop should start form zero
-
+        for ($x = 0; $x < $numberOfEntries; $x++) {  //loop should start form zero
             $Document = new Document();
-
             $Document->student_id = $data['student_id'];
             $Document->file_path = $doc_paths[$x];
             $Document->number = $doc_numbers[$x];
             $Document->date = $dates[$x];
             $Document->document_type_id = $doc_types[$x];
-
             $Document->save();
-                }
-                if ($Document->save())
-                return redirect()->route('students_documents');  
-    
+        }
+        if ($Document->save())
+            return redirect()->route('students_documents');
     }
 }

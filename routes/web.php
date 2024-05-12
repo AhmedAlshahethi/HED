@@ -53,7 +53,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     Route::get('/edit/{student}', [StudentController::class, 'edit'])->name('edit_student');
     Route::get('/delete/{id}', [StudentController::class, 'delete'])->name('delete_student');
     Route::post('/update/{student}', [StudentController::class, 'update'])->name('update_student');
-    Route::get('/documents', [StudentController::class, 'index_students_doc'])->name('students_documents');
+    Route::get('/documents', [StudentController::class, 'index'])->name('students_documents');
   });
 
   Route::group(['prefix' => 'departments'], function () {
