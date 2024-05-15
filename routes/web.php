@@ -91,16 +91,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
   Route::group(['prefix' => 'documents'], function () {
     Route::view('/info', 'students.manage_students_doc.view_document')->name('documents');
-    Route::get('/add/{student}', [DocumentController::class, 'create'])->name('add_document');
-    Route::post('/store', [DocumentController::class, 'store'])->name('store_document');
-
-    // Route::view('/add_document', 'students.manage_students_doc.add_document')->name('add_document');
-
-    Route::view('/view_document', 'students.manage_students_doc.view_document')->name('view_document');
-
-    Route::view('/edit_document', 'students.manage_students_doc.edit_document')->name('edit_document');
-
-    Route::view('/delete_document', 'students.manage_students_doc.delete_document')->name('delete_document');
+    Route::get('/edit/{student}', [DocumentController::class, 'edit'])->name('edit_document');
+    Route::post('/edit/{student}', [DocumentController::class, 'store'])->name('store_document');
+    // Route::view('/view_document', 'students.manage_students_doc.view_document')->name('view_document');
+    // Route::view('/edit_document', 'students.manage_students_doc.edit_document')->name('edit_document');
+    // Route::view('/delete_document', 'students.manage_students_doc.delete_document')->name('delete_document');
   });
 
   Route::group(['prefix' => 'fees'], function () {

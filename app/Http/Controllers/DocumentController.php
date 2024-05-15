@@ -10,14 +10,13 @@ use Illuminate\Http\Request;
 
 class DocumentController extends Controller
 {
-    public function create(Student $student)
+    public function edit(Student $student)
     {
-        $i = 0;
         $doc_types = DocumentType::get();
-        return view('students.manage_students_doc.add_document')->with([
+        return view('students.manage_students_doc.edit_document')->with([
             'student' => $student,
+            'documents' => $student->documents,
             'doc_types' => $doc_types,
-            'i' => $i
         ]);
     }
 
