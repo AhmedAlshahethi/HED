@@ -14,6 +14,7 @@ return [
     'Edit' => 'Edit',
     'Delete' => 'Delete',
     'Add' => 'Add',
+    'Approval' => 'Approval',
     'Level' => 'Academic Level',
     'Master' => 'Master',
     'phD' => 'phD',

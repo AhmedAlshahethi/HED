@@ -91,4 +91,13 @@ class SeminarController extends Controller
             'student' => $student
         ]);
     }
+
+    public function approve(Student $student)
+    {
+
+        return view('students_thesis.seminars.approve', [
+            'student' => $student,
+            'seminar' => Seminar::findOrFail($student->id, 'student')
+        ]);
+    }
 }
