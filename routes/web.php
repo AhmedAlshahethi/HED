@@ -100,7 +100,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
   Route::group(['prefix' => 'fees'], function () {
     Route::get('/info', [StudentPaymentController::class, 'index'])->name('students_fees');
-    Route::get('/add', [StudentPaymentController::class, 'create'])->name('add_fee');
+    Route::get('/add/{student}', [StudentPaymentController::class, 'create'])->name('add_fee');
     Route::post('/store', [StudentPaymentController::class, 'store'])->name('store_fee');
     Route::view('/edit_fees', 'students.manage_students_fees.edit_fee')->name('edit_fee');
     Route::view('/view_fees', 'students.manage_students_fees.view_fee')->name('view_fee');

@@ -80,33 +80,20 @@
                   </tr>
                 </thead>
                 <tbody id="table_body">
-                  @foreach ($all_students as $student)
-                    <tr>
-                      <td>{{ $student->name }}</td>
-                      <td>21160021</td>
-                      <td>{{ $student->registration_type }}</td>
-                      <td>{{ $student->departments->name }}</td>
-                      <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="{{ route('view_fee') }}">
-                          <i class="fas fa-eye">
-                          </i>
-                          {{ __('shared/shared.View') }}
-                        </a>
-                        <a class="btn btn-success btn-sm" href="{{ route('add_fee') }}">
-                          <i class="fas fa-folder">
-                          </i>
-                          {{ __('shared/shared.Add') }}
-                        </a>
-                        <a class="btn btn-info btn-sm" href="{{ route('edit_fee') }}">
-                          <i class="fas fa-pencil-alt">
-                          </i>
-                          {{ __('shared/shared.Edit') }}
-                        </a>
-                        <a class="btn btn-danger btn-sm text-white" href="{{ route('delete_fee') }}">
-                          <i class="fas fa-trash">
-                          </i>
-                          {{ __('shared/shared.Delete') }}
-                        </a>
+                @foreach($all_students as $student)
+                <tr>
+                <td>{{$student->name}}</td>
+                  <td>{{$student->academic_number}} </td>
+                  <td>{{$student->registration_type}}</td>
+                  <td>{{$student->departments->name}}</td>
+                  <td class="project-actions text-right">
+                    
+                    <a class="btn btn-success btn-sm" href="{{route('add_fee',$student->id)}}">
+                      <i class="fas fa-folder">
+                      </i>
+                      {{__('shared/shared.Add')}}
+                    </a>
+                       
                       </td>
 
 
