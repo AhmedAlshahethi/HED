@@ -27,6 +27,7 @@
 
 
 
+
   <section class="content">
     <div class="container-fluid">
       <!-- SELECT2 EXAMPLE -->

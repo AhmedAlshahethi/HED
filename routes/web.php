@@ -92,7 +92,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
   Route::group(['prefix' => 'documents'], function () {
     Route::view('/info', 'students.manage_students_doc.view_document')->name('documents');
     Route::get('/edit/{student}', [DocumentController::class, 'edit'])->name('edit_document');
-    Route::post('/edit/{student}', [DocumentController::class, 'store'])->name('store_document');
+    Route::post('/store/{student}', [DocumentController::class, 'store'])->name('store_document');
     // Route::view('/view_document', 'students.manage_students_doc.view_document')->name('view_document');
     // Route::view('/edit_document', 'students.manage_students_doc.edit_document')->name('edit_document');
     // Route::view('/delete_document', 'students.manage_students_doc.delete_document')->name('delete_document');
@@ -102,9 +102,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     Route::get('/info', [StudentPaymentController::class, 'index'])->name('students_fees');
     Route::get('/add/{student}', [StudentPaymentController::class, 'create'])->name('add_fee');
     Route::post('/store', [StudentPaymentController::class, 'store'])->name('store_fee');
+    Route::post('/update', [StudentPaymentController::class, 'update'])->name('update_fee');
+
+
     Route::view('/edit_fees', 'students.manage_students_fees.edit_fee')->name('edit_fee');
     Route::view('/view_fees', 'students.manage_students_fees.view_fee')->name('view_fee');
-    Route::view('/delete_fees', 'students.manage_students_fees.delete_fee')->name('delete_fee');
+    Route::get('/delete_fee/{id}', [StudentPaymentController::class, 'delete'] )->name('delete_fee');
 
     // Route::view('/add_fee', 'students.manage_students_fees.add_fee')->name('add_fee');
   });

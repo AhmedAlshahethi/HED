@@ -87,7 +87,7 @@
                           </i>
                           {{ __('shared/shared.View') }}
                         </a>
-                        <a class="btn btn-info btn-sm" href="{{ route('edit_document') }}">
+                        <a class="btn btn-info btn-sm" href="{{ route('edit_document',$student->id) }}">
                           <i class="fas fa-pencil-alt">
                           </i>
                           {{ __('shared/shared.Edit') }}

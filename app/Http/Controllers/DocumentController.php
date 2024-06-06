@@ -22,6 +22,8 @@ class DocumentController extends Controller
 
     public function store(Request $request)
     {
+  
+        return response($request);
         $data = $request->validate([
             'number' => 'required',
             'date' => 'required',
@@ -29,6 +31,8 @@ class DocumentController extends Controller
             'student_id' => 'required',
             'file_path' => 'nullable',
         ]);
+
+        
         $data = new Collection($request);
         $numberOfEntries = 0;
         $doc_numbers = [];
